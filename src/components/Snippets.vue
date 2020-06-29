@@ -1,39 +1,38 @@
 <template>
   <div id="snippets">
-    <h2 class="snippets-title">Code Snippets</h2>
+    <h1 class="snippets-title">Code Snippets</h1>
     <ul class="snippets-list">
-      <li class="snippet">
-        <img class="snippet-image" src="https://i.ibb.co/PWGh29D/Ebj2-ZDKWAAE08-CP.jpg">
-        <h3 class="snippet-title">Cleaner setTimeout Callbacks</h3>
-        <div class="snippet-desc">How to keep your setTimeout callbacks on one line.</div>
-      </li>
-      <li class="snippet">
-        <img class="snippet-image" src="https://i.ibb.co/bNTz5kb/Eb-Sda-XBXYAUs-Qxr-1.jpg">
-        <h3 class="snippet-title">Argument Validation</h3>
-        <div class="snippet-desc">Here's a fancy trick for requiring arguments to a function.</div>
-      </li>
-      <li class="snippet">
-        <img class="snippet-image" src="https://i.ibb.co/bJxk8T5/continue-to-here-1.png">
-        <h3 class="snippet-title">Debugging Tip: "Continue to here"</h3>
-        <div class="snippet-desc">Inside the Chrome debugger, there's a simple way to advance the flow of your debugging scope.</div>
-      </li>
-      <li class="snippet">
-        <img class="snippet-image" src="https://i.ibb.co/CW8d7jt/chrome-p6-KVK2-Mc-AH.png">
-        <h3 class="snippet-title">debug()</h3>
-        <div class="snippet-desc">Pause execution in the debugger on the first line of a provided fn.</div>
-      </li>
-      <li class="snippet">
-        <img class="snippet-image" src="https://i.ibb.co/p0Ntnj2/carbon-4.png">
-        <h3 class="snippet-title">window.onerror()</h3>
-        <div class="snippet-desc">Easily capture and report on global errors with window.error.</div>
+      <li v-for="snippet in snippets" :key="snippet.id" class="snippet">
+        <router-link :to="{ name: 'Snippet', params: { id: snippet.id }}" class="snippet-link">
+          <img class="snippet-image" :src="snippet.image">
+          <h3 class="snippet-title">{{ snippet.title }}</h3>
+        </router-link>
+        <div class="snippet-desc">{{ snippet.desc }}</div>
       </li>
     </ul>
   </div>
 </template>
 
+<script>
+import snippets from '@/snippets.js';
+
+export default {
+  name: 'Snippets',
+  data() {
+    return {
+      snippets: snippets.slice(1)
+    };
+  }
+}
+</script>
+
 <style lang="scss">
 #snippets {
   margin-bottom: 80px;
+
+  .snippets-title {
+    margin: 40px 0;
+  }
 
   .snippets-list {
     display: grid;
