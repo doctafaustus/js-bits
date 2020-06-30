@@ -1,5 +1,11 @@
 const snippets = [
   {
+    id: 6,
+    title: 'Filter Log by Script Source',
+    image: 'https://res.cloudinary.com/dormh2fvt/image/upload/v1593490980/JS%20Bits/filter-log-by-source.jpg',
+    desc: 'Remove all the garbage in the console by filtering by script source.'
+  },
+  {
     id: 5,
     title: 'Cleaner setTimeout Callbacks',
     image: 'https://res.cloudinary.com/dormh2fvt/image/upload/v1593405909/JS%20Bits/Ebj2-ZDKWAAE08-CP.jpg',
