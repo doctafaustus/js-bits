@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-
+    <!-- <component :is="comp"></component> -->
     <div class="wrapper">
       <Hero></Hero>
       <Snippets></Snippets>
@@ -24,6 +24,16 @@ export default {
     Hero,
     Snippets,
     Footer
+  }, 
+  data() {
+    return {
+      snippetName: 'filter-log-by-script-source'
+    };
+  },
+  computed: {
+    comp() {
+      return () => import(`@/snippets/${this.snippetName}.vue`)
+    }
   }
 }
 </script>
