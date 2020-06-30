@@ -1,8 +1,10 @@
+import utils from '@/mixins/utils';
+
 const snippets = [
   {
     title: 'Filter Log by Script Source',
     image: 'https://res.cloudinary.com/dormh2fvt/image/upload/v1593490980/JS%20Bits/filter-log-by-source.jpg',
-    desc: 'Remove all the garbage in the console by filtering by script source.'
+    desc: 'Remove all the garbage in the console by filtering by script source.',
   },
   {
     title: 'Cleaner setTimeout Callbacks',
@@ -30,5 +32,11 @@ const snippets = [
     desc: 'Easily capture and report on global errors with window.error.'
   }
 ];
+
+snippets.forEach(snippets => {
+  snippets.getSlug = function getSlug() {
+    return utils.slugify(this.title);
+  };
+});
 
 export default snippets;

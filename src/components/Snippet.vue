@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import snippets from '@/snippets.js';
 import utils from '@/mixins/utils';
 
 export default {
@@ -12,7 +13,7 @@ export default {
   mixins: [utils],
   data() {
     return {
-      snippetName: 'filter-log-by-script-source'
+      snippetName: null
     };
   },
   computed: {
@@ -27,10 +28,15 @@ export default {
           Object.assign(document.createElement('a'), { target: '_blank', href: img.src }).click();
         });
       });
+    },
+    updateMetaImage() {
+      const snippet = snippets.find(snippet => utils.slugify(snippet.title) === this.snippetName);
+      console.log(snippet);
     }
   },
   created() {
     this.snippetName = this.$route.params.id;
+    this.updateMetaImage();
   },
   mounted() {
     // Wait for child snippet component to load
