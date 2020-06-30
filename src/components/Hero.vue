@@ -6,10 +6,10 @@
         <h5 class="latest-title">Latest Post</h5>
         <h2 class="snippet-title">{{ snippet.title }}</h2>
         <div class="featured-snippet-desc">{{ snippet.desc }}</div>
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.id }}" class="read-code-notes">Read Code Notes</router-link>
+        <router-link :to="{ name: 'Snippet', params: { id: utils.slugify(snippet.title) }}" class="read-code-notes">Read Code Notes</router-link>
       </div>
       <div class="featured-snippet-right">
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.id }}">
+        <router-link :to="{ name: 'Snippet', params: { id: utils.slugify(snippet.title) }}">
           <img class="featured-snippet-image" :src="snippet.image">
         </router-link>
       </div>
@@ -19,11 +19,13 @@
 
 <script>
 import snippets from '@/snippets.js';
+import utils from '@/mixins/utils';
 
 export default {
-  name: 'Snippets',
+  name: 'Hero',
   data() {
     return {
+      utils,
       snippet: snippets[0]
     };
   }

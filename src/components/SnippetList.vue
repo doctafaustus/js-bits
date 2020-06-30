@@ -2,8 +2,8 @@
   <div id="snippets">
     <h1 class="snippets-title">Code Snippets</h1>
     <ul class="snippets-list">
-      <li v-for="snippet in snippets" :key="snippet.id" class="snippet">
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.id }}" class="snippet-link">
+      <li v-for="snippet in snippets" :key="snippet.title" class="snippet">
+        <router-link :to="{ name: 'Snippet', params: { id: utils.slugify(snippet.title) }}" class="snippet-link">
           <img class="snippet-image" :src="snippet.image">
           <h3 class="snippet-title">{{ snippet.title }}</h3>
         </router-link>
@@ -15,14 +15,17 @@
 
 <script>
 import snippets from '@/snippets.js';
+import utils from '@/mixins/utils';
 
 export default {
-  name: 'Snippets',
+  name: 'SnippetList',
+  mixins: [utils],
   data() {
     return {
+      utils,
       snippets: snippets.slice(1)
     };
-  }
+  },
 }
 </script>
 
@@ -43,6 +46,10 @@ export default {
     .snippet {
       display: inline-block;
       text-align: left;
+
+      a {
+        display: inline-block;
+      }
 
       .snippet-image {
         display: inline-block;
