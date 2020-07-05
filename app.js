@@ -41,8 +41,11 @@ async function updateMetaTags(req, res) {
   const snippetSlug = req.originalUrl.substring(req.originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
   const snippetObj = snippetsArr.find(snippet => snippet.slug === snippetSlug);
 
+  const baseFile = `${__dirname}/client/dist/index.html`;
+  if (!snippetObj) return res.sendFile(baseFile);
+
   // Update the meta tag properties in the built bundle
-  const baseHTML = await fs.promises.readFile(`${__dirname}/client/dist/index.html`, 'utf-8');
+  const baseHTML = await fs.promises.readFile(baseFile, 'utf-8');
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
   const $base = $(tempHTML);
 
