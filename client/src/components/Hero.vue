@@ -6,10 +6,10 @@
         <h5 class="latest-title">Latest Post</h5>
         <h2 class="snippet-title">{{ snippet.title }}</h2>
         <div class="featured-snippet-desc">{{ snippet.desc }}</div>
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.getSlug() }}" class="read-code-notes">Read Code Notes</router-link>
+        <router-link :to="{ name: 'Snippet', params: { id: snippet.slug }}" class="read-code-notes">Read Code Notes</router-link>
       </div>
       <div class="featured-snippet-right">
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.getSlug() }}">
+        <router-link :to="{ name: 'Snippet', params: { id: snippet.slug }}">
           <img class="featured-snippet-image" :src="snippet.image">
         </router-link>
       </div>

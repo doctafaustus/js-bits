@@ -3,7 +3,7 @@
     <h1 class="snippets-title">Code Snippets</h1>
     <ul class="snippets-list">
       <li v-for="snippet in snippets" :key="snippet.title" class="snippet">
-        <router-link :to="{ name: 'Snippet', params: { id: snippet.getSlug() }}" class="snippet-link">
+        <router-link :to="{ name: 'Snippet', params: { id: snippet.slug }}" class="snippet-link">
           <img class="snippet-image" :src="snippet.image">
           <h3 class="snippet-title">{{ snippet.title }}</h3>
         </router-link>

@@ -25,25 +25,12 @@ if (!process.env.PORT) {
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
-  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(next);
+  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(res);
   else console.log('afdas') || res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
-function updateMetaTags(next) {
+async function updateMetaTags(res) {
   console.log('nEED TO UPDATE');
-  next();
-}
-
-app.get('/api/test', async (req, res) => {
-  console.log('/test');
-
-  // const snippetHTML = await fs.promises.readFile(`${__dirname}/snippets/cleaner-settimeout-callbacks.html`, 'utf-8');
-  // const $snippet = $(snippetHTML);
-  // const metaTitleTag = $snippet.find('meta[property=og\\:title]');
-  // const metaImageTag = $snippet.find('meta[property=og\\:image]');
-  // const metaDescTag = $snippet.find('meta[property=og\\:description]');
-  // const metaTags = [$.html(metaTitleTag), $.html(metaImageTag), $.html(metaDescTag)].join();
-
 
   const snippetsText = await fs.promises.readFile(`${__dirname}/client/src/snippets.js`, 'utf-8');
   const startPos = snippetsText.search(/\[/);
@@ -51,14 +38,36 @@ app.get('/api/test', async (req, res) => {
   const trimmedSnippetText = snippetsText.substring(startPos, endPos);
   const snippetsArr = JSON.parse(trimmedSnippetText);
 
+  const originalUrl = 'http://localhost:8080/snippet/filter-log-by-script-source';
+  const snippetSlug = originalUrl.substring(originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
+  console.log('snippetSlug', snippetSlug);
 
-
-
+  const snippetObj = snippetsArr.find(snippet => snippet.slug === snippetSlug);
 
   const baseHTML = await fs.promises.readFile(`${__dirname}/client/dist/index.html`, 'utf-8');
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
   const $base = $(tempHTML);
-  console.log('?', $base.find('meta[property=og\\:title]').length);
+
+  $base.find('meta[property=og\\:title]').attr('content', snippetObj.title);
+  $base.find('meta[property=og\\:image]').attr('content', snippetObj.image);
+  $base.find('meta[property=og\\:description]').attr('content', snippetObj.desc);
+
+  console.log('?', $.html($base));
+
+
+  res.sendFile($.html($base));
+}
+
+app.get('/api/test', (req, res) => {
+  console.log('/test');
+  updateMetaTags();
+
+  // const snippetHTML = await fs.promises.readFile(`${__dirname}/snippets/cleaner-settimeout-callbacks.html`, 'utf-8');
+  // const $snippet = $(snippetHTML);
+  // const metaTitleTag = $snippet.find('meta[property=og\\:title]');
+  // const metaImageTag = $snippet.find('meta[property=og\\:image]');
+  // const metaDescTag = $snippet.find('meta[property=og\\:description]');
+  // const metaTags = [$.html(metaTitleTag), $.html(metaImageTag), $.html(metaDescTag)].join();
 });
 
 
