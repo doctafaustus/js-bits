@@ -25,11 +25,11 @@ if (!process.env.PORT) {
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
-  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(res);
+  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req.originalUrl, res);
   else console.log('afdas') || res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
-async function updateMetaTags(res) {
+async function updateMetaTags(originalUrl, res) {
   console.log('nEED TO UPDATE');
 
   const snippetsText = await fs.promises.readFile(`${__dirname}/client/src/snippets.js`, 'utf-8');
@@ -38,7 +38,6 @@ async function updateMetaTags(res) {
   const trimmedSnippetText = snippetsText.substring(startPos, endPos);
   const snippetsArr = JSON.parse(trimmedSnippetText);
 
-  const originalUrl = 'http://localhost:8080/snippet/filter-log-by-script-source';
   const snippetSlug = originalUrl.substring(originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
   console.log('snippetSlug', snippetSlug);
 
