@@ -55,7 +55,7 @@ async function updateMetaTags(res) {
   console.log('?', $.html($base));
 
 
-  res.sendFile($.html($base));
+  res.send($.html($base));
 }
 
 app.get('/api/test', (req, res) => {
