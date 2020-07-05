@@ -25,8 +25,14 @@ if (!process.env.PORT) {
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
+  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(next);
   else console.log('afdas') || res.sendFile(`${__dirname}/client/dist/index.html`);
 });
+
+function updateMetaTags(next) {
+  console.log('nEED TO UPDATE');
+  next();
+}
 
 app.get('/api/test', async (req, res) => {
   console.log('/test');
