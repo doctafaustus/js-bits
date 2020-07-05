@@ -29,23 +29,9 @@ export default {
         });
       });
     },
-    updateMetaImage() {
-      const snippet = snippets.find(snippet => utils.slugify(snippet.title) === this.snippetName);
-      console.log(snippet);
-    }
   },
   created() {
     this.snippetName = this.$route.params.id;
-    this.updateMetaImage();
-
-      fetch('http://localhost:8081/api/test', {
-        method: 'GET',
-        headers: { 'Content-Type': 'text/html' },
-      })
-      .then(html => console.log('?', html) || html.text())
-      .then(data => {
-        console.log('api/place-order response: \n', data);
-      });
   },
   mounted() {
     // Wait for child snippet component to load
@@ -76,6 +62,7 @@ export default {
 
   h3 {
     margin-top: 32px;
+    margin-bottom: 16px;
   }
 
   p {
@@ -86,5 +73,23 @@ export default {
     width: 100%;
     cursor: pointer;
   }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+// Snippet code
+code {
+  color: #f006a8;
+  background-color: rgba(27,31,35,.06);
+  padding: .15rem .55rem;
+  margin: 0;
+  border-radius: 3px;
+  font-size: 18px;
+}
+
+.hljs {
+  font-size: 18px;
 }
 </style>

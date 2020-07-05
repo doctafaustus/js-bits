@@ -64,7 +64,8 @@ export default {
       }
 
       .featured-snippet-desc {
-        line-height: 24px;
+        line-height: 26px;
+        font-size: 20px;
       }
 
       .read-code-notes {
@@ -74,6 +75,22 @@ export default {
           text-decoration: underline;
         }
       }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .featured-snippet {
+      display: block;
+
+      .featured-snippet-right {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .featured-snippet-image {
+      width: 100%;
     }
   }
 }

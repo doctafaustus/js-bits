@@ -16,7 +16,7 @@ header {
   background-color: #000;
   color: #fff;
   padding: 16px 0;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 
   .logo-link {
     display: inline-block;

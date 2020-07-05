@@ -57,11 +57,6 @@ async function updateMetaTags(req, res) {
   res.send($.html($base));
 }
 
-app.get('/api/test', (req, res) => {
-  console.log('/test');
-  //updateMetaTags();
-});
-
 
 app.listen(process.env.PORT || 8081, () => {
   console.log('App running...');
