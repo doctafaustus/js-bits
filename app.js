@@ -26,47 +26,39 @@ if (!process.env.PORT) {
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
   else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req.originalUrl, res);
-  else console.log('afdas') || res.sendFile(`${__dirname}/client/dist/index.html`);
+  else res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
 async function updateMetaTags(originalUrl, res) {
-  console.log('nEED TO UPDATE');
-
+  // First get and parse snippets array from app src
   const snippetsText = await fs.promises.readFile(`${__dirname}/client/src/snippets.js`, 'utf-8');
   const startPos = snippetsText.search(/\[/);
   const endPos = snippetsText.lastIndexOf('];') + 1;
   const trimmedSnippetText = snippetsText.substring(startPos, endPos);
   const snippetsArr = JSON.parse(trimmedSnippetText);
 
+  // Retrieve snippet object that includes the current URL slug
   const snippetSlug = originalUrl.substring(originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
-  console.log('snippetSlug', snippetSlug);
-
   const snippetObj = snippetsArr.find(snippet => snippet.slug === snippetSlug);
 
+  // Update the meta tag properties in the built bundle
   const baseHTML = await fs.promises.readFile(`${__dirname}/client/dist/index.html`, 'utf-8');
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
   const $base = $(tempHTML);
 
+  $base.find('meta[property=og\\:type]').attr('content', 'article');
   $base.find('meta[property=og\\:title]').attr('content', snippetObj.title);
   $base.find('meta[property=og\\:image]').attr('content', snippetObj.image);
   $base.find('meta[property=og\\:description]').attr('content', snippetObj.desc);
 
-  console.log('?', $.html($base));
 
-
+  // Send the modified HTML as the response
   res.send($.html($base));
 }
 
 app.get('/api/test', (req, res) => {
   console.log('/test');
-  updateMetaTags();
-
-  // const snippetHTML = await fs.promises.readFile(`${__dirname}/snippets/cleaner-settimeout-callbacks.html`, 'utf-8');
-  // const $snippet = $(snippetHTML);
-  // const metaTitleTag = $snippet.find('meta[property=og\\:title]');
-  // const metaImageTag = $snippet.find('meta[property=og\\:image]');
-  // const metaDescTag = $snippet.find('meta[property=og\\:description]');
-  // const metaTags = [$.html(metaTitleTag), $.html(metaImageTag), $.html(metaDescTag)].join();
+  //updateMetaTags();
 });
 
 
