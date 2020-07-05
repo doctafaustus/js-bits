@@ -46,6 +46,7 @@ async function updateMetaTags(originalUrl, res) {
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
   const $base = $(tempHTML);
 
+  $base.find('meta[property=og\\:url]').attr('content', originalUrl);
   $base.find('meta[property=og\\:type]').attr('content', 'article');
   $base.find('meta[property=og\\:title]').attr('content', snippetObj.title);
   $base.find('meta[property=og\\:image]').attr('content', snippetObj.image);
