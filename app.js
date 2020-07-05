@@ -25,11 +25,11 @@ if (!process.env.PORT) {
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
-  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req.originalUrl, res);
+  else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req, res);
   else res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
-async function updateMetaTags(originalUrl, res) {
+async function updateMetaTags(req, res) {
   // First get and parse snippets array from app src
   const snippetsText = await fs.promises.readFile(`${__dirname}/client/src/snippets.js`, 'utf-8');
   const startPos = snippetsText.search(/\[/);
@@ -38,7 +38,7 @@ async function updateMetaTags(originalUrl, res) {
   const snippetsArr = JSON.parse(trimmedSnippetText);
 
   // Retrieve snippet object that includes the current URL slug
-  const snippetSlug = originalUrl.substring(originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
+  const snippetSlug = req.originalUrl.substring(req.originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
   const snippetObj = snippetsArr.find(snippet => snippet.slug === snippetSlug);
 
   // Update the meta tag properties in the built bundle
@@ -46,7 +46,7 @@ async function updateMetaTags(originalUrl, res) {
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
   const $base = $(tempHTML);
 
-  $base.find('meta[property=og\\:url]').attr('content', originalUrl);
+  $base.find('meta[property=og\\:url]').attr('content', `${req.protocol}://${req.get('host')}${req.originalUrl}`);
   $base.find('meta[property=og\\:type]').attr('content', 'article');
   $base.find('meta[property=og\\:title]').attr('content', snippetObj.title);
   $base.find('meta[property=og\\:image]').attr('content', snippetObj.image);
