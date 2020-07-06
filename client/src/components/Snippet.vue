@@ -77,9 +77,29 @@ export default {
   a {
     text-decoration: underline;
   }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 24px;
+
+    h1 {
+      font-size: 28px;
+      line-height: 34px;
+    }
+
+    code {
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    .hljs {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0;
+    }
+  }
 }
 
-// Snippet code
 code {
   color: #f006a8;
   background-color: rgba(27,31,35,.06);

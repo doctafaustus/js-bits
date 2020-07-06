@@ -71,6 +71,12 @@ export default {
 
     @media (max-width: 767px) {
       grid-template-columns: 1fr 1fr;
+
+      .snippet {
+        .snippet-title {
+          margin-bottom: 6px;
+        }
+      }
     }
 
     @media (max-width: 480px) {
