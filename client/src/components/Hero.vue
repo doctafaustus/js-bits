@@ -98,10 +98,15 @@ export default {
     .featured-snippet {
       .featured-snippet-left {
         margin-right: 0;
+
+        .featured-snippet-desc {
+          font-size: 16px;
+          line-height: 24px;
+        }
       }
 
       .featured-snippet-right {
-        margin-top: 20px;
+        margin-top: 10px;
 
         .featured-snippet-image {
           width: 100%;

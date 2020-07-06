@@ -76,6 +76,11 @@ export default {
         .snippet-title {
           margin-bottom: 6px;
         }
+
+        .snippet-desc {
+          font-size: 16px;
+          line-height: 24px;
+        }
       }
     }
 
