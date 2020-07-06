@@ -38,6 +38,15 @@ header {
 
   @media (max-width: 767px) {
     margin-bottom: 40px;
+    padding: 12px 0;
+
+    .logo-link {
+      font-size: 26px;
+
+      .js-logo {
+        width: 34px;
+      }
+    }
   }
 }
 </style>
