@@ -89,8 +89,24 @@ export default {
   }
 
   @media (max-width: 767px) {
-    .featured-snippet-image {
-      width: 100%;
+    .hero-title {
+      font-size: 27px;
+      margin-top: 0;
+      line-height: 34px;
+    }
+
+    .featured-snippet {
+      .featured-snippet-left {
+        margin-right: 0;
+      }
+
+      .featured-snippet-right {
+        margin-top: 20px;
+
+        .featured-snippet-image {
+          width: 100%;
+        }
+      }
     }
   }
 }

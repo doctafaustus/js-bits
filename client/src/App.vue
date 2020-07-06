@@ -40,6 +40,12 @@ export default {
     padding: 0 40px;
     max-width: 1400px;
     margin: 0 auto;
+
+    @media (max-width: 767px) {
+      padding: 0 20px;
+    }
   }
 }
+
+  
 </style>
