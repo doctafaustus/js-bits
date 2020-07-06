@@ -11,7 +11,7 @@ const $ = require('cheerio');
 // Express app / Middleware
 const app = express();
 app.use(express.static(`${__dirname}/client/dist`));
-app.use(favicon(`${__dirname}/client/dist/favicon.ico`));
+app.use(favicon(`${__dirname}/client/public/favicon.ico`));
 
 
 // Allow CORS requests locally
