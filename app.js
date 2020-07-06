@@ -1,8 +1,8 @@
 // Core modules
 const express = require('express');
-const cheerio = require('cheerio');
 const cors = require('cors');
 const fs = require('fs');
+const favicon = require('serve-favicon');
 
 
 // Globals
@@ -11,6 +11,7 @@ const $ = require('cheerio');
 // Express app / Middleware
 const app = express();
 app.use(express.static(`${__dirname}/client/dist`));
+app.use(favicon(`${__dirname}/client/dist/favicon.ico`));
 
 
 // Allow CORS requests locally
