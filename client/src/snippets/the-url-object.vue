@@ -1,7 +1,7 @@
 <template>
   <article class="snippet-article">
     <h1 class="hero-title">The URL Object</h1>
-    <p>Here's a great trick to get URL properties from a string that I recently discovered thanks to Twitter user <a href="https://twitter.com/DailyDevTips1">Chris Bongers (Daily Dev Tips)</a></p>
+    <p>Here's a great trick to get URL properties from a string that I recently discovered thanks to Twitter user <a href="https://twitter.com/DailyDevTips1" target="_blank">Chris Bongers (Daily Dev Tips)</a></p>
 
     <p>This method involves using the <code>URL()</code> constructor, available in all modern browsers.</p>
     <pre v-highlightjs><code class="javascript">
