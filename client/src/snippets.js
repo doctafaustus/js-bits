@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "The URL Object",
+    "slug": "the-url-object",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594149964/JS%20Bits/url-object.jpg",
+    "desc": "How to convert a URL string to an object to easily retrieve parameters."
+  },
+  {
     "title": "Filter Log by Script Source",
     "slug": "filter-log-by-script-source",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593490980/JS%20Bits/filter-log-by-source.jpg",

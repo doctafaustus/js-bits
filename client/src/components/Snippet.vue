@@ -52,7 +52,7 @@ export default {
   max-width: 720px;
   margin: 0 auto;
   padding-bottom: 100px;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 30px;
 
   h1 {
