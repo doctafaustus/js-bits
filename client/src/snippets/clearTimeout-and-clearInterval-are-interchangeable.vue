@@ -28,6 +28,10 @@
     And since the parameter to <code>clearTimeout</code> and <code>clearInterval</code> is the ID of the function you wish to cancel, and they're from the same pool of IDs on the window object, both functions will work for either a timeout or interval! 😃
     </p>
 
+    <p>
+      So while you <i>could</i> use these functions interchangeably, I actually wouldn't since you'll probably just confuse others - but it's still cool to know why this works!
+    </p>
+
     <h3>Links</h3>
     <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout" target="_blank">MDN Article on setTimeout</a>
   </article>
