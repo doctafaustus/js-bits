@@ -13,7 +13,7 @@
     </code></pre>
 
     <p>
-    This is because both functions will return a random ID which gets saved in the browser's memory but there's no separate group of IDs that are allocated to <code>setTimeout</code> versus <code>setIntervals</code>; they're shared. 
+    This is because both functions will return a random ID which gets saved in the browser's memory but there's no separate group of IDs that are allocated to <code>setTimeout</code> versus <code>setInterval</code>; they're shared. 
     </p>
     <p> 
     It's easy to forget that the return value of these functions is really a numerical ID. You can check it out if you log the variable:
