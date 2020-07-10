@@ -48,6 +48,6 @@
     <p>While this worked, it felt cumbersome to have to create a document element solely to retrive URL data and could potentially confuse readers of your code of what your intent was. Plus, this would only work with the Web API and not in other environments like Node where <code>URL()</code> would clearly be the superior method. 👑</p> 
 
     <h3>Links</h3>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/URL">MDN Article on URL() Interface</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/URL" target="_blank">MDN Article on URL() Interface</a>
   </article>
 </template>

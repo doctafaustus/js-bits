@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "clearTimeout and clearInterval Are Interchangeable!",
+    "slug": "clearTimeout-and-clearInterval-are-interchangeable",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594340736/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable.jpg",
+    "desc": "Did you know you can use clearTimeout and clearInterval interchangeably?"
+  },
+  {
     "title": "The URL Object",
     "slug": "the-url-object",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594149964/JS%20Bits/url-object.jpg",

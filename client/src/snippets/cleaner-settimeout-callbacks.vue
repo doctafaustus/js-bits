@@ -33,6 +33,6 @@
     <p>So now you can keep your fancy one-liners without binding! 📞</p>
 
     <h3>Links</h3>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">MDN Article on setTimeout</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout" target="_blank">MDN Article on setTimeout</a>
   </article>
 </template>
