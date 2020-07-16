@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "addEventListener \"once\"",
+    "slug": "addeventlistener-once",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594941919/JS%20Bits/addeventlistener-once.jpg",
+    "desc": "How to add a single-use event listener."
+  },
+  {
     "title": "clearTimeout and clearInterval Are Interchangeable!",
     "slug": "clearTimeout-and-clearInterval-are-interchangeable",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594340736/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable.jpg",
