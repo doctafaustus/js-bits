@@ -1,7 +1,7 @@
 <template>
   <article class="snippet-article">
     <h1 class="hero-title">addEventListener "once"</h1>
-    <p>If you want to add an event callback but have it run only once, you can simply use the `once` option in the method's options object:</p>
+    <p>If you want to add an event callback but have it run only once, you can simply use the <code>once</code> option in the method's options object:</p>
 
     <pre v-highlightjs><code class="javascript">
       document.body.addEventListener('click', () => {
@@ -9,7 +9,7 @@
       }, { once: true });
     </code></pre>
 
-    <p>This prevents the need to otherwise immediately remove the event listener after the callback has run (which I've been guilty of!):</p>
+    <p>This prevents the need to otherwise immediately remove the event listener after the callback first fires (which I've been guilty of!):</p>
     <pre v-highlightjs><code class="javascript">
       document.body.addEventListener('click', cb);
 
