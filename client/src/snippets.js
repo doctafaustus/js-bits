@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Rest properties with object destructuring",
+    "slug": "rest-properties-with-object-destructuring",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595280237/JS%20Bits/rest-properties-with-object-destructuring.jpg",
+    "desc": "Clone and remove a property from an object with destructuring and rest properties."
+  },
+  {
     "title": "addEventListener \"once\"",
     "slug": "addeventlistener-once",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594941919/JS%20Bits/addeventlistener-once.jpg",
