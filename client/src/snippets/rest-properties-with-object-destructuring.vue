@@ -37,7 +37,7 @@
     </code></pre>
 
     <p>
-      Here, we're simply destructuring the object to retrieve the <code>age</code> and <code>city</code> properties as new variables. Cool, so what happens when we look at the original example:
+      Here, we're simply destructuring the object to retrieve the <code>age</code> and <code>city</code> properties as new variables. Cool, so let's see what happens when we look at the original example:
     </p>
 
     <pre v-highlightjs><code class="javascript">
