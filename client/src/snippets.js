@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Element.classList.toggle()",
+    "slug": "element-classlist-toggle",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595887213/JS%20Bits/element-classlist-toggle.jpg",
+    "desc": "Toggle an element's classList with Element.classList.toggle()"
+  },
+  {
     "title": "Rest Properties with Object Destructuring",
     "slug": "rest-properties-with-object-destructuring",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595280237/JS%20Bits/rest-properties-with-object-destructuring.jpg",
