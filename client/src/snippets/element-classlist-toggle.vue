@@ -2,7 +2,7 @@
   <article class="snippet-article">
     <h1 class="hero-title">Element.classList.toggle()</h1>
     
-    <p>Here's a quick one! To add or remove a single class on an element you can use <code>element.classList.add()</code>:</p>
+    <p>Here's a quick one! To add or remove a single class on an element you can use <code>element.classList.add()</code> and <code>element.classList.remove()</code>:</p>
 
     <pre v-highlightjs><code class="javascript">
       // Add class
