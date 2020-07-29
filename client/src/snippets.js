@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "How To Inspect Unique Globals",
+    "slug": "how-to-inspect-unique-globals",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596034386/JS%20Bits/how-to-inspect-unique-globals.jpg",
+    "desc": "Inspect all the properties on the window object that are unique to the page."
+  },
+  {
     "title": "Element.classList.toggle()",
     "slug": "element-classlist-toggle",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595887213/JS%20Bits/element-classlist-toggle.jpg",
