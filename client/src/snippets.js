@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "How SVGs Can Be Dangerous",
+    "slug": "how-svgs-can-be-dangerous",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596773965/JS%20Bits/how-svgs-can-be-dangerous.jpg",
+    "desc": "SVGs have a ton of benefits over raster images, but they also have a big vulnerability."
+  },
+  {
     "title": "How To Inspect Unique Globals",
     "slug": "how-to-inspect-unique-globals",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596034386/JS%20Bits/how-to-inspect-unique-globals.jpg",
