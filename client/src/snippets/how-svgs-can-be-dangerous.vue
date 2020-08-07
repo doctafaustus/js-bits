@@ -87,7 +87,7 @@
     <p>So how can you protect against such a nefarious exploit?</p>
 
     <ul>
-      <li>Don't allow SVGs uploads from untrusted sources.</li>
+      <li>Don't allow SVG uploads from untrusted sources.</li>
       <li>Consider a Content Security Policy (CSP) to protect against XSS.</li>
       <li>Don't store sensitive data client-side.</li>
       <li>Use secure frames to capture sensitive client input.</li>
