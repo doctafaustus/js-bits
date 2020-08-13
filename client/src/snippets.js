@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Stream Updates Natively with EventSource",
+    "slug": "stream-updates-natively-with-eventsource",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597355904/JS%20Bits/stream-updates-natively-with-eventsource.jpg",
+    "decs": "The EventSource object is a native Web interface used with server-sent events."
+  },
+  {
     "title": "How SVGs Can Be Dangerous",
     "slug": "how-svgs-can-be-dangerous",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596773965/JS%20Bits/how-svgs-can-be-dangerous.jpg",
