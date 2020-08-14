@@ -54,7 +54,7 @@
     </p>
 
     <p>
-      Secondly, when testing this, I had trouble receiving events on the client until I read that the event stream response format is very particular. The response text must begin with <code>data: </code>. The custom message should follow and the line must be terminated with 2 <code>\n</code> characters otherwise the message will not be sent. You can sent bigger bits of data by simply using <code>JSON.stringify()</code> on an object.
+      Secondly, when testing this, I had trouble receiving events on the client until I read that the event stream response format is very particular. The response text must begin with <code>data: </code>. The custom message should follow and the line must be terminated with 2 <code>\n</code> characters otherwise the message will not be sent. You can send bigger bits of data by simply using <code>JSON.stringify()</code> on an object.
     </p>
 
     <p>
