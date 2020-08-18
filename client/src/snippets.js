@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Another Way to Inspect Global Variables",
+    "slug": "another-way-to-inspect-global-variables",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597720556/JS%20Bits/another-way-to-inspect-global-variables.jpg",
+    "desc": "This code allows us to construct a stringified JSON map of all of the window's properties and subproperties."
+  },
+  {
     "title": "Stream Updates Natively with EventSource",
     "slug": "stream-updates-natively-with-eventsource",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597355904/JS%20Bits/stream-updates-natively-with-eventsource.jpg",
