@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "How to Restore Native Browser Code",
+    "slug": "how-to-restore-native-browser-code",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597966622/JS%20Bits/how-to-restore-native-browser-code.jpg",
+    "desc": "Sometimes the browser's native code has be overwritten and you need to restore it back to its original state."
+  },
+  {
     "title": "Another Way to Inspect Global Variables",
     "slug": "another-way-to-inspect-global-variables",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597720556/JS%20Bits/another-way-to-inspect-global-variables.jpg",
