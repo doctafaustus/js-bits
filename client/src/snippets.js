@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "The Curious Case of the Empty Statement",
+    "slug": "the-curious-case-of-the-empty-statement",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1598409724/JS%20Bits/the-curious-case-of-the-empty-statement.jpg",
+    "desc": "Empty statements in JavaScript are a thing! Here\'s what they are and how they can be used."
+  },
+  {
     "title": "How to Restore Native Browser Code",
     "slug": "how-to-restore-native-browser-code",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597966622/JS%20Bits/how-to-restore-native-browser-code.jpg",
