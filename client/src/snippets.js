@@ -9,13 +9,13 @@ const snippets = [
     "title": "How to Restore Native Browser Code",
     "slug": "how-to-restore-native-browser-code",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597966622/JS%20Bits/how-to-restore-native-browser-code.jpg",
-    "desc": "Sometimes the browser's native code has be overwritten and you need to restore it back to its original state."
+    "desc": "Sometimes the browser\'s native code has be overwritten and you need to restore it back to its original state."
   },
   {
     "title": "Another Way to Inspect Global Variables",
     "slug": "another-way-to-inspect-global-variables",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597720556/JS%20Bits/another-way-to-inspect-global-variables.jpg",
-    "desc": "This code allows us to construct a stringified JSON map of all of the window's properties and subproperties."
+    "desc": "This code allows us to construct a stringified JSON map of all of the window\'s properties and subproperties."
   },
   {
     "title": "Stream Updates Natively with EventSource",
@@ -39,7 +39,7 @@ const snippets = [
     "title": "Element.classList.toggle()",
     "slug": "element-classlist-toggle",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595887213/JS%20Bits/element-classlist-toggle.jpg",
-    "desc": "Toggle an element's classList with Element.classList.toggle()"
+    "desc": "Toggle an element\'s classList with Element.classList.toggle()"
   },
   {
     "title": "Rest Properties with Object Destructuring",
@@ -81,13 +81,13 @@ const snippets = [
     "title": "Argument Validation",
     "slug": "argument-validation",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593405964/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1.jpg",
-    "desc": "Here's a fancy trick for requiring arguments to a function."
+    "desc": "Here\'s a fancy trick for requiring arguments to a function."
   },
   {
     "title": "Debugging Tip: \"Continue to here\"",
     "slug": "debugging-tip-continue-to-here",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593406006/JS%20Bits/continue-to-here-1.png",
-    "desc": "Inside the Chrome debugger, there's a simple way to advance the flow of your debugging scope."
+    "desc": "Inside the Chrome debugger, there\'s a simple way to advance the flow of your debugging scope."
   },
   {
     "title": "debug()",
