@@ -36,7 +36,9 @@ async function updateMetaTags(req, res) {
   const startPos = snippetsText.search(/\[/);
   const endPos = snippetsText.lastIndexOf('];') + 1;
   const trimmedSnippetText = snippetsText.substring(startPos, endPos);
-  const snippetsArr = JSON.parse(trimmedSnippetText);
+
+  const stringifiedArr = JSON.stringify(eval('(' + trimmedSnippetText + ')'));
+  const snippetsArr = JSON.parse(stringifiedArr);
 
   // Retrieve snippet object that includes the current URL slug
   const snippetSlug = req.originalUrl.substring(req.originalUrl.indexOf('/snippet/')).replace('/snippet/', '');
