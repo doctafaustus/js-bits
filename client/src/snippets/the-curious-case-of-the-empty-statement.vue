@@ -20,7 +20,7 @@
     </code></pre>
 
     <p>
-      In JavaScript, a semicolon is used to terminal a statement. If no actual statement precedes the semicolon, the JS engine will omit executing any code where a statement would be expected. So in these 2 examples, our use of <code>;</code> in place of the expected statement is considered an empty statement and has no effect.
+      In JavaScript, a semicolon is used to terminate a statement. If no actual statement precedes the semicolon, the JS engine will omit executing any code where a statement would be expected. So in these 2 examples, our use of <code>;</code> in place of the expected statement is considered an empty statement and has no effect.
     </p>
 
     <p>
