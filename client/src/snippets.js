@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "How JavaScript Blocks Work",
+    "slug": "how-javascript-blocks-work",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1599021487/JS%20Bits/how-javascript-blocks-work.jpg",
+    "desc": "We use blocks so much in JavaScript that sometimes it's easy to forget their concept."
+  },
+  {
     "title": "The Curious Case of the Empty Statement",
     "slug": "the-curious-case-of-the-empty-statement",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1598409724/JS%20Bits/the-curious-case-of-the-empty-statement.jpg",
