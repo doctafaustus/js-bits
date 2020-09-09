@@ -43,7 +43,7 @@
     </code></pre>
 
     <p>
-      Note that no SyntaxError is thrown in the <code>const</code> example. This is because the <code>foo</code> variable inside the block is contained within its own scope and thus does not conflict with the outer scope.
+      Note that no SyntaxError is thrown in the <code>const</code> example for a duplicate declaration. This is because the <code>foo</code> variable inside the block is contained within its own scope and thus does not conflict with the outer scope.
     </p>
 
     <p>
