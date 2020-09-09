@@ -7,7 +7,7 @@
     </p>
 
     <p>
-      Blocks are most often used with <code>while</code>, <code>if...else</code> and <code>for</code> statements. We've all seen this, however, there is an interesting implication when using blocks with `let` and `const`.
+      Blocks are most often used with <code>while</code>, <code>if...else</code> and <code>for</code> statements. We've all seen this, however, there is an interesting implication when using blocks with <code>let</code> and <code>const</code>.
     </p>
 
     <p>In non-strict mode, functions and <code>var</code> variables do not have block scope:</p>
