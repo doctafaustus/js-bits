@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "What's a JavaScript Statement Label?",
+    "slug": "whats-a-javascript-statement-label",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1599707220/JS%20Bits/whats-a-javascript-statement-label.jpg",
+    "desc": "Statement labels allow you to namespace a block that can be referenced inside a break or continue command."
+  },
+  {
     "title": "How JavaScript Blocks Work",
     "slug": "how-javascript-blocks-work",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1599021487/JS%20Bits/how-javascript-blocks-work.jpg",
