@@ -56,61 +56,61 @@ const snippets = [
   {
     "title": "Rest Properties with Object Destructuring",
     "slug": "rest-properties-with-object-destructuring",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595280237/JS%20Bits/rest-properties-with-object-destructuring.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297707/JS%20Bits/rest-properties-with-object-destructuring_1.webp",
     "desc": "Clone and remove a property from an object with destructuring and rest properties."
   },
   {
     "title": "addEventListener \"once\"",
     "slug": "addeventlistener-once",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594941919/JS%20Bits/addeventlistener-once.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297676/JS%20Bits/addeventlistener-once_1.webp",
     "desc": "How to add a single-use event listener."
   },
   {
     "title": "clearTimeout and clearInterval Are Interchangeable!",
     "slug": "clearTimeout-and-clearInterval-are-interchangeable",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594340736/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297637/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable_2.webp",
     "desc": "Did you know you can use clearTimeout and clearInterval interchangeably?"
   },
   {
     "title": "The URL Object",
     "slug": "the-url-object",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600214577/JS%20Bits/url-object_2.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297601/JS%20Bits/url-object_2.webp",
     "desc": "How to convert a URL string to an object to easily retrieve parameters."
   },
   {
     "title": "Filter Log by Script Source",
     "slug": "filter-log-by-script-source",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593490980/JS%20Bits/filter-log-by-source.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297570/JS%20Bits/filter-log-by-source.webp",
     "desc": "Remove all the garbage in the console by filtering by script source."
   },
   {
     "title": "Cleaner setTimeout Callbacks",
     "slug": "cleaner-settimeout-callbacks",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593405909/JS%20Bits/Ebj2-ZDKWAAE08-CP.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297524/JS%20Bits/Ebj2-ZDKWAAE08-CP.webp",
     "desc": "How to keep your setTimeout callbacks on one line."
   },
   {
     "title": "Argument Validation",
     "slug": "argument-validation",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593405964/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297478/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1.webp",
     "desc": "Here\'s a fancy trick for requiring arguments to a function."
   },
   {
     "title": "Debugging Tip: \"Continue to here\"",
     "slug": "debugging-tip-continue-to-here",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593406006/JS%20Bits/continue-to-here-1.png",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297413/JS%20Bits/continue-to-here-1_3.webp",
     "desc": "Inside the Chrome debugger, there\'s a simple way to advance the flow of your debugging scope."
   },
   {
     "title": "debug()",
     "slug": "debug",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593406052/JS%20Bits/chrome-p6-KVK2-Mc-AH.png",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297358/JS%20Bits/chrome-p6-KVK2-Mc-AH.webp",
     "desc": "Pause execution in the debugger on the first line of a provided fn."
   },
   {
     "title": "window.onerror()",
     "slug": "window-onerror",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1593406098/JS%20Bits/carbon-4.png",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297300/JS%20Bits/carbon-4.webp",
     "desc": "Easily capture and report on global errors with window.error."
   }
 ];
