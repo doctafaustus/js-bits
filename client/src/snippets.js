@@ -74,7 +74,7 @@ const snippets = [
   {
     "title": "The URL Object",
     "slug": "the-url-object",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1594149964/JS%20Bits/url-object.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600214577/JS%20Bits/url-object_2.jpg",
     "desc": "How to convert a URL string to an object to easily retrieve parameters."
   },
   {
