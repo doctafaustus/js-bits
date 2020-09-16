@@ -14,7 +14,7 @@ const snippets = [
   {
     "title": "The Curious Case of the Empty Statement",
     "slug": "the-curious-case-of-the-empty-statement",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1598409724/JS%20Bits/the-curious-case-of-the-empty-statement.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600296920/JS%20Bits/the-curious-case-of-the-empty-statement.webp",
     "desc": "Empty statements in JavaScript are a thing! Here\'s what they are and how they can be used."
   },
   {
