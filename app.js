@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const favicon = require('serve-favicon');
+const compression = require('compression') 
 
 
 // Globals
@@ -22,6 +23,9 @@ if (!process.env.PORT) {
     credentials: true 
   }));
 }
+
+// Compress responses
+app.use(compression());
 
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
