@@ -2,13 +2,13 @@ const snippets = [
   {
     "title": "What's a JavaScript Statement Label?",
     "slug": "whats-a-javascript-statement-label",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1599707220/JS%20Bits/whats-a-javascript-statement-label.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298787/JS%20Bits/whats-a-javascript-statement-label_1.webp",
     "desc": "Statement labels allow you to namespace a block that can be referenced inside a break or continue command."
   },
   {
     "title": "How JavaScript Blocks Work",
     "slug": "how-javascript-blocks-work",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1599021487/JS%20Bits/how-javascript-blocks-work.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298743/JS%20Bits/how-javascript-blocks-work_1.webp",
     "desc": "We use blocks so much in JavaScript that sometimes it's easy to forget their concept."
   },
   {
@@ -20,37 +20,37 @@ const snippets = [
   {
     "title": "How to Restore Native Browser Code",
     "slug": "how-to-restore-native-browser-code",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597966622/JS%20Bits/how-to-restore-native-browser-code.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298706/JS%20Bits/how-to-restore-native-browser-code_1.webp",
     "desc": "Sometimes the browser\'s native code has be overwritten and you need to restore it back to its original state."
   },
   {
     "title": "Another Way to Inspect Global Variables",
     "slug": "another-way-to-inspect-global-variables",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597720556/JS%20Bits/another-way-to-inspect-global-variables.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298669/JS%20Bits/another-way-to-inspect-global-variables_1.webp",
     "desc": "This code allows us to construct a stringified JSON map of all of the window\'s properties and subproperties."
   },
   {
     "title": "Stream Updates Natively with EventSource",
     "slug": "stream-updates-natively-with-eventsource",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1597355904/JS%20Bits/stream-updates-natively-with-eventsource.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298628/JS%20Bits/stream-updates-natively-with-eventsource_1.webp",
     "desc": "The EventSource object is a native Web interface used with server-sent events."
   },
   {
     "title": "How SVGs Can Be Dangerous",
     "slug": "how-svgs-can-be-dangerous",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596773965/JS%20Bits/how-svgs-can-be-dangerous.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298579/JS%20Bits/how-svgs-can-be-dangerous_1.webp",
     "desc": "SVGs have a ton of benefits over raster images, but they also have a big vulnerability."
   },
   {
     "title": "How To Inspect Unique Globals",
     "slug": "how-to-inspect-unique-globals",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1596034386/JS%20Bits/how-to-inspect-unique-globals.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298517/JS%20Bits/how-to-inspect-unique-globals_1.webp",
     "desc": "Inspect all the properties on the window object that are unique to the page."
   },
   {
     "title": "Element.classList.toggle()",
     "slug": "element-classlist-toggle",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1595887213/JS%20Bits/element-classlist-toggle.jpg",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298478/JS%20Bits/element-classlist-toggle_1.webp",
     "desc": "Toggle an element\'s classList with Element.classList.toggle()"
   },
   {
