@@ -25,7 +25,11 @@ if (!process.env.PORT) {
 }
 
 // Compress responses
-app.use(compression());
+app.use(compression({
+  threshold: 0,
+  filter: function () { return true; },
+  level: 1
+}));
 
 // Keep paths using the app.html file on direct route hits
 app.use('/*', (req, res, next) => {
