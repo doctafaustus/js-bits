@@ -30,10 +30,7 @@ if (!process.env.PORT) {
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
   else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req, res);
-  else {
-    res.set({ 'Cache-Control': 'max-age=31536000' });
-    res.sendFile(`${__dirname}/client/dist/index.html`);
-  }
+  else res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
 async function updateMetaTags(req, res) {
