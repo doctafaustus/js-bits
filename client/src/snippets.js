@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Interview with Chris Bongers (Daily Dev Tips)",
+    "slug": "interview-with-chris-bongers-daily-dev-tips",
+    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600798846/JS%20Bits/interview-with-chris-bongers-daily-dev-tips.webp",
+    "desc": "I had the pleasure of interviewing Chris Bongers of Daily Dev Tips. We talk about blogging, JavaScript, and 3rd party tracking."
+  },
+  {
     "title": "What's a JavaScript Statement Label?",
     "slug": "whats-a-javascript-statement-label",
     "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298787/JS%20Bits/whats-a-javascript-statement-label_1.webp",

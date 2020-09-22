@@ -103,6 +103,10 @@ export default {
       line-height: 20px;
       padding: 0;
     }
+
+    .youtube-vid {
+      height: 300px;
+    }
   }
 }
 
