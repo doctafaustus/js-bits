@@ -2,121 +2,121 @@ const snippets = [
   {
     "title": "Interview with Chris Bongers (Daily Dev Tips)",
     "slug": "interview-with-chris-bongers-daily-dev-tips",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600798846/JS%20Bits/interview-with-chris-bongers-daily-dev-tips.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/interview-with-chris-bongers-daily-dev-tips_bjhsdk.webp",
     "desc": "I had the pleasure of interviewing Chris Bongers of Daily Dev Tips. We talk about blogging, JavaScript, and 3rd party tracking."
   },
   {
     "title": "What's a JavaScript Statement Label?",
     "slug": "whats-a-javascript-statement-label",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298787/JS%20Bits/whats-a-javascript-statement-label_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/whats-a-javascript-statement-label_1_tcrso8.webp",
     "desc": "Statement labels allow you to namespace a block that can be referenced inside a break or continue command."
   },
   {
     "title": "How JavaScript Blocks Work",
     "slug": "how-javascript-blocks-work",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298743/JS%20Bits/how-javascript-blocks-work_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-javascript-blocks-work_1_qzc6sc.webp",
     "desc": "We use blocks so much in JavaScript that sometimes it's easy to forget their concept."
   },
   {
     "title": "The Curious Case of the Empty Statement",
     "slug": "the-curious-case-of-the-empty-statement",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600296920/JS%20Bits/the-curious-case-of-the-empty-statement.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/the-curious-case-of-the-empty-statement_rhkjoz.webp",
     "desc": "Empty statements in JavaScript are a thing! Here\'s what they are and how they can be used."
   },
   {
     "title": "How to Restore Native Browser Code",
     "slug": "how-to-restore-native-browser-code",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298706/JS%20Bits/how-to-restore-native-browser-code_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-to-restore-native-browser-code_1_o19ejq.webp",
     "desc": "Sometimes the browser\'s native code has be overwritten and you need to restore it back to its original state."
   },
   {
     "title": "Another Way to Inspect Global Variables",
     "slug": "another-way-to-inspect-global-variables",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298669/JS%20Bits/another-way-to-inspect-global-variables_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/another-way-to-inspect-global-variables_1_d96jfy.webp",
     "desc": "This code allows us to construct a stringified JSON map of all of the window\'s properties and subproperties."
   },
   {
     "title": "Stream Updates Natively with EventSource",
     "slug": "stream-updates-natively-with-eventsource",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298628/JS%20Bits/stream-updates-natively-with-eventsource_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/stream-updates-natively-with-eventsource_1_jnxpss.webp",
     "desc": "The EventSource object is a native Web interface used with server-sent events."
   },
   {
     "title": "How SVGs Can Be Dangerous",
     "slug": "how-svgs-can-be-dangerous",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298579/JS%20Bits/how-svgs-can-be-dangerous_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-svgs-can-be-dangerous_1_ukjsom.webp",
     "desc": "SVGs have a ton of benefits over raster images, but they also have a big vulnerability."
   },
   {
     "title": "How To Inspect Unique Globals",
     "slug": "how-to-inspect-unique-globals",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298517/JS%20Bits/how-to-inspect-unique-globals_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-to-inspect-unique-globals_1_v50qxj.webp",
     "desc": "Inspect all the properties on the window object that are unique to the page."
   },
   {
     "title": "Element.classList.toggle()",
     "slug": "element-classlist-toggle",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600298478/JS%20Bits/element-classlist-toggle_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/element-classlist-toggle_1_koxzrr.webp",
     "desc": "Toggle an element\'s classList with Element.classList.toggle()"
   },
   {
     "title": "Rest Properties with Object Destructuring",
     "slug": "rest-properties-with-object-destructuring",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297707/JS%20Bits/rest-properties-with-object-destructuring_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/rest-properties-with-object-destructuring_1_ly3dpr.webp",
     "desc": "Clone and remove a property from an object with destructuring and rest properties."
   },
   {
     "title": "addEventListener \"once\"",
     "slug": "addeventlistener-once",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297676/JS%20Bits/addeventlistener-once_1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/addeventlistener-once_1_ckrfts.webp",
     "desc": "How to add a single-use event listener."
   },
   {
     "title": "clearTimeout and clearInterval Are Interchangeable!",
     "slug": "clearTimeout-and-clearInterval-are-interchangeable",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297637/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable_2.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable_2_o4yvzu.webp",
     "desc": "Did you know you can use clearTimeout and clearInterval interchangeably?"
   },
   {
     "title": "The URL Object",
     "slug": "the-url-object",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297601/JS%20Bits/url-object_2.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/url-object_2_recv5b.webp",
     "desc": "How to convert a URL string to an object to easily retrieve parameters."
   },
   {
     "title": "Filter Log by Script Source",
     "slug": "filter-log-by-script-source",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297570/JS%20Bits/filter-log-by-source.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/filter-log-by-source_aahtp3.webp",
     "desc": "Remove all the garbage in the console by filtering by script source."
   },
   {
     "title": "Cleaner setTimeout Callbacks",
     "slug": "cleaner-settimeout-callbacks",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297524/JS%20Bits/Ebj2-ZDKWAAE08-CP.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/Ebj2-ZDKWAAE08-CP_e5bwen.webp",
     "desc": "How to keep your setTimeout callbacks on one line."
   },
   {
     "title": "Argument Validation",
     "slug": "argument-validation",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297478/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1_w8lvz8.webp",
     "desc": "Here\'s a fancy trick for requiring arguments to a function."
   },
   {
     "title": "Debugging Tip: \"Continue to here\"",
     "slug": "debugging-tip-continue-to-here",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297413/JS%20Bits/continue-to-here-1_3.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/continue-to-here-1_3_ohh94y.webp",
     "desc": "Inside the Chrome debugger, there\'s a simple way to advance the flow of your debugging scope."
   },
   {
     "title": "debug()",
     "slug": "debug",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297358/JS%20Bits/chrome-p6-KVK2-Mc-AH.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/chrome-p6-KVK2-Mc-AH_re9njh.webp",
     "desc": "Pause execution in the debugger on the first line of a provided fn."
   },
   {
     "title": "window.onerror()",
     "slug": "window-onerror",
-    "image": "https://res.cloudinary.com/dormh2fvt/image/upload/v1600297300/JS%20Bits/carbon-4.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
     "desc": "Easily capture and report on global errors with window.error."
   }
 ];

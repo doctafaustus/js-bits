@@ -17,7 +17,7 @@
     </code></pre>
 
     <p>How it looks visually:</p>
-    <img src="https://i.ibb.co/ZX9Sg35/C-Users-Bill-Downloads-circle-svg.png" style="width: 40px;">
+    <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924529/JS%20Bits/C-Users-Bill-Downloads-circle-svg_banjku.png" style="width: 40px;">
 
     <p>
       While SVGs offer certain benefits over raster-based image formats such as scalability, interactivity, editability and small file sizes, there is a way in which SVGs can be used for evil. 👿
@@ -38,7 +38,7 @@
       If we open this SVG document with our browser we can see the JavaScript execute immediately. The alert even blocks execution of the browser rendering the circle.
     </p>
 
-    <img src="https://res.cloudinary.com/dormh2fvt/image/upload/v1596769775/JS%20Bits/chrome_2LS5UxcEf1.png">
+    <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/chrome_2LS5UxcEf1_nqvdwt.png">
 
     <p>
       While adding JS inside an SVG isn't inherently dangerous, it's important to know how they <i>could</i> be exploited. 

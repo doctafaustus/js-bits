@@ -36,13 +36,13 @@
       This code allows us to construct a stringified JSON map of all of the window's properties and subproperties. If using Chrome's console, the built-in <code>copy()</code> method will copy the stringified object to your clipboard. From here, I usually paste the code into <a href="https://beautifier.io/" target="_blank">beautifier.io</a> to make it easier to read:
     </p>
 
-    <img src="https://res.cloudinary.com/dormh2fvt/image/upload/v1597718378/JS%20Bits/beautifier.io__1.png">
+    <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/beautifier.io__1_wi2loj.png">
 
     <p>
       From there, I'll copy that beautified code into a normal text editor so that I can "Cmd/Ctrl + F" for values easier. The advantage of this method over the iframe way mentioned in my previous article is that this gives you an "at a glance" view of all the window's properties and so you can skim the list without having to toggle each object open in the console (the downside is that the window object might be huge depending on the site/page). You can also search for substring matches if you have an idea of what you're looking for with your code editor's search feature. 
     </p>
 
-    <img src="https://res.cloudinary.com/dormh2fvt/image/upload/v1597720900/JS%20Bits/dev_to_output_1.jpg">
+    <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/dev_to_output_1_irmyby.jpg">
 
     <p>
       Perusing the output on dev.to, I noticed something interesting. Apparently there's a <code>window.currentUser</code> object which includes my followed tags as a string and apparently JavaScript has a <b>hotness_score</b> of 9940541 🔥. It's over <i><b>9 million</b></i>! (<i>*breaks power scouter*</i>) 💥

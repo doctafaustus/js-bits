@@ -13,7 +13,7 @@
     <p>
       Inside the error object, you'll get all sorts of information including the error message, target element, and even the stack trace.
     </p>
-    <img src="https://res.cloudinary.com/dormh2fvt/image/upload/v1593979946/JS%20Bits/chrome_gKb5SjwUmX.png">
+    <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/chrome_gKb5SjwUmX_neyjfp.png">
 
     <p>
       This is how a lot of error logging platforms capture client-side errors: the event listener can be added globally and the callback can send the error date to a server where you can do all sorts of things with it. Neat! 😎
