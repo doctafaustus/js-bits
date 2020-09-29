@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Interview with Matt Coloe (Tinuiti)",
+    "slug": "interview-with-matt-coloe-tinuiti",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1601404882/JS%20Bits/interview-with-matt-coloe-tinuiti_eef78v.webp",
+    "desc": "Matt is my brother and made a career transition to front-end development several years ago. We talk work/life balance, development challenges, and we do a random lightning round just for fun!"
+  },
+  {
     "title": "Interview with Chris Bongers (Daily Dev Tips)",
     "slug": "interview-with-chris-bongers-daily-dev-tips",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/interview-with-chris-bongers-daily-dev-tips_bjhsdk.webp",
