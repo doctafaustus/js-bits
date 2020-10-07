@@ -7,7 +7,7 @@
     </p>
 
     <p>
-      To start: <b>Symbols are a new primitive data type in JavaScript</b>. If you haven't memorized the 6 primitives in JS, I use the mnemonic device acronym of <b>BBUNNS</b> 🍔:
+      To start: <b>Symbols are a new primitive data type in JavaScript</b>. If you haven't memorized the 6 primitives in JS, I use the mnemonic device acronym of <b>BBUNSS</b> 🍔:
     </p>
 
     <ol>
