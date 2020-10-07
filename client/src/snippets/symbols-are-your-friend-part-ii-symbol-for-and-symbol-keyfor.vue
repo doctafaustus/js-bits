@@ -88,7 +88,7 @@
     </code></pre>
 
     <p>
-      So that's <code>Symbol.for()</code> and <code>Symbol.keyFor()</code>. We'll take a look at some of Symbol's static properties in the next article. Betcha can't wait! 😉
+      So that's <code>Symbol.for()</code> and <code>Symbol.keyFor()</code>. These methods give you greater flexibility in determining just how "unique" you want your symbols to be (with plain <code>Symbol()</code> being the most unique). We'll take a look at some of Symbol's static properties in the next article. Betcha can't wait! 😉
     </p>
 
   </article>
