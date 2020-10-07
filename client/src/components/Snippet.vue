@@ -87,6 +87,7 @@ export default {
   ol {
     padding-left: 40px;
     list-style-type: decimal;
+    margin-bottom: 16px;
   }
 
   @media (max-width: 767px) {

@@ -1,6 +1,6 @@
 <template>
   <article class="snippet-article">
-    <h1 class="hero-title">Symbols Are Your Friend: A Gentle Introduction</h1>
+    <h1 class="hero-title">Symbols Are Your Friend Part I: A Gentle Introduction</h1>
 
     <p>
       The concept of the Symbol can trip up many a developer. In this article, I'll attempt to demystify them and describe what they are.

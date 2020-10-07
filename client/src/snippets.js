@@ -1,8 +1,14 @@
 const snippets = [
   {
-    "title": "Symbols Are Your Friend: A Gentle Introduction",
-    "slug": "symbols-are-your-friend-a-gentle-introduction",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602039604/JS%20Bits/symbols-are-your-friend-a-gentle-introduction_diiqjj.webp",
+    "title": "Symbols Are Your Friend Part II: Symbol.for() & Symbol.keyFor()",
+    "slug": "symbols-are-your-friend-part-ii-symbol-for-and-symbol-keyfor",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602048687/JS%20Bits/symbols-are-your-friend-part-ii_dde6d4.webp",
+    "desc": "In this second episode, we'll explore the 2 static Symbol methods, Symbol.for() and Symbol.keyFor()."
+  },
+  {
+    "title": "Symbols Are Your Friend Part I: A Gentle Introduction",
+    "slug": "symbols-are-your-friend-part-i-a-gentle-introduction",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602048467/JS%20Bits/symbols-are-your-friend-part-i_zlmjiz.webp",
     "desc": "The concept of the Symbol can trip up many a developer. In this article, I'll attempt to demystify them and describe what they are."
   },
   {
