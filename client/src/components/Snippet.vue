@@ -84,6 +84,11 @@ export default {
     list-style-type: disc;
   }
 
+  ol {
+    padding-left: 40px;
+    list-style-type: decimal;
+  }
+
   @media (max-width: 767px) {
     font-size: 16px;
     line-height: 24px;

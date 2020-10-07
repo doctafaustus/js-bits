@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend: A Gentle Introduction",
+    "slug": "symbols-are-your-friend-a-gentle-introduction",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602039604/JS%20Bits/symbols-are-your-friend-a-gentle-introduction_diiqjj.webp",
+    "desc": "The concept of the Symbol can trip up many a developer. In this article, I'll attempt to demystify them and describe what they are."
+  },
+  {
     "title": "Interview with Matt Coloe (Tinuiti)",
     "slug": "interview-with-matt-coloe-tinuiti",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1601404882/JS%20Bits/interview-with-matt-coloe-tinuiti_eef78v.webp",
