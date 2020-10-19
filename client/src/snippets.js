@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend Part III: Symbol.iterator",
+    "slug": "symbols-are-your-friend-party-iii-symbol-iterator",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603121178/JS%20Bits/symbols-are-your-friend-part-iii_d5n9zo.webp",
+    "desc": "Symbol.iterator can be the most abstruse symbol-related concept. Let's break it down!"
+  },
+  {
     "title": "Symbols Are Your Friend Part II: Symbol.for() & Symbol.keyFor()",
     "slug": "symbols-are-your-friend-part-ii-symbol-for-and-symbol-keyfor",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602048687/JS%20Bits/symbols-are-your-friend-part-ii_dde6d4.webp",
