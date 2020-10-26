@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend Part IV: Symbol.search, Symbol.split, & Symbol.species",
+    "slug": "symbols-are-your-friend-party-iv-symbol-search-symbol-split-symbol-species",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603691587/JS%20Bits/symbols-are-your-friend-part-iv_yh4m1o.webp",
+    "desc": "Since the wildly popular Symbols Are Your Friend article series has the momentum of a runaway freight train  (not really), let's check out some more static Symbol properties!"
+  },
+  {
     "title": "Symbols Are Your Friend Part III: Symbol.iterator",
     "slug": "symbols-are-your-friend-party-iii-symbol-iterator",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603121178/JS%20Bits/symbols-are-your-friend-part-iii_d5n9zo.webp",

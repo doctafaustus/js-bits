@@ -1,6 +1,6 @@
 <template>
   <article class="snippet-article">
-    <h1 class="hero-title">Symbols Are Your Friend Part III: Symbol.iterator (JS Bits)</h1>
+    <h1 class="hero-title">Symbols Are Your Friend Part III: Symbol.iterator</h1>
 
     <p>
       So far, our first 2 looks at Symbol have been straightforward. We already know <code>Symbol</code> is a constructor that returns a symbol object which we already looked at, however this function also has a number of static properties including <code>Symbol.iterator</code> which is <i>a method that returns the default iterator for an object</i>. This one property of <code>Symbol</code> is so important and involved that it needs it's own focus...
