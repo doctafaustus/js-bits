@@ -96,7 +96,7 @@
     </p>
 
     <p>
-      <code>with</code> allows you to create a scope a statement. The syntax is as follows:
+      <code>with</code> allows you to create a scope to a statement. The syntax is as follows:
     </p>
     
     <pre v-highlightjs><code>
