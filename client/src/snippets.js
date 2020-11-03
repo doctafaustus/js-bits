@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend Part V: Symbol.toPrimitive, Symbol.toStringTag, & Symbol.unscopables",
+    "slug": "symbols-are-your-friend-party-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1604429440/JS%20Bits/symbols-are-your-friend-part-v_dacz1s.webp",
+    "desc": "I know. You haven't gotten your fill of symbols yet. Rest assured, there's more! This week, we'll take a look at Symbol.toPrimitive, Symbol.toStringTag, & Symbol.unscopables."
+  },
+  {
     "title": "Symbols Are Your Friend Part IV: Symbol.search, Symbol.split, & Symbol.species",
     "slug": "symbols-are-your-friend-party-iv-symbol-search-symbol-split-symbol-species",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603691587/JS%20Bits/symbols-are-your-friend-part-iv_yh4m1o.webp",
