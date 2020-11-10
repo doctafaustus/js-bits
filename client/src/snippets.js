@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend Series Part VI: Symbol.match, Symbol.matchAll & Symbol.replace",
+    "slug": "symbols-are-your-friend-part-vi-symbol-match-symbol-matchall-symbol-replace",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605036338/JS%20Bits/symbols-are-your-friend-part-vi_fbgjpk.webp",
+    "desc": "Well, we've made it this far 😅. We might as well explore the remaining Symbol properties. There's only 6 more left, but we'll break them up into 2 more articles."
+  },
+  {
     "title": "Symbols Are Your Friend Part V: Symbol.toPrimitive, Symbol.toStringTag, & Symbol.unscopables",
     "slug": "symbols-are-your-friend-party-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1604429440/JS%20Bits/symbols-are-your-friend-part-v_dacz1s.webp",
