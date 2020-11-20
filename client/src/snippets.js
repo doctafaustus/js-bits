@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Symbols Are Your Friend Series Part VII: Symbol.asyncIterator, Symbol.hasInstance & Symbol.isConcatSpreadable",
+    "slug": "symbols-are-your-friend-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605829852/JS%20Bits/symbols-are-your-friend-part-vii_oyxqbq.webp",
+    "desc": "This is it - the last of the well-known symbols! Today we'll look at: Symbol.asyncIterator, Symbol.hasInstance, Symbol.isConcatSpreadable."
+  },
+  {
     "title": "Symbols Are Your Friend Series Part VI: Symbol.match, Symbol.matchAll & Symbol.replace",
     "slug": "symbols-are-your-friend-part-vi-symbol-match-symbol-matchall-symbol-replace",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605036338/JS%20Bits/symbols-are-your-friend-part-vi_fbgjpk.webp",
