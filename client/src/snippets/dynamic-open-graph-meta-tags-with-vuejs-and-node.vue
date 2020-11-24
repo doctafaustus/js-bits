@@ -97,7 +97,7 @@
         const $url = $base.find('meta[property=og\\:url]');
         const $title = $base.find('meta[property=og\\:title]');
         const $image = $base.find('meta[property=og\\:image]');
-        $desc = $base.find('meta[property=og\\:description]');
+        const $desc = $base.find('meta[property=og\\:description]');
 
         $url.attr('content', `https://${req.get('host')}${req.originalUrl}`);
         $title.attr('content', productObj.title);
