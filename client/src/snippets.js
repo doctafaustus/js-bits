@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Dynamic Open Graph Meta Tags with VueJS and Node",
+    "slug": "dynamic-open-graph-meta-tags-with-vuejs-and-node",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1606186514/JS%20Bits/dynamic-open-graph-meta-tags-with-vuejs-and-node_nrn1ww.webp",
+    "desc": "I recently faced an interesting dilemma where I was unable to solution for creation dynamic Open Graph metadata for my custom built T-shirt website, Fat Cattitude."
+  },
+  {
     "title": "Symbols Are Your Friend Series Part VII: Symbol.asyncIterator, Symbol.hasInstance & Symbol.isConcatSpreadable",
     "slug": "symbols-are-your-friend-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605829852/JS%20Bits/symbols-are-your-friend-part-vii_oyxqbq.webp",
