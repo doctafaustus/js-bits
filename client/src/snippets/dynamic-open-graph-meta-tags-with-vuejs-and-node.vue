@@ -55,11 +55,11 @@
 
     <pre v-highlightjs><code class="html">
       <!-- OG Meta Tags -->
-      <meta property="og:url" content="https://www.fatcattitude.com/">
-      <meta property="og:type" content="website">
-      <meta property="og:title" content="Fat Cattitude">
-      <meta property="og:image" content="https://cdn.com/fat-cattitude-logo.jpg">
-      <meta property="og:description" content="There’s attitude and there’s CATTITUDE...">
+      &lt;meta property="og:url" content="https://www.fatcattitude.com/"&gt;
+      &lt;meta property="og:type" content="website"&gt;
+      &lt;meta property="og:title" content="Fat Cattitude"&gt;
+      &lt;meta property="og:image" content="https://cdn.com/fat-cattitude-logo.jpg"&gt;
+      &lt;meta property="og:description" content="There’s attitude and there’s CATTITUDE..."&gt;
     </code></pre>
 
     <p>Then set up the middleware on all routes:</p>
