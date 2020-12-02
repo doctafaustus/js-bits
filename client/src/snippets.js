@@ -173,12 +173,12 @@ const snippets = [
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/chrome-p6-KVK2-Mc-AH_re9njh.webp",
     "desc": "Pause execution in the debugger on the first line of a provided fn."
   },
-  // {
-  //   "title": "window.onerror()",
-  //   "slug": "window-onerror",
-  //   "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
-  //   "desc": "Easily capture and report on global errors with window.error."
-  // }
+  {
+    "title": "Capture global JS errors with window.onerror()",
+    "slug": "capture-global-js-errors-with-window-onerror-4c99",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
+    "desc": "Easily capture and report on global errors with window.error."
+  }
 ];
 
 export default snippets;
