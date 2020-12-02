@@ -1,178 +1,184 @@
 const snippets = [
   {
+    "title": "Event Delegation with Vanilla JS",
+    "slug": "event-delegation-with-vanilla-js-js-bits-2lnb",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1606870699/JS%20Bits/event-delegations-with-vanilla-js_w8mfvd.webp",
+    "desc": "One of the most powerful and convenient techniques in jQuery is event delegation - Here's how to do it in vanilla!"
+  },
+  {
     "title": "Dynamic Open Graph Meta Tags with VueJS and Node",
-    "slug": "dynamic-open-graph-meta-tags-with-vuejs-and-node",
+    "slug": "dynamic-open-graph-meta-tags-with-vuejs-and-node-js-bits-2a11",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1606186514/JS%20Bits/dynamic-open-graph-meta-tags-with-vuejs-and-node_nrn1ww.webp",
     "desc": "I recently faced an interesting dilemma where I was unable to solution for creation dynamic Open Graph metadata for my custom built T-shirt website, Fat Cattitude."
   },
   {
     "title": "Symbols Are Your Friend Series Part VII: Symbol.asyncIterator, Symbol.hasInstance & Symbol.isConcatSpreadable",
-    "slug": "symbols-are-your-friend-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable",
+    "slug": "symbols-are-your-friend-series-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable-js-bits-4h26",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605829852/JS%20Bits/symbols-are-your-friend-part-vii_oyxqbq.webp",
     "desc": "This is it - the last of the well-known symbols! Today we'll look at: Symbol.asyncIterator, Symbol.hasInstance, Symbol.isConcatSpreadable."
   },
   {
     "title": "Symbols Are Your Friend Series Part VI: Symbol.match, Symbol.matchAll & Symbol.replace",
-    "slug": "symbols-are-your-friend-part-vi-symbol-match-symbol-matchall-symbol-replace",
+    "slug": "symbols-are-your-friend-series-part-vi-symbol-match-symbol-matchall-symbol-replace-js-bits-539g",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1605036338/JS%20Bits/symbols-are-your-friend-part-vi_fbgjpk.webp",
     "desc": "Well, we've made it this far 😅. We might as well explore the remaining Symbol properties. There's only 6 more left, but we'll break them up into 2 more articles."
   },
   {
     "title": "Symbols Are Your Friend Part V: Symbol.toPrimitive, Symbol.toStringTag, & Symbol.unscopables",
-    "slug": "symbols-are-your-friend-party-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables",
+    "slug": "symbols-are-your-friend-part-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables-js-bits-nee",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1604429440/JS%20Bits/symbols-are-your-friend-part-v_dacz1s.webp",
     "desc": "I know. You haven't gotten your fill of symbols yet. Rest assured, there's more! This week, we'll take a look at Symbol.toPrimitive, Symbol.toStringTag, & Symbol.unscopables."
   },
   {
     "title": "Symbols Are Your Friend Part IV: Symbol.search, Symbol.split, & Symbol.species",
-    "slug": "symbols-are-your-friend-party-iv-symbol-search-symbol-split-symbol-species",
+    "slug": "symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603691587/JS%20Bits/symbols-are-your-friend-part-iv_yh4m1o.webp",
     "desc": "Since the wildly popular Symbols Are Your Friend article series has the momentum of a runaway freight train  (not really), let's check out some more static Symbol properties!"
   },
   {
     "title": "Symbols Are Your Friend Part III: Symbol.iterator",
-    "slug": "symbols-are-your-friend-party-iii-symbol-iterator",
+    "slug": "symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1603121178/JS%20Bits/symbols-are-your-friend-part-iii_d5n9zo.webp",
     "desc": "Symbol.iterator can be the most abstruse symbol-related concept. Let's break it down!"
   },
   {
     "title": "Symbols Are Your Friend Part II: Symbol.for() & Symbol.keyFor()",
-    "slug": "symbols-are-your-friend-part-ii-symbol-for-and-symbol-keyfor",
+    "slug": "symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602048687/JS%20Bits/symbols-are-your-friend-part-ii_dde6d4.webp",
     "desc": "In this second episode, we'll explore the 2 static Symbol methods, Symbol.for() and Symbol.keyFor()."
   },
   {
     "title": "Symbols Are Your Friend Part I: A Gentle Introduction",
-    "slug": "symbols-are-your-friend-part-i-a-gentle-introduction",
+    "slug": "symbols-are-your-friend-a-gentle-introduction-js-bits-23af",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1602048467/JS%20Bits/symbols-are-your-friend-part-i_zlmjiz.webp",
     "desc": "The concept of the Symbol can trip up many a developer. In this article, I'll attempt to demystify them and describe what they are."
   },
-  {
-    "title": "Interview with Matt Coloe (Tinuiti)",
-    "slug": "interview-with-matt-coloe-tinuiti",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1601404882/JS%20Bits/interview-with-matt-coloe-tinuiti_eef78v.webp",
-    "desc": "Matt is my brother and made a career transition to front-end development several years ago. We talk work/life balance, development challenges, and we do a random lightning round just for fun!"
-  },
-  {
-    "title": "Interview with Chris Bongers (Daily Dev Tips)",
-    "slug": "interview-with-chris-bongers-daily-dev-tips",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/interview-with-chris-bongers-daily-dev-tips_bjhsdk.webp",
-    "desc": "I had the pleasure of interviewing Chris Bongers of Daily Dev Tips. We talk about blogging, JavaScript, and 3rd party tracking."
-  },
+  // {
+  //   "title": "Interview with Matt Coloe (Tinuiti)",
+  //   "slug": "interview-with-matt-coloe-tinuiti",
+  //   "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1601404882/JS%20Bits/interview-with-matt-coloe-tinuiti_eef78v.webp",
+  //   "desc": "Matt is my brother and made a career transition to front-end development several years ago. We talk work/life balance, development challenges, and we do a random lightning round just for fun!"
+  // },
+  // {
+  //   "title": "Interview with Chris Bongers (Daily Dev Tips)",
+  //   "slug": "interview-with-chris-bongers-daily-dev-tips",
+  //   "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/interview-with-chris-bongers-daily-dev-tips_bjhsdk.webp",
+  //   "desc": "I had the pleasure of interviewing Chris Bongers of Daily Dev Tips. We talk about blogging, JavaScript, and 3rd party tracking."
+  // },
   {
     "title": "What's a JavaScript Statement Label?",
-    "slug": "whats-a-javascript-statement-label",
+    "slug": "what-s-a-javascript-statement-label-js-bits-1ed5",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/whats-a-javascript-statement-label_1_tcrso8.webp",
     "desc": "Statement labels allow you to namespace a block that can be referenced inside a break or continue command."
   },
   {
     "title": "How JavaScript Blocks Work",
-    "slug": "how-javascript-blocks-work",
+    "slug": "how-javascript-blocks-work-js-bits-aha",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-javascript-blocks-work_1_qzc6sc.webp",
     "desc": "We use blocks so much in JavaScript that sometimes it's easy to forget their concept."
   },
   {
     "title": "The Curious Case of the Empty Statement",
-    "slug": "the-curious-case-of-the-empty-statement",
+    "slug": "the-curious-case-of-the-empty-statement-js-bits-31ha",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/the-curious-case-of-the-empty-statement_rhkjoz.webp",
     "desc": "Empty statements in JavaScript are a thing! Here\'s what they are and how they can be used."
   },
   {
     "title": "How to Restore Native Browser Code",
-    "slug": "how-to-restore-native-browser-code",
+    "slug": "how-to-restore-native-browser-code-3e6e",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-to-restore-native-browser-code_1_o19ejq.webp",
     "desc": "Sometimes the browser\'s native code has be overwritten and you need to restore it back to its original state."
   },
   {
     "title": "Another Way to Inspect Global Variables",
-    "slug": "another-way-to-inspect-global-variables",
+    "slug": "another-way-to-inspect-global-variables-js-bits-38hn",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/another-way-to-inspect-global-variables_1_d96jfy.webp",
     "desc": "This code allows us to construct a stringified JSON map of all of the window\'s properties and subproperties."
   },
   {
     "title": "Stream Updates Natively with EventSource",
-    "slug": "stream-updates-natively-with-eventsource",
+    "slug": "stream-updates-natively-with-with-eventsource-js-bits-1ol5",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/stream-updates-natively-with-eventsource_1_jnxpss.webp",
     "desc": "The EventSource object is a native Web interface used with server-sent events."
   },
   {
     "title": "How SVGs Can Be Dangerous",
-    "slug": "how-svgs-can-be-dangerous",
+    "slug": "how-svgs-can-be-dangerous-js-bits-mjh",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-svgs-can-be-dangerous_1_ukjsom.webp",
     "desc": "SVGs have a ton of benefits over raster images, but they also have a big vulnerability."
   },
   {
     "title": "How To Inspect Unique Globals",
-    "slug": "how-to-inspect-unique-globals",
+    "slug": "how-to-inspect-unique-globals-js-bits-2i7i",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/how-to-inspect-unique-globals_1_v50qxj.webp",
     "desc": "Inspect all the properties on the window object that are unique to the page."
   },
   {
     "title": "Element.classList.toggle()",
-    "slug": "element-classlist-toggle",
+    "slug": "element-classlist-toggle-js-bits-1c6i",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/element-classlist-toggle_1_koxzrr.webp",
     "desc": "Toggle an element\'s classList with Element.classList.toggle()"
   },
   {
     "title": "Rest Properties with Object Destructuring",
-    "slug": "rest-properties-with-object-destructuring",
+    "slug": "rest-properties-with-object-destructuring-42d7",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/rest-properties-with-object-destructuring_1_ly3dpr.webp",
     "desc": "Clone and remove a property from an object with destructuring and rest properties."
   },
   {
     "title": "addEventListener \"once\"",
-    "slug": "addeventlistener-once",
+    "slug": "addeventlistener-once-js-bits-565d",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/addeventlistener-once_1_ckrfts.webp",
     "desc": "How to add a single-use event listener."
   },
   {
     "title": "clearTimeout and clearInterval Are Interchangeable!",
-    "slug": "clearTimeout-and-clearInterval-are-interchangeable",
+    "slug": "cleartimeout-and-clearinterval-are-interchangeable-30bg",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/clearTimeout-and-clearInterval-are-interchangeable_2_o4yvzu.webp",
     "desc": "Did you know you can use clearTimeout and clearInterval interchangeably?"
   },
   {
     "title": "The URL Object",
-    "slug": "the-url-object",
+    "slug": "the-url-object-js-bits-f7p",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/url-object_2_recv5b.webp",
     "desc": "How to convert a URL string to an object to easily retrieve parameters."
   },
   {
     "title": "Filter Log by Script Source",
-    "slug": "filter-log-by-script-source",
+    "slug": "filter-log-by-script-source-js-bits-22ji",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/filter-log-by-source_aahtp3.webp",
     "desc": "Remove all the garbage in the console by filtering by script source."
   },
   {
     "title": "Cleaner setTimeout Callbacks",
-    "slug": "cleaner-settimeout-callbacks",
+    "slug": "cleaner-settimeout-callbacks-js-bits-2fbe",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/Ebj2-ZDKWAAE08-CP_e5bwen.webp",
     "desc": "How to keep your setTimeout callbacks on one line."
   },
   {
-    "title": "Argument Validation",
-    "slug": "argument-validation",
+    "title": "A Nifty Way to do Basic Argument Validation",
+    "slug": "a-nifty-way-to-do-basic-argument-validation-js-bit-49ko",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/Eb-Sda-XBXYAUs-Qxr-1_w8lvz8.webp",
     "desc": "Here\'s a fancy trick for requiring arguments to a function."
   },
   {
     "title": "Debugging Tip: \"Continue to here\"",
-    "slug": "debugging-tip-continue-to-here",
+    "slug": "test-3f5a",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/continue-to-here-1_3_ohh94y.webp",
     "desc": "Inside the Chrome debugger, there\'s a simple way to advance the flow of your debugging scope."
   },
   {
     "title": "debug()",
-    "slug": "debug",
+    "slug": "an-alternative-to-using-logs-debug-3ae0",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/chrome-p6-KVK2-Mc-AH_re9njh.webp",
     "desc": "Pause execution in the debugger on the first line of a provided fn."
   },
-  {
-    "title": "window.onerror()",
-    "slug": "window-onerror",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
-    "desc": "Easily capture and report on global errors with window.error."
-  }
+  // {
+  //   "title": "window.onerror()",
+  //   "slug": "window-onerror",
+  //   "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
+  //   "desc": "Easily capture and report on global errors with window.error."
+  // }
 ];
 
 export default snippets;

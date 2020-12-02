@@ -1,6 +1,9 @@
 <template>
   <div id="snippet">
-    <component onload="openImageInNewTab()" :is="snippetComponent"></component>
+    <article class="snippet-article">
+      <h1 class="hero-title">{{ (snippet.title || '').replace('(JS Bits)', '') }}</h1>
+      <div id="article-body" v-html="snippet.body_html"></div>
+    </article>
   </div>
 </template>
 
@@ -13,34 +16,46 @@ export default {
   mixins: [utils],
   data() {
     return {
-      snippetName: null
+      slug: null,
+      snippet: {
+        title: null,
+        body: null
+      }
     };
   },
-  computed: {
-    snippetComponent() {
-      return () => import(`@/snippets/${this.snippetName}.vue`);
-    }
-  },
   methods: {
-    openImageInNewTab() {
-      document.querySelectorAll('.snippet-article img').forEach(img => {
-        img.addEventListener('click', () => {
-          Object.assign(document.createElement('a'), { target: '_blank', href: img.src }).click();
-        });
+    openImagesInNewTab() {
+      document.querySelectorAll('.article-body-image-wrapper').forEach(link => {
+        link.setAttribute('target', '_blank');
       });
     },
+
+    async getArticle() {
+      const response = await fetch(`https://dev.to/api/articles/cilly_boloe/${this.slug}`);
+      const data = await response.json();
+      this.snippet = data;
+    },
+
+    adjustments() {
+      const circleImage = document.querySelector('img[src*="circle-svg"]');
+      if (circleImage) {
+        circleImage.style.width = '50px';
+      }
+
+      const twitterLink = document.querySelector('#article-body a[href*="twitter.com/Cilly_Boloe"]');
+      if (twitterLink) {
+        twitterLink.setAttribute('target', '_blank');
+      }
+    }
   },
   created() {
-    this.snippetName = this.$route.params.id;
+    this.slug = this.$route.params.id;
+    this.getArticle(this.snippetName);
   },
-  mounted() {
-    // Wait for child snippet component to load
-    this.$nextTick(() => {
-      utils.waitFor(
-        () => this.$children.length,
-        this.openImageInNewTab
-      );
-    });
+
+  updated() {
+    this.openImagesInNewTab();
+    this.adjustments();
   }
 }
 </script>
@@ -116,16 +131,247 @@ export default {
   }
 }
 
-code {
-  color: #f006a8;
-  background-color: rgba(27,31,35,.06);
-  padding: .15rem .55rem;
-  margin: 0;
-  border-radius: 3px;
-  font-size: 18px;
+.js-actions-panel {
+  display: none;
 }
 
-.hljs {
-  font-size: 18px;
+div.highlight {
+  margin: 16px;
+  background: #000;
+  color: #f8f8f2;
+  font-size: 80%;
+  border-radius: 6px;
+  overflow-x: auto;
+  overflow-wrap: initial;
+}
+
+div.highlight .highlight {
+  padding: 24px;
+  font-size: 100%;
+}
+
+code {
+  background: rgba(0,0,0,0.1);
+  border-radius: 5px;
+  max-width: 100%;
+  padding: 0.1em 0.25em;
+}
+
+.highlight {
+	.c {
+		color: var(--syntax-comment-color);
+	}
+	.err {
+		text-shadow: 0 0 7px var(--syntax-error-color);
+	}
+	.k {
+		color: var(--syntax-declaration-color);
+	}
+	.l {
+		color: var(--syntax-literal-color);
+	}
+	.n {
+		color: var(--syntax-text-color);
+	}
+	.o {
+		color: var(--syntax-error-color);
+	}
+	.p {
+		color: var(--syntax-text-color);
+	}
+	.ch {
+		color: var(--syntax-comment-color);
+	}
+	.cm {
+		color: var(--syntax-comment-color);
+	}
+	.cp {
+		color: var(--syntax-comment-color);
+	}
+	.cpf {
+		color: var(--syntax-comment-color);
+	}
+	.c1 {
+		color: var(--syntax-comment-color);
+	}
+	.cs {
+		color: var(--syntax-comment-color);
+	}
+	.gd {
+		color: var(--syntax-error-color);
+	}
+	.ge {
+		font-style: italic;
+	}
+	.gi {
+		color: var(--syntax-name-color);
+	}
+	.gs {
+		font-weight: var(--fw-bold);
+	}
+	.gu {
+		color: var(--syntax-comment-color);
+	}
+	.kc {
+		color: var(--syntax-declaration-color);
+	}
+	.kd {
+		color: var(--syntax-declaration-color);
+	}
+	.kn {
+		color: var(--syntax-error-color);
+	}
+	.kp {
+		color: var(--syntax-declaration-color);
+	}
+	.kr {
+		color: var(--syntax-declaration-color);
+	}
+	.kt {
+		color: var(--syntax-declaration-color);
+	}
+	.ld {
+		color: var(--syntax-string-color);
+	}
+	.m {
+		color: var(--syntax-literal-color);
+	}
+	.s {
+		color: var(--syntax-string-color);
+	}
+	.na {
+		color: var(--syntax-name-color);
+	}
+	.nb {
+		color: var(--syntax-text-color);
+	}
+	.nc {
+		color: var(--syntax-name-color);
+	}
+	.no {
+		color: var(--syntax-declaration-color);
+	}
+	.nd {
+		color: var(--syntax-name-color);
+	}
+	.ni {
+		color: var(--syntax-text-color);
+	}
+	.ne {
+		color: var(--syntax-name-color);
+	}
+	.nf {
+		color: var(--syntax-name-color);
+	}
+	.nl {
+		color: var(--syntax-text-color);
+	}
+	.nn {
+		color: var(--syntax-text-color);
+	}
+	.nx {
+		color: var(--syntax-name-color);
+	}
+	.py {
+		color: var(--syntax-text-color);
+	}
+	.nt {
+		color: var(--syntax-error-color);
+	}
+	.nv {
+		color: var(--syntax-text-color);
+	}
+	.ow {
+		color: var(--syntax-error-color);
+	}
+	.w {
+		color: var(--syntax-text-color);
+	}
+	.mb {
+		color: var(--syntax-literal-color);
+	}
+	.mf {
+		color: var(--syntax-literal-color);
+	}
+	.mh {
+		color: var(--syntax-literal-color);
+	}
+	.mi {
+		color: var(--syntax-literal-color);
+	}
+	.mo {
+		color: var(--syntax-literal-color);
+	}
+	.sa {
+		color: var(--syntax-string-color);
+	}
+	.sb {
+		color: var(--syntax-string-color);
+	}
+	.sc {
+		color: var(--syntax-string-color);
+	}
+	.dl {
+		color: var(--syntax-string-color);
+	}
+	.sd {
+		color: var(--syntax-string-color);
+	}
+	.s2 {
+		color: var(--syntax-string-color);
+	}
+	.se {
+		color: var(--syntax-literal-color);
+	}
+	.sh {
+		color: var(--syntax-string-color);
+	}
+	.si {
+		color: var(--syntax-string-color);
+	}
+	.sx {
+		color: var(--syntax-string-color);
+	}
+	.sr {
+		color: var(--syntax-string-color);
+	}
+	.s1 {
+		color: var(--syntax-string-color);
+	}
+	.ss {
+		color: var(--syntax-string-color);
+	}
+	.bp {
+		color: var(--syntax-text-color);
+	}
+	.fm {
+		color: var(--syntax-name-color);
+	}
+	.vc {
+		color: var(--syntax-text-color);
+	}
+	.vg {
+		color: var(--syntax-text-color);
+	}
+	.vi {
+		color: var(--syntax-text-color);
+	}
+	.vm {
+		color: var(--syntax-text-color);
+	}
+	.il {
+		color: var(--syntax-literal-color);
+	}
+}
+
+:root {
+  --syntax-background-color: #08090a;
+  --syntax-text-color: #f8f8f2;
+  --syntax-comment-color: #808080;
+  --syntax-declaration-color: #f39c12;
+  --syntax-literal-color: #dda0dd;
+  --syntax-error-color: #f9690e;
+  --syntax-name-color: #7ed07e;
+  --syntax-string-color: #f2ca27
 }
 </style>
