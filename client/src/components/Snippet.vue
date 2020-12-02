@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import snippets from '@/snippets.js';
 import utils from '@/mixins/utils';
 
 export default {
