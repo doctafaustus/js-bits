@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "\"Happy Medium Commenting\" in JavaScript",
+    "slug": "happy-medium-commenting-in-javascript-js-bits-461k",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1607445685/JS%20Bits/happy-medium-commenting-in-javascript_bojmfx.jpg",
+    "desc": "Warning: this is an opinionated post! 😱"
+  },
+  {
     "title": "Event Delegation with Vanilla JS",
     "slug": "event-delegation-with-vanilla-js-js-bits-2lnb",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1606870699/JS%20Bits/event-delegations-with-vanilla-js_w8mfvd.webp",
