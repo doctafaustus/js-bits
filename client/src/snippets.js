@@ -2,7 +2,7 @@ const snippets = [
   {
     "title": "\"Happy Medium Commenting\" in JavaScript",
     "slug": "happy-medium-commenting-in-javascript-js-bits-461k",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1607445685/JS%20Bits/happy-medium-commenting-in-javascript_bojmfx.jpg",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1607446818/JS%20Bits/happy-medium-commenting-in-javascript_ssvgk2.webp",
     "desc": "Warning: this is an opinionated post! 😱"
   },
   {
