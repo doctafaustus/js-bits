@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "JS Quirk: Element IDs are global variables!",
+    "slug": "js-quirk-element-ids-are-global-variables-js-bits-1dka",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1608053316/JS%20Bits/js-quick-element-ids-are-global-variables_v0xkpp.webp",
+    "desc": "Here's an interesting quirk I recently discovered..."
+  },
+  {
     "title": "\"Happy Medium Commenting\" in JavaScript",
     "slug": "happy-medium-commenting-in-javascript-js-bits-461k",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1607446818/JS%20Bits/happy-medium-commenting-in-javascript_ssvgk2.webp",
