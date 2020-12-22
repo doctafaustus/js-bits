@@ -1,8 +1,14 @@
 const snippets = [
   {
+    "title": "How to Easily Copy and Modify Network Requests",
+    "slug": "how-to-easily-copy-and-modify-network-requests-js-bits-o70",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1608614348/JS%20Bits/how-to-easily-copy-and-modify-network-requests_vzyibx.webp",
+    "desc": "Have you ever needed to debug a network request? Maybe you'd like to see what kind of response the server will send if you tweak some request parameters or headers?"
+  },
+  {
     "title": "JS Quirk: Element IDs are global variables!",
     "slug": "js-quirk-element-ids-are-global-variables-js-bits-1dka",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1608053316/JS%20Bits/js-quick-element-ids-are-global-variables_v0xkpp.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1608614431/JS%20Bits/js-quirk-element-ids-are-global-variables_okd41u.webp",
     "desc": "Here's an interesting quirk I recently discovered..."
   },
   {
