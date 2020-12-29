@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Reflections on blogging",
+    "slug": "reflections-on-blogging-js-bits-12go",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1609262306/JS%20Bits/reflections-on-blogging_ab9xxf.webp",
+    "desc": "At the midway point of this year, I decided to pick up blogging as a new quarantine hobby. Here are some of things I learned along the way."
+  },
+  {
     "title": "How to Easily Copy and Modify Network Requests",
     "slug": "how-to-easily-copy-and-modify-network-requests-js-bits-o70",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1608614348/JS%20Bits/how-to-easily-copy-and-modify-network-requests_vzyibx.webp",
