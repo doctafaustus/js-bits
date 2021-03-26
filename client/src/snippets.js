@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "Underscores as number separators",
+    "slug": "underscores-as-number-separators-js-bits-1cjm",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1616796320/JS%20Bits/underscores-as-number-separators_z9ihwr.webp",
+    "desc": "You can improve readability by using underscores (_) in numeric primitives."
+  },
+  {
     "title": "Reflections on blogging",
     "slug": "reflections-on-blogging-js-bits-12go",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1609262306/JS%20Bits/reflections-on-blogging_ab9xxf.webp",
