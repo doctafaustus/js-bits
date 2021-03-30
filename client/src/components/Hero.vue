@@ -10,7 +10,7 @@
       </div>
       <div class="featured-snippet-right">
         <router-link :to="{ name: 'Snippet', params: { id: snippet.slug }}">
-          <img class="featured-snippet-image" :src="snippet.image">
+          <img class="featured-snippet-image" :src="snippet.image" width="649" height="358">
         </router-link>
       </div>
     </div>
@@ -110,6 +110,7 @@ export default {
 
         .featured-snippet-image {
           width: 100%;
+          height: auto;
         }
       }
     }
