@@ -3,7 +3,7 @@
     <div class="footer-left">&copy;2020 JS Bits</div>
     <div class="footer-right">
       <a class="twitter-link" href="https://twitter.com/Cilly_Boloe" target="_blank">
-        <img class="twitter-icon" src="@/assets/twitter-icon.webp">
+        <img class="twitter-icon" src="@/assets/twitter-icon.webp" width="30" height="30">
         <span class="twitter-handle">@Cilly_Boloe</span>
       </a>
     </div>
