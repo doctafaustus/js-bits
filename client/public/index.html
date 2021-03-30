@@ -14,8 +14,15 @@
     <meta property="og:title" content="JS Bits">
     <meta property="og:image" content="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/og-image_1_oy4qfj.jpg">
     <meta property="og:description" content="JavaScript tips and tricks for the inquisitive developer">
+
+    <!-- Preloads -->
+    <link rel="preload" as="image" href="<%= require('@/snippets.js').default[0].image %>">
+
   </head>
   <body>
+    <!-- <script>
+      console.log("<%= require('@/snippets.js').default[0].image %>");
+    </script> -->
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>

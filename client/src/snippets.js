@@ -206,7 +206,7 @@ const snippets = [
   {
     "title": "Capture global JS errors with window.onerror()",
     "slug": "capture-global-js-errors-with-window-onerror-4c99",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/carbon-4_tlhtkt.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1617142251/JS%20Bits/capture-global-js-errors-with-window-onerror_pw7ydr.webp",
     "desc": "Easily capture and report on global errors with window.error."
   }
 ];
