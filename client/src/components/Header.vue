@@ -1,7 +1,7 @@
 <template>
   <header>
     <router-link to="/" class="logo-link">
-      <span class="logo-text-left">{</span><img class="js-logo" src="@/assets/js-logo.webp"><span class="logo-text-right">Bits }</span>
+      <span class="logo-text-left">{</span><img class="js-logo" src="@/assets/js-logo.webp" width="34" height="34"><span class="logo-text-right">Bits }</span>
     </router-link>
   </header>
 </template>
