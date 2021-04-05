@@ -1,5 +1,11 @@
 const snippets = [
   {
+    "title": "HTMLInputElement.valueAsNumber",
+    "slug": "htmlinputelement-valueasnumber-js-bits-3pfl",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1617642250/JS%20Bits/htmlinput-valueasnumber_iwug0n.webp",
+    "desc": "By default, <input> value's are a string type. But you can use valueAsNumber on an <input> with type=\"number\". No conversion necessary!"
+  },
+  {
     "title": "Underscores as number separators",
     "slug": "underscores-as-number-separators-js-bits-1cjm",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1616796320/JS%20Bits/underscores-as-number-separators_z9ihwr.webp",

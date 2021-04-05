@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 client/node_modules
+/Code Images
 
 # local env files
 .env.local
