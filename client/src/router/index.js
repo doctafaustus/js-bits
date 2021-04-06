@@ -13,6 +13,12 @@ export default new Router({
       component: Home
     },
     {
+      path: '/code-bits',
+      alias: '/interviews',
+      name: 'CategoryPage',
+      component: () => import('@/components/CategoryPage.vue')
+    },
+    {
       path: '/snippet/:id',
       name: 'Snippet',
       component: () => import('@/components/Snippet.vue')

@@ -3,6 +3,11 @@
     <router-link to="/" class="logo-link">
       <span class="logo-text-left">{</span><img class="js-logo" src="@/assets/js-logo.webp" width="34" height="34"><span class="logo-text-right">Bits }</span>
     </router-link>
+
+    <div class="header-links">
+      <router-link to="/code-bits" class="header-link">Code Bits</router-link>
+      <router-link to="/interviews" class="header-link">Interviews</router-link>
+    </div>
   </header>
 </template>
 
@@ -36,6 +41,26 @@ header {
     }
   }
 
+  .header-links {
+    position: absolute;
+    top: 23px;
+    right: 40px;
+
+    .header-link {
+      color: #fff;
+      font-size: 20px;
+
+      &:first-child {
+        padding-right: 15px;
+
+        &::after {
+          content: '|';
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+
   @media (max-width: 767px) {
     margin-bottom: 40px;
     padding: 12px 0;
@@ -46,6 +71,11 @@ header {
       .js-logo {
         width: 34px;
       }
+    }
+
+    .header-links {
+      position: static;
+      margin-top: 10px;
     }
   }
 }
