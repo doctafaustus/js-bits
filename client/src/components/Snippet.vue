@@ -1,6 +1,6 @@
 <template>
   <div id="snippet">
-    <article class="snippet-article">
+    <article :class="{ 'video-article': this.snippet.category === 'video', 'snippet-article': true }">
       <h1 class="hero-title">{{ (snippet.title || '').replace('(JS Bits)', '') }}</h1>
       <div id="article-body" v-html="snippet.body_html"></div>
     </article>
@@ -9,6 +9,7 @@
 
 <script>
 import utils from '@/mixins/utils';
+import snippets from '@/snippets.js';
 
 export default {
   name: 'Snippet',
@@ -16,10 +17,7 @@ export default {
   data() {
     return {
       slug: null,
-      snippet: {
-        title: null,
-        body: null
-      }
+      snippet: {}
     };
   },
   methods: {
@@ -27,7 +25,11 @@ export default {
       document.querySelectorAll('.article-body-image-wrapper').forEach(link => {
         link.setAttribute('target', '_blank');
       });
-    },
+		},
+		
+		getSnippet(slug) {
+			return snippets.find(snippet => snippet.slug === slug) || {};
+		},
 
     async getArticle() {
       const response = await fetch(`https://dev.to/api/articles/cilly_boloe/${this.slug}`);
@@ -48,8 +50,25 @@ export default {
     }
   },
   created() {
-    this.slug = this.$route.params.id;
-    this.getArticle(this.snippetName);
+		this.slug = this.$route.params.id;
+		const snippetObj = this.getSnippet(this.slug);
+		if (snippetObj.category === "article") {
+			this.getArticle(this.snippetName);
+		} else {
+			this.snippet = {
+				category: 'video',
+				title: snippetObj.title,
+				body_html: `
+				<p>${snippetObj.desc}</p>
+				<div class="video-container">
+					<iframe 
+						width="560" height="315" 
+						src="${snippetObj.videoUrl.replace('watch?v=', 'embed/')}" 
+						frameborder="0" allowfullscreen>
+					</iframe>
+				</div>`
+			};
+		}
   },
 
   updated() {
@@ -68,6 +87,28 @@ export default {
   padding-bottom: 100px;
   font-size: 19px;
   line-height: 30px;
+
+	.video-article {
+		#article-body > p:first-child {
+			text-align: center;
+			margin-bottom: 26.6px;
+		}
+
+		.video-container {
+			overflow: hidden;
+			padding-bottom: 56.25%;
+			position: relative;
+			height: 0;
+
+			iframe {
+				left: 0;
+				top: 0;
+				height: 100%;
+				width: 100%;
+				position: absolute;
+			}
+		}
+	}
 
   h1 {
     font-size: 32px;
