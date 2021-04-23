@@ -3,7 +3,8 @@ const snippets = [
     "title": "What is \"this\"? Why you should avoid arrow functions on Vue methods",
     "slug": "what-is-this-why-you-should-avoid-arrow-functions-on-vue-methods-a71",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1619206338/JS%20Bits/what-is-this_an2b4l.webp",
-    "desc": "An in-depth look at why they cause issues."
+    "desc": "An in-depth look at why they cause issues.",
+    "category": "article"
   },
   {
     "title": "HTMLInputElement.valueAsNumber",
