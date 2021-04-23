@@ -61,6 +61,7 @@ export default {
         margin: 0;
         line-height: 30px;
         margin-bottom: 14px;
+        word-break: break-word;
       }
 
       .featured-snippet-desc {

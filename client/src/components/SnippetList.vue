@@ -36,7 +36,7 @@ export default {
 
   .snippets-list {
     display: grid;
-    grid-gap: 50px 30px;
+    grid-gap: 50px 40px;
     grid-template-columns: 1fr 1fr 1fr;
     margin-bottom: 60px;
 
@@ -53,6 +53,7 @@ export default {
         width: 100%;
         height: 200px;
         object-fit: cover;
+        object-position: top;
         border-radius: 4px;
         margin-bottom: 20px;
         box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
