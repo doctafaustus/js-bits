@@ -6,6 +6,7 @@ const favicon = require('serve-favicon');
 const compression = require('compression'); 
 
 
+
 // Globals
 const $ = require('cheerio');
 
@@ -30,8 +31,12 @@ if (!process.env.PORT) {
 app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
   else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req, res);
+  else if (/bug-finder/.test(req.originalUrl)) next();
   else res.sendFile(`${__dirname}/client/dist/index.html`);
 });
+
+// Bug Finder Routes
+require('./bug-finder-routes.js')(app);
 
 async function updateMetaTags(req, res) {
   // First get and parse snippets array from app src
