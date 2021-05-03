@@ -1,6 +1,105 @@
 <html>
-  <head></head>
-  <body>
-    <h1> yo</h1>
-  </body>
+<head>
+  <style>
+    .vip-content {
+      display: none;
+    }
+
+    .vip-content.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bug Finder</h1>
+  <h1>Exercise #1</h1>
+
+  <button id="get-vip-level-btn">Get VIP Level</button>
+
+  <div class="vip-content pearl">
+    <h3>VIP LEVEL: Pearl</h3>
+    <p>You're a pearl person</p>
+  </div>
+
+  <div class="vip-content platinum">
+    <h3>VIP LEVEL: Platinum</h3>
+    <p>You're a platinum person</p>
+  </div>
+
+  <div class="vip-content emerald">
+    <h3>VIP LEVEL: Emerald</h3>
+    <p>You're a emerald person</p>
+  </div>
+
+  <div class="vip-content gold">
+    <h3>VIP LEVEL: Gold</h3>
+    <p>You're a gold person</p>
+  </div>
+  <script>
+    const VIPLevels = {
+      pearl: 'pearl',
+      platinum: 'platinum',
+      emerald: 'emerald',
+      gold: 'gold',
+      default: function() { return this.pearl }
+    };
+
+    // Set VIP cookie to platinum on load
+    setCookie('vipCustomerLevel', VIPLevels.platinum);
+
+    // Init main script
+    document.addEventListener('DOMContentLoaded', init);
+
+  
+    function init() {
+      const btn = document.querySelector('#get-vip-level-btn');
+      btn.addEventListener('click', showVIPLevel);
+    }
+  
+    function showVIPLevel() {
+      const VIPLevel = getVIPCookieVal() || VIPLevels.default();
+      const blockToShow = document.querySelector(`.${VIPLevel}`);
+      blockToShow.classList.add('show');
+    }
+
+    function getVIPCookieVal() {
+      return getCookie('vipCustomerLevel');
+    }
+
+    function getCookie(name) {
+      const nameEQ = `${name}=`;
+      const ca = document.cookie.split(';');
+
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1, c.length);
+        }
+
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+
+      return null;
+    }
+
+
+    function setCookie(name, value, minutes) {
+      let expirationFragment = '';
+
+      if (minutes) {
+        const date = new Date();
+        const ms = minutes * 60 * 1000;
+        const expiration = date.getTime() + ms;
+
+        date.setTime(expiration);
+        expirationFragment = `; expires=${date.toGMTString()}`;
+      }
+
+      document.cookie = `${name}=${value}${expirationFragment}; path=/`;
+    }
+  </script>
+</body>
 </html>
