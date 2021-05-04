@@ -11,10 +11,23 @@
   </style>
 </head>
 <body>
+  <script src="../emojis.js"></script>
+
   <h1>Bug Finder</h1>
-  <h1>Exercise #1</h1>
+
+  <nav>
+    <a class="nav-item home" href="#">Home</a>
+    <a class="nav-item products" href="#">Products</a>
+    <a class="nav-item login" href="#">Login</a>
+  </nav>
+
+  <section id="emoji-list"></section>
+
+
 
   <button id="get-vip-level-btn">Get VIP Level</button>
+
+
 
   <div class="vip-content pearl">
     <h3>VIP LEVEL: Pearl</h3>
@@ -36,6 +49,17 @@
     <p>You're a gold person</p>
   </div>
   <script>
+
+    const emojiListEl = document.querySelector('#emoji-list');
+    const emojiListHTML = window.emojis.map(emojiObj => {
+      return `<div class="emoji-item">
+        <div class="emoji-name">${emojiObj.name}</div>
+        <div class="emoji-image">${emojiObj.emoji}</div>
+      </div>`;
+    }).join('');
+    emojiListEl.insertAdjacentHTML('afterbegin', emojiListHTML);
+
+
     const VIPLevels = {
       pearl: 'pearl',
       platinum: 'platinum',

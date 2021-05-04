@@ -14,6 +14,7 @@ const $ = require('cheerio');
 const app = express();
 app.use(compression());
 app.use(express.static(`${__dirname}/client/dist`));
+app.use(express.static(`${__dirname}/client/public`));
 app.use(favicon(`${__dirname}/client/public/favicon.ico`));
 
 
