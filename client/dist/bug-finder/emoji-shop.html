@@ -8,50 +8,10 @@
     .vip-content.show {
       display: block;
     }
-
-    #emoji-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 10px;;
-      max-width: 400px;
-    }
-
-    .emoji-item {
-      position: relative;
-      cursor: default;
-      height: 70px;
-    }
-
-    .emoji-image {
-      display: inline-block;
-      transition: all .06s ease-in-out;
-    }
-
-    .emoji-image.enlarge {
-      font-size: 40px;
-    }
-
-    .emoji-desc {
-      display: none;
-      background-color: #000;
-      color: #fff;
-      padding: 5px;
-      border-radius: 6px;
-      position: absolute;
-      top: 46px;
-      left: 0;
-      z-index: 1;
-      font-size: 14px;
-      pointer-events: none;
-    }
-
-    .emoji-item:hover .emoji-desc {
-      display: block;
-    }
   </style>
 </head>
 <body>
-  <script src="./emojis.js"></script>
+  <script src="./sfsdafa.js"></script>
 
   <h1>Emoji Shop</h1>
 
@@ -61,11 +21,7 @@
     <a class="nav-item login" href="#">Login</a>
   </nav>
 
-  <div class="emoji-filters">
-    <button class="emoji-filter" data-sort="a-z">Sort A-Z</button>
-    <button class="emoji-filter" data-sort="z-a">Sort Z-A</button>
-  </div>
-  <div id="emoji-list"></div>
+  <section id="emoji-list"></section>
 
 
 
@@ -94,43 +50,14 @@
   </div>
   <script>
 
-    renderEmojiList();
-    bindEnlargeListener();
-
-    function renderEmojiList() {
-      const emojiListEl = document.querySelector('#emoji-list');
-      const emojiListHTML = window.emojis.map(emojiObj => {
-        return `<div class="emoji-item">
-          <div class="emoji-image">${emojiObj.emoji}</div>
-          <div class="emoji-name">${emojiObj.name}</div>
-          <div class="emoji-desc">${emojiObj.desc}</div>
-        </div>`;
-      }).join('');
-      emojiListEl.innerHTML = emojiListHTML;
-    }
-
-    function bindEnlargeListener() {
-      const emojiImages = document.querySelectorAll('.emoji-image');
-      emojiImages.forEach(emojiImage => {
-        emojiImage.addEventListener('click', () => {
-          emojiImage.classList.toggle('enlarge');
-        });
-      });
-    }
-
-    document.querySelectorAll('.emoji-filter').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const direction = (btn.dataset.sort === 'a-z') ? -1 : 1;
-
-        window.emojis.sort((a, b) => {
-          if (a.name < b.name) return direction;
-          else if (a.name > b.name) return -1 * direction;
-          else return 0;
-        });
-
-        renderEmojiList();
-      });
-    });
+    const emojiListEl = document.querySelector('#emoji-list');
+    const emojiListHTML = window.emojis.map(emojiObj => {
+      return `<div class="emoji-item">
+        <div class="emoji-name">${emojiObj.name}</div>
+        <div class="emoji-image">${emojiObj.emoji}</div>
+      </div>`;
+    }).join('');
+    emojiListEl.insertAdjacentHTML('afterbegin', emojiListHTML);
 
 
     const VIPLevels = {
