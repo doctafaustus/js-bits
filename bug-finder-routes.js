@@ -7,7 +7,7 @@ module.exports = app => {
     const cookie = new Cookies(req, res);
 
     cookie.set('vipCustomerLevel', 'platinum', { expires: setDate(180) });
-    res.sendFile(path.join(__dirname, 'client/public/bug-finder/emoji-shop.html'));
+    res.sendFile(path.join(__dirname, 'client/static/bug-finder/emoji-shop.html'));
   });
 
 }
