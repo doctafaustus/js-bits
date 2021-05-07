@@ -94,6 +94,40 @@
   </div>
   <script>
 
+    const indices = [];
+    for (var i = 9; i < 12; i++) {
+      setTimeout(function() {
+        indices.push(i);
+      }, 500);
+    }
+
+    setTimeout(() => {
+      console.log(getRandomIndex(indices));
+
+      indices.forEach(index => {
+        fetch(`https://jsonplaceholder.typicode.com/users/${index}`)
+        .then(response => response.json())
+        .then(handleRes);
+      });
+    }, 1000);
+
+    function getRandomIndex(arr) {
+      const random = Math.random();
+      const arrLength = arr.length;
+
+      return arr[Math.floor(random * arrLength)];
+    }
+
+
+    function handleRes(user) {
+      if (user) {
+        console.log('user!', user);
+      }
+    }
+
+    // Push numbers into array - all 10
+    // Use fetch to 404 API - it passes
+
     renderEmojiList();
     bindEnlargeListener();
 
