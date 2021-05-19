@@ -19,8 +19,14 @@ Instruct to keep `setTimeout`s under the guise of wanting to show some of the an
 `analytics.js` is a slow-running script. It's execution is delaying video playback.
 What's causing the video to start so slowly?
 
-
 ## Exercise 5
 Red herring of a `setTimeout` declaring a window level variable that's already created by and element `id`.
 Why does the warning message appear?
 
+### Future Exercise
+Remember last scroll position Chrome 
+`history.scrollRestoration = 'manual';`
+
+`window.load` overwrite (instead of `addEventListener`)
+
+`window.scroll` janky peformance (instead of `matchMedia`)
