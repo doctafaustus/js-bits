@@ -71,6 +71,7 @@
 
 
   <h1>Emoji Shop</h1>
+  <h2 id="emoji"></h2>
 
   <nav>
     <a class="nav-item home" href="#">Home</a>
@@ -117,6 +118,26 @@
 
   <footer style="position: absolute; bottom: 0;">JS Bits</footer>
   <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const timeout = 0;
+
+      setTimeout(setEmojiStatus, timeout);
+      const emojiStatus = getEmojiStatus();
+      if (emojiStatus) showWarning();
+    });
+
+    function setEmojiStatus() {
+      window.emoji = true;
+    }
+
+    function showWarning() {
+      document.body.insertAdjacentHTML('afterbegin', '<div>[DO NOT SHOW]</div>');
+    }
+
+    function getEmojiStatus() {
+      return Boolean(emoji);
+    }
 
     document.querySelector('#get-user').addEventListener('click', getuser);
 

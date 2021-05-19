@@ -1,5 +1,9 @@
 # Bug Finder Exercises
 
+### TODO
+  - Banner message about using Chrome only.
+  - Ask user to rate each bug in difficult after solving.
+
 ## Exercise 1
 HttpOnly cookies.
 
@@ -16,5 +20,7 @@ Instruct to keep `setTimeout`s under the guise of wanting to show some of the an
 What's causing the video to start so slowly?
 
 
-### Future Exercises:
-Something with global variable that's placed on the window with an element `id`.
+## Exercise 5
+Red herring of a `setTimeout` declaring a window level variable that's already created by and element `id`.
+Why does the warning message appear?
+
