@@ -48,6 +48,15 @@
     .emoji-item:hover .emoji-desc {
       display: block;
     }
+
+    #get-user:disabled {
+      background-image: url(https://samherbert.net/svg-loaders/svg-loaders/three-dots.svg);
+      background-repeat: no-repeat;
+      background-color: black;
+      background-size: 40px;
+      background-position: center;
+      color: transparent;
+    }
   </style>
 </head>
 <body>
@@ -92,24 +101,50 @@
     <h3>VIP LEVEL: Gold</h3>
     <p>You're a gold person</p>
   </div>
+
+  <br>
+  <br>
+  <button id="get-user">Get user</button>
+  <div id="user-block"></div>
   <script>
 
-    const indices = [];
-    for (var i = 9; i < 12; i++) {
-      setTimeout(function() {
-        indices.push(i);
-      }, 500);
+    document.querySelector('#get-user').addEventListener('click', getuser);
+
+    function getuser(e) {
+      e.target.disabled = true;
+
+      const indices = [];
+      for (var i = 5; i < 10; i++) {
+
+        // Delay to show animation
+        setTimeout(() => {
+          indices.push(i);
+        }, 500);
+      }
+
+      setTimeout(() => {
+        const randomIndex = getRandomIndex(indices);
+        console.log(randomIndex);
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${randomIndex}`)
+          .then(response => response.json())
+          .then(handleRes.bind(null, e));
+      }, 1000);
     }
 
-    setTimeout(() => {
-      console.log(getRandomIndex(indices));
 
-      indices.forEach(index => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${index}`)
-        .then(response => response.json())
-        .then(handleRes);
-      });
-    }, 1000);
+    function handleRes(e, user) {
+      const userBlock = document.querySelector('#user-block');
+
+      if (user) {
+        console.log('user!', user);
+        userBlock.innerHTML = ` ${user.name} | ${user.email}`;
+      }
+
+      e.target.disabled = false;
+    }
+
+
 
     function getRandomIndex(arr) {
       const random = Math.random();
@@ -117,16 +152,6 @@
 
       return arr[Math.floor(random * arrLength)];
     }
-
-
-    function handleRes(user) {
-      if (user) {
-        console.log('user!', user);
-      }
-    }
-
-    // Push numbers into array - all 10
-    // Use fetch to 404 API - it passes
 
     renderEmojiList();
     bindEnlargeListener();
