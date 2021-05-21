@@ -1,7 +1,7 @@
 const snippets = [
   {
     "title": "The JavaScript Banana 🍌",
-    "slug": "https://dev.to/cilly_boloe/the-javascript-banana-js-bits-2epb",
+    "slug": "the-javascript-banana-js-bits-2epb",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1621566988/JS%20Bits/the-javascript-banana_zugmva.webp",
     "desc": "You gotta make programming fun once in a while. Why not have a banana!",
     "category": "article"
