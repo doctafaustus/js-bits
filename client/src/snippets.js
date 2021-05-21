@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "The JavaScript Banana 🍌",
+    "slug": "https://twitter.com/home",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1621566988/JS%20Bits/the-javascript-banana_zugmva.webp",
+    "desc": "You gotta make programming fun once in a while. Why not have a banana!",
+    "category": "article"
+  },
+  {
     "title": "What is \"this\"? Why you should avoid arrow functions on Vue methods",
     "slug": "what-is-this-why-you-should-avoid-arrow-functions-on-vue-methods-a71",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1619206338/JS%20Bits/what-is-this_an2b4l.webp",
