@@ -1,6 +1,6 @@
 <template>
   <div id="hero">
-    <h1 class="hero-title">JavaScript tips and tricks for the inquisitive developer</h1>
+    <h1 class="hero-title">JavaScript Tips &amp; Tricks</h1>
     <div class="featured-snippet">
       <div class="featured-snippet-left">
         <h5 class="latest-title">Latest Post</h5>
