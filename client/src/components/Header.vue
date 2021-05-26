@@ -95,6 +95,10 @@ header {
     .header-links {
       position: static;
       margin-top: 10px;
+
+      .header-link {
+        font-size: 18px;
+      }
     }
   }
 }
