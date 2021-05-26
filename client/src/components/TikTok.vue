@@ -28,7 +28,7 @@ export default {
   methods: {
     getTikTokVideos() {
       const videoID = this.videoIDs.pop();
-      if (!videoID) return console.log('done');
+      if (!videoID) return;
 
       fetch(`https://www.tiktok.com/oembed?url=https://www.tiktok.com/@js_bits/video/${videoID}`)
         .then(response => response.json())
