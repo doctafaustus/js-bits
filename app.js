@@ -37,7 +37,7 @@ app.use('/*', (req, res, next) => {
 });
 
 // Bug Finder Routes
-// require('./bug-finder-routes.js')(app);
+require('./bug-finder-routes.js')(app);
 
 async function updateMetaTags(req, res) {
   // First get and parse snippets array from app src
