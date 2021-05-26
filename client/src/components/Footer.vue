@@ -2,9 +2,14 @@
   <footer>
     <div class="footer-left">&copy;2021 JS Bits</div>
     <div class="footer-right">
-      <a class="twitter-link" href="https://twitter.com/Cilly_Boloe" target="_blank">
-        <img class="twitter-icon" src="@/assets/twitter-icon.webp" width="30" height="30">
-        <span class="twitter-handle">@Cilly_Boloe</span>
+      <a class="footer-link" href="https://www.tiktok.com/@js_bits" target="_blank">
+        <img class="footer-icon" src="@/assets/tiktok-icon.webp" width="30" height="30">
+        <span class="footer-handle">@js_bits</span>
+      </a>
+
+      <a class="footer-link" href="https://twitter.com/Cilly_Boloe" target="_blank">
+        <img class="footer-icon" src="@/assets/twitter-icon.webp" width="30" height="30">
+        <span class="footer-handle">@Cilly_Boloe</span>
       </a>
     </div>
   </footer>
@@ -24,18 +29,33 @@
   bottom: 0;
   width: 100%;
 
-  .twitter-link {
+  .footer-link {
     color: #fff;
 
     &:hover {
       text-decoration: underline;
     }
 
-    .twitter-icon {
+    &:not(:last-child) {
+      margin-right: 18px;
+    }
+
+    .footer-icon {
       width: 30px;
       display: inline-block;
       vertical-align: middle;
       margin-right: 6px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 10px;
+
+    .footer-link {
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
     }
   }
 }

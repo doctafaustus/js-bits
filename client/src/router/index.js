@@ -22,6 +22,11 @@ export default new Router({
       path: '/snippet/:id',
       name: 'Snippet',
       component: () => import('@/components/Snippet.vue')
+    },
+    {
+      path: '/tiktok',
+      name: 'TikTok',
+      component: () => import('@/components/TikTok.vue')
     }
   ]
 });

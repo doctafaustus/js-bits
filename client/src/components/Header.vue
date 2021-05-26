@@ -5,6 +5,10 @@
     </router-link>
 
     <div class="header-links">
+      <router-link to="/tiktok" class="header-link tiktok-link">
+        <span>TikTok</span>
+        <img class="tiktok-icon" src="@/assets/tiktok-icon.webp" width="30" height="30">
+      </router-link>
       <router-link to="/code-bits" class="header-link">Code Bits</router-link>
       <router-link to="/interviews" class="header-link">Interviews</router-link>
     </div>
@@ -50,7 +54,7 @@ header {
       color: #fff;
       font-size: 20px;
 
-      &:first-child {
+      &:not(:last-child) {
         padding-right: 15px;
 
         &::after {
@@ -58,10 +62,25 @@ header {
           padding-left: 15px;
         }
       }
+
+      &.tiktok-link {
+        position: relative;
+
+        span {
+          display: inline-block;
+          padding-right: 30px;
+        }
+
+        .tiktok-icon {
+          position: absolute;
+          top: -3px;
+          right: 30px;
+        }
+      }
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 980px) {
     margin-bottom: 40px;
     padding: 12px 0;
 
