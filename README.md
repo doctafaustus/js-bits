@@ -23,10 +23,11 @@ What's causing the video to start so slowly?
 Red herring of a `setTimeout` declaring a window level variable that's already created by and element `id`.
 Why does the warning message appear?
 
+## Exercise 6
+`window.load` overwrite (instead of `addEventListener`). Figure out why old scroll callback breaks.
+
 ### Future Exercise
 Remember last scroll position Chrome 
 `history.scrollRestoration = 'manual';`
-
-`window.load` overwrite (instead of `addEventListener`)
 
 `window.scroll` janky peformance (instead of `matchMedia`)
