@@ -76,7 +76,3 @@ async function updateMetaTags(req, res) {
 app.listen(process.env.PORT || 8081, () => {
   console.log('App running...');
 });
-
-
-
-require('./tiktok-scraper.js')();
