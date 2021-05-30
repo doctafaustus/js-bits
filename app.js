@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const favicon = require('serve-favicon');
 const compression = require('compression'); 
-
+const initCloudinaryRoute = require('./mods/cloudinary-service.js');
 
 
 // Globals
@@ -72,6 +72,7 @@ async function updateMetaTags(req, res) {
   res.send($.html($base));
 }
 
+initCloudinaryRoute(app);
 
 app.listen(process.env.PORT || 8081, () => {
   console.log('App running...');

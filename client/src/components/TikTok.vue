@@ -5,10 +5,12 @@
     <ul class="video-list">
       <li
         class="video-container"
-        v-for="video in tikTokVideos"
-        :key="video"
+        v-for="(video, i) in tikTokVideos"
+        :key="video.public_id"
       >
-        <div v-html="video"></div>
+        <a :href="videoURLs[i]" target="_blank">
+          <img :src="video.secure_url" />
+        </a>
       </li>
     </ul>
   </div>
@@ -21,27 +23,26 @@ export default {
   name: 'TikTok',
   data() {
     return {
-      videoIDs: ["6966616209777347846", "6966294001343319302", "6965856931999173894", "6965207536295283974"].reverse(),
       tikTokVideos: []
     };
   },
+  computed: {
+    videoURLs() {
+      return this.tikTokVideos.map(item => {
+        return `https://www.tiktok.com/@js_bits/video/${item.context.custom.id}`;
+      });
+    }
+  },
   methods: {
     getTikTokVideos() {
-      const videoID = this.videoIDs.pop();
-      if (!videoID) return;
-
-      fetch(`https://www.tiktok.com/oembed?url=https://www.tiktok.com/@js_bits/video/${videoID}`)
+      fetch(`${window.baseURL}/tiktok`)
         .then(response => response.json())
         .then(json => {
-          const videoHTML = json.html;
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = videoHTML;
-
-          const tikTokScript = tempDiv.querySelector('script');
-          tikTokScript.remove();
-
-          this.tikTokVideos.push(tempDiv.innerHTML);
-          this.getTikTokVideos();
+          this.tikTokVideos = json.resources.sort((a, b) => {
+            if (+a.context.custom.created < +b.context.custom.created) return 1;
+            else if (+a.context.custom.created > +b.context.custom.created) return -1;
+            else return 0;
+          });
         });
     },
   },
@@ -59,11 +60,36 @@ export default {
   margin-bottom: 80px;
 }
 
-.tiktok-embed {
-  margin: 0 auto;
-}
-
 .tiktok-link {
   text-decoration: underline;
+}
+
+.video-list {
+  max-width: 590px;
+  margin: 0 auto;
+
+  .video-container {
+    max-width: 196px;
+    float: left;
+
+    a {
+      &:hover {
+        filter: brightness(1.2);
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 627px) {
+    max-width: 392px;
+  }
+
+  @media (max-width: 430px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

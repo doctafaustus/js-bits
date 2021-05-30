@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "cloudinary": "^1.25.2",
     "compression": "^1.7.4",
     "cookies": "^0.8.0",
     "cors": "^2.8.5",
