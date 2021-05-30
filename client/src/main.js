@@ -16,5 +16,5 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
-window.baseURL = (window.location.host.includes('jsbits_yo.com')) ? 
+window.baseURL = (window.location.host.includes('jsbits-yo.com')) ? 
 `https://${window.location.host}/api` : 'http://localhost:8081/api';
