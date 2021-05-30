@@ -74,7 +74,7 @@ export default {
 
     a {
       &:hover {
-        filter: brightness(1.2);
+        filter: brightness(1.1);
       }
 
       img {
