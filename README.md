@@ -26,6 +26,11 @@ Why does the warning message appear?
 ## Exercise 6
 `window.load` overwrite (instead of `addEventListener`). Figure out why old scroll callback breaks.
 
+## Exercise 7
+A simple `e.preventDefault()` needed for `.emoji-filter`s.
+
+
+
 ### Future Exercise
 Remember last scroll position Chrome 
 `history.scrollRestoration = 'manual';`
