@@ -29,6 +29,9 @@ Why does the warning message appear?
 ## Exercise 7
 A simple `e.preventDefault()` needed for `.emoji-filter`s.
 
+## Exercise 8
+Use `Object.seal` on an object from a 3rd party downloaded script. (Less predictable that `Object.freeze()`)
+
 
 
 ### Future Exercise
