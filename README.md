@@ -30,7 +30,8 @@ Why does the warning message appear?
 A simple `e.preventDefault()` needed for `.emoji-filter`s.
 
 ## Exercise 8
-Use `Object.seal` on an object from a 3rd party downloaded script. (Less predictable that `Object.freeze()`)
+Click on the video and see the `collect` event fire. Now try clicking an emoji tile where another event is supposed to fire and debug this.
+Order of elements clicked doesn't matter - on success of first fetch an `eval` is used to do an `Object.defineProperty` to set `google_analytics.push` to an empty function.
 
 
 

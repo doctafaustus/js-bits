@@ -70,7 +70,8 @@
   </style>
 </head>
 <body>
-  <script src="./analytics.js" defer></script>
+  <script src="./analytics.js"></script>
+  <script src="./error-reporting.js" defer></script>
   <script src="./emojis.js"></script>
 
 
@@ -136,6 +137,22 @@
 
   <footer>JS Bits</footer>
   <script>
+
+
+
+    function initAnalyticsBug() {
+      const heroVid = document.querySelector('#hero-vid');
+      const emojiItems = document.querySelectorAll('.emoji-item');
+
+      [heroVid, ...emojiItems].forEach(emojiItem => {
+        emojiItem.addEventListener('click', e => {
+          const target = e.target.matches('#hero-vid') ? 'video' : 'emoji-item';
+
+          google_analytics.push(`${target}-clicked`);
+        });
+      });
+    }
+
     initListenerBug();
 
     function initListenerBug() {
@@ -343,6 +360,8 @@
 
       document.cookie = `${name}=${value}${expirationFragment}; path=/`;
     }
+
+    initAnalyticsBug();
   </script>
 </body>
 </html>
