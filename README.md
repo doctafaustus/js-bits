@@ -36,6 +36,8 @@ Order of elements clicked doesn't matter - on success of first fetch an `eval` i
 
 
 ### Future Exercise
+Add in slick carousel with an auto-change and `afterChange` set a `.focus()` that changes position of burger menu with height at 100%.
+
 Remember last scroll position Chrome 
 `history.scrollRestoration = 'manual';`
 
