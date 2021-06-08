@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router';
 import VueAnalytics from 'vue-analytics';
-import e from 'express';
 
 
 if (navigator.userAgent.indexOf("Chrome-Lighthouse") > -1) {
