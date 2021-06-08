@@ -6,7 +6,7 @@ import VueAnalytics from 'vue-analytics';
 
 if (navigator.userAgent.indexOf("Chrome-Lighthouse") > -1) {
   console.log("Lighthouse!");
-
+  document.body.insertAdjacentHTML('afterbegin', `<h1>hi</h1>`)
 } else {
   Vue.config.productionTip = false;
 
