@@ -76,6 +76,7 @@ app.get('/api/tiktok', (req, res) => {
   console.log('/api/tiktok');
 
   request('https://urlebird.com/user/js_bits/', (error, response, body) => {
+    console.log('BODY', body)
     if (error) return console.log('An error occurred retrieving TikTok data from UrleBird');
     const $html = $(body);
     const tiktokData = [];
