@@ -17,7 +17,6 @@ app.use(express.static(`${__dirname}/client/static`));
 app.use(favicon(`${__dirname}/client/public/favicon.ico`));
 
 // Cloudstore config
-// Cloudstore config
 let serviceAccount = process.env.SERVICE_ACCOUNT_KEY;
 if (!process.env.PORT) {
   serviceAccount = require('./private/serviceAccountKey.json');
