@@ -4,8 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const favicon = require('serve-favicon');
 const compression = require('compression'); 
-const request = require('request');
-
+const admin = require('firebase-admin');
 
 // Globals
 const $ = require('cheerio');
@@ -17,6 +16,10 @@ app.use(express.static(`${__dirname}/client/dist`));
 app.use(express.static(`${__dirname}/client/static`));
 app.use(favicon(`${__dirname}/client/public/favicon.ico`));
 
+// Cloudstore config
+const serviceAccount = require('./private/serviceAccountKey.json');
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+const db = admin.firestore();
 
 // Allow CORS requests locally
 if (!process.env.PORT) {
@@ -73,25 +76,12 @@ async function updateMetaTags(req, res) {
 }
 
 app.get('/api/tiktok', (req, res) => {
-  console.log('/api/tiktok');
+  console.log('/api/tiktok!');
 
-  request('https://urlebird.com/user/js_bits/', (error, response, body) => {
-    console.log('BODY', body)
-    if (error) return console.log('An error occurred retrieving TikTok data from UrleBird');
-    const $html = $(body);
-    const tiktokData = [];
+  db.collection('tiktok-videos').doc('mainData').get().then(doc => {
+    const videoData = doc.data().tiktokVideos;
 
-    $html.find('.thumb').each(function() {
-      const $thumb = $(this);
-      const $image = $thumb.find('.img img');
-
-      const id = ($thumb.find('.info + a').attr('href').match(/(\d{19,20})\/$/) || [])[1];
-      const img = /^https/.test($image.attr('src')) ? $image.attr('src') : $image.attr('data-src');
-
-      tiktokData.push({ id, img });
-    });
-
-    res.json(tiktokData);
+    res.json(JSON.parse(videoData));
   });
 });
 
