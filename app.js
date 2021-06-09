@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const favicon = require('serve-favicon');
 const compression = require('compression'); 
-const initCloudinaryRoute = require('./mods/cloudinary-service.js');
+const request = require('request');
 
 
 // Globals
@@ -72,7 +72,27 @@ async function updateMetaTags(req, res) {
   res.send($.html($base));
 }
 
-initCloudinaryRoute(app);
+app.get('/api/tiktok', (req, res) => {
+  console.log('/api/tiktok');
+
+  request('https://urlebird.com/user/js_bits/', (error, response, body) => {
+    if (error) return console.log('An error occurred retrieving TikTok data from UrleBird');
+    const $html = $(body);
+    const tiktokData = [];
+
+    $html.find('.thumb').each(function() {
+      const $thumb = $(this);
+      const $image = $thumb.find('.img img');
+
+      const id = ($thumb.find('.info + a').attr('href').match(/(\d{19,20})\/$/) || [])[1];
+      const img = /^https/.test($image.attr('src')) ? $image.attr('src') : $image.attr('data-src');
+
+      tiktokData.push({ id, img });
+    });
+
+    res.json(tiktokData);
+  });
+});
 
 app.listen(process.env.PORT || 8081, () => {
   console.log('App running...');
