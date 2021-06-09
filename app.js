@@ -17,7 +17,13 @@ app.use(express.static(`${__dirname}/client/static`));
 app.use(favicon(`${__dirname}/client/public/favicon.ico`));
 
 // Cloudstore config
-const serviceAccount = require('./private/serviceAccountKey.json');
+// Cloudstore config
+let serviceAccount = process.env.SERVICE_ACCOUNT_KEY;
+if (!process.env.PORT) {
+  serviceAccount = require('./private/serviceAccountKey.json');
+} else {
+  serviceAccount = JSON.parse(serviceAccount);
+}
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 const db = admin.firestore();
 
