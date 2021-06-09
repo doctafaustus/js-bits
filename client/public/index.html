@@ -16,17 +16,12 @@
     <meta property="og:description" content="JavaScript tips and tricks for the inquisitive developer">
 
     <!-- Preloads -->
-    <!-- <link rel="preload" as="image" href="<%= require('@/snippets.js').default[0].image %>"> -->
+    <link rel="preload" as="image" href="<%= require('@/snippets.js').default[0].image %>">
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <img id="nic-cage"
-      style="visibility: hidden; position: absolute; z-index: 1; pointer-events: none;"
-      height="399"
-      width="399"
-      src="https://res.cloudinary.com/dzynqn10l/image/upload/v1623194235/JS%20Bits/nic-cage_hwrlfg.webp">
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
