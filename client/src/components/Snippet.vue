@@ -128,6 +128,10 @@ export default {
   img {
     width: 100%;
     cursor: pointer;
+
+    &[alt="isTrusted TikTok"] {
+      width: 150px;
+    }
   }
 
   a {

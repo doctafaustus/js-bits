@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "How to check trusted events",
+    "slug": "how-to-check-trusted-events-js-bits-1el4",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1623773726/JS%20Bits/isTrusted_tofsfw.webp",
+    "desc": "How to detect real user events with Event.isTrusted and prevent bot actions",
+    "category": "article"
+  },
+  {
     "title": "The JavaScript Banana 🍌",
     "slug": "the-javascript-banana-js-bits-2epb",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1621566988/JS%20Bits/the-javascript-banana_zugmva.webp",
