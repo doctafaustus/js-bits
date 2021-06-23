@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "Simple Lazy Loading",
+    "slug": "simple-lazy-loading-4i75",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1624476943/JS%20Bits/lazyload_cover_-_Twitter_skdbot.webp",
+    "desc": "The native HTML “loading” attribute can be set to “lazy,” which defers image loading until it enters the viewport.",
+    "category": "article"
+  },
+  {
     "title": "How to check trusted events",
     "slug": "how-to-check-trusted-events-js-bits-1el4",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1623773726/JS%20Bits/isTrusted_tofsfw.webp",
