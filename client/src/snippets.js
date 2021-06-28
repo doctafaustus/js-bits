@@ -9,7 +9,7 @@ const snippets = [
   {
     "title": "How to check trusted events",
     "slug": "how-to-check-trusted-events-js-bits-1el4",
-    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1623773726/JS%20Bits/isTrusted_tofsfw.webp",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1624848146/JS%20Bits/how-to-check-trusted-events_ebymzf.webp",
     "desc": "How to detect real user events with Event.isTrusted and prevent bot actions",
     "category": "article"
   },
