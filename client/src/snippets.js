@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "CSS :placeholder-shown",
+    "slug": "css-placeholder-shown-5848",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1624899533/JS%20Bits/placeholder-shown_cover_-_Twitter_iosr4m.webp",
+    "desc": "The :placeholder-shown pseudo-class represents any <input> or <textarea> element that is displaying placeholder text.",
+    "category": "article"
+  },
+  {
     "title": "Simple Lazy Loading",
     "slug": "simple-lazy-loading-4i75",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1624476943/JS%20Bits/lazyload_cover_-_Twitter_skdbot.webp",

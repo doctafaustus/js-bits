@@ -132,6 +132,12 @@ export default {
     &[alt="isTrusted TikTok"] {
       width: 150px;
     }
+
+    &[alt="placeholder-shown"] {
+      margin-top: 14px;
+      margin-left: 16px;
+      width: 316px;
+    }
   }
 
   a {
