@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "SVG Cleanup",
+    "slug": "svg-cleanup-c08",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1625026151/JS%20Bits/SVG_cleanup_-_Twitter_ula31p.jpg",
+    "desc": "SVGOMG lets you easily remove unneeded SVG features like doctype, comments, metadata, etc. to reduce the file size.",
+    "category": "article"
+  },
+  {
     "title": "CSS :placeholder-shown",
     "slug": "css-placeholder-shown-5848",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1624899533/JS%20Bits/placeholder-shown_cover_-_Twitter_iosr4m.webp",
