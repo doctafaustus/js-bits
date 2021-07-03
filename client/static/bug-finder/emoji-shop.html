@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -58,6 +59,36 @@
       color: transparent;
     }
 
+    #helmet {
+      border: solid 1px green;
+      zoom: 2;
+    }
+
+    #image-grid {
+      border: solid 1px black;
+      display: grid;
+      grid-template-columns:  1fr 1fr 1fr;
+      margin-bottom: 400px;
+      width: 300px;
+    }
+
+    #image-grid img {
+      width: 100px;
+    }
+
+    #image-grid img:hover {
+      border: solid 1px red;
+    }
+
+    #carousel {
+      width: 500px;
+      border: solid 1px red;
+    }
+
+    #carousel img {
+      width: 100px;
+    }
+
     footer {
       position: absolute;
       background: #000;
@@ -73,13 +104,35 @@
   <script src="./analytics.js"></script>
   <script src="./error-reporting.js" defer></script>
   <script src="./emojis.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 
 
   <video id="hero-vid" src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" loop muted playsinline preload="auto" type="video/mp4" disableremoteplayback></video>
 
+  <label for="cars">Choose a car:</label>
+
+  <select name="cars" id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
 
 
+  <div id="carousel">
+    <div>
+      <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    </div>
+    <div>
+      <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    </div>
+    <div>
+      <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    </div>
+  </div>
 
+  <button id="destroy-carousel-btn">Destroy Carousel</button>
 
   <h1>Emoji Shop</h1>
   <h2 id="emoji"></h2>
@@ -135,9 +188,53 @@
   <button id="get-script">Add Back to Top</button>
   <div id="mock-content"></div>
 
+  
+  <input id="focus-target" type="text">
+
+  <img id="helmet" src="https://image.shutterstock.com/image-photo/motorcycle-helmet-over-isolate-on-260nw-699960361.jpg">
+
+  <div id="image-grid">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+    <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+  </div>
+
+
   <footer>JS Bits</footer>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
   <script>
 
+    addStripe();
+
+    function addStripe() {
+      if (window.location.pathname === '/bug-finder/emoji-shop') {
+        document.head.insertAdjacentHTML('beforeend', `<script src="https://js.stripe.com/v3/">`);
+      }
+    }    
+
+
+    $('#carousel').slick({
+      slidesToShow: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    });
+
+    $('#carousel').on('afterChange', function() {
+      //$('#focus-target')[0].scrollIntoView();
+    });
+
+    $(document).ready(function() {
+      $('#destroy-carousel-btn').click(function() {
+        $('#carousel').slick('unslick');
+      });
+    });
 
 
     function initAnalyticsBug() {
@@ -363,5 +460,6 @@
 
     initAnalyticsBug();
   </script>
+  <script src="https://code.jquery.com/jquery-1.2.min.js"></script>
 </body>
 </html>
