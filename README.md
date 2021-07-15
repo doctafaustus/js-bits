@@ -43,7 +43,7 @@ There's a grid of images within a fixed-width container. On hover the images wil
 Add in slick carousel with an auto-change and `afterChange` set a `.scrollIntoView()` that changes position of document.
 
 # Exercise 12 `8/10`
-Try to destroy carousel on button click, notice it doesn't get destroyed. This is because there are 2 versions of jQuery on the site. Use a log to show the 2 different version numbers before and after document.ready.
+Try to reset carousel on button click, notice it doesn't get reset. This is because there are 2 versions of jQuery on the site. Use a log to show the 2 different version numbers before and after document.ready.
 
 # Exercise 13 `4/10`
 Trying to add a `<script>` element by using `insertAdjacentHTML`. Look for global `Stripe` object - notice it's not there. Note that in order to not cause a reference error, the script had to be inserted without a closing tag.

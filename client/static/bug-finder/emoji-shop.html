@@ -125,14 +125,14 @@
       <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
     </div>
     <div>
-      <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+      <img src="https://cdn2.thecatapi.com/images/W6Xq2qc94.jpg">
     </div>
     <div>
-      <img src="https://i.etsystatic.com/17942801/r/il/eefd94/1783107933/il_794xN.1783107933_g9gs.jpg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Grand_Place_Brussel.jpg/800px-Grand_Place_Brussel.jpg">
     </div>
   </div>
 
-  <button id="destroy-carousel-btn">Destroy Carousel</button>
+  <button id="reset-carousel-btn">Reset</button>
 
   <h1>Emoji Shop</h1>
   <h2 id="emoji"></h2>
@@ -231,8 +231,8 @@
     });
 
     $(document).ready(function() {
-      $('#destroy-carousel-btn').click(function() {
-        $('#carousel').slick('unslick');
+      $('#reset-carousel-btn').click(function() {
+        $('#carousel').slick('slickGoTo', 0);
       });
     });
 
@@ -460,6 +460,6 @@
 
     initAnalyticsBug();
   </script>
-  <script src="https://code.jquery.com/jquery-1.2.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.2.min.js"></script> -->
 </body>
 </html>
