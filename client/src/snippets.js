@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "HTML5 Video Picture-in-Picture Mode",
+    "slug": "html5-video-picture-in-picture-mode-o40",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1627445358/JS%20Bits/Picture-in-Picture_-_Cover_pagn7q.webp",
+    "desc": "The native Picture-in-Picture API allows you to create a floating, pinned HTML5 video that overlays on top of your workspace.",
+    "category": "article"
+  },
+  {
     "title": "SVG Cleanup",
     "slug": "svg-cleanup-c08",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1625026151/JS%20Bits/SVG_cleanup_-_Twitter_ula31p.jpg",
