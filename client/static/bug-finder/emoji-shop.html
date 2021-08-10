@@ -214,6 +214,7 @@
 
     addStripe();
 
+    // EXERCISE 13 - Trying to add a <script> element by using insertAdjacentHTML
     function addStripe() {
       if (window.location.pathname === '/bug-finder/emoji-shop') {
         document.head.insertAdjacentHTML('beforeend', `<script src="https://js.stripe.com/v3/">`);

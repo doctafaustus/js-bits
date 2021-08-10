@@ -24,7 +24,7 @@ Red herring of a `setTimeout` declaring a window level variable that's already c
 Why does the warning message appear?
 
 ## Exercise 6 `5/10`
-`window.load` overwrite (instead of `addEventListener`). Figure out why old scroll callback breaks.
+`window.onscroll` overwrite (instead of `addEventListener`). Figure out why old scroll callback breaks.
 
 ## Exercise 7 `3/10`
 A simple `e.preventDefault()` needed for `.emoji-filter`s.
