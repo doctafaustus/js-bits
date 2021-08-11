@@ -39,13 +39,13 @@ CSS non-standard `zoom` property used which isn't supported on FF. "User report 
 ## Exercise 10 `1/10`
 There's a grid of images within a fixed-width container. On hover the images will show a border that extends the content width past the container width and causes jankyness. Use a transparent border to solve.
 
-# Exercise 11 `7/10`
+## Exercise 11 `7/10`
 Add in slick carousel with an auto-change and `afterChange` set a `.scrollIntoView()` that changes position of document.
 
-# Exercise 12 `8/10`
+## Exercise 12 `8/10`
 Try to reset carousel on button click, notice it doesn't get reset. This is because there are 2 versions of jQuery on the site. Use a log to show the 2 different version numbers before and after document.ready.
 
-# Exercise 13 `4/10`
+## Exercise 13 `4/10`
 Trying to add a `<script>` element by using `insertAdjacentHTML`. Look for global `Stripe` object - notice it's not there. Note that in order to not cause a reference error, the script had to be inserted without a closing tag.
 
 
