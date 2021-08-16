@@ -34,6 +34,13 @@ module.exports = app => {
     });
   });
 
+  app.get('/bug-bash/gem-wizard', (req, res) => {
+    const cookie = new Cookies(req, res);
+
+    cookie.set('vipCustomerLevel', 'platinum', { expires: setDate(180) });
+    res.sendFile(path.join(__dirname, 'client/static/bug-bash/gem-wizard.html'));
+  });
+
 }
 
 

@@ -41,6 +41,7 @@ app.use('/*', (req, res, next) => {
   if (/^\/api\//.test(req.originalUrl)) next();
   else if (/\/snippet\//.test(req.originalUrl)) updateMetaTags(req, res);
   else if (/bug-finder/.test(req.originalUrl)) next();
+  else if (/bug-bash/.test(req.originalUrl)) next();
   else res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 

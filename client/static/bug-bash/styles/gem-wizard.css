@@ -1,0 +1,106 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .5px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 20px;
+}
+
+.banner {
+  background-color: #d9ffff;
+  font-weight: 600;
+  padding: 15px 0;
+  text-align: center;
+}
+
+nav::after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  display: block;
+  background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1629132018/Bug%20Bash/rainbow-line_uvixtx.jpg);
+  background-size: contain;
+}
+
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 15px 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image-container {
+  display: inline-block;
+  background-color: #f8bbff;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.logo-image {
+  width: 40px;
+}
+
+.logo-text {
+  font-size: 34px;
+  margin-left: 12px;
+  align-self: center;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+  align-self: center;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.nav-links li {
+  display: flex;
+  justify-self: flex-end;
+  margin-left: 35px;
+}
+
+.nav-link-image,
+.nav-link-text {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.nav-link-image {
+  width: 16%;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.nav-link-text {
+  display: inline-block;
+}
+
+.minicart-icon {
+  width: 35px;
+}
+
+header {
+  text-align: center;
+  padding-top: 55px;
+}
+
+.title {
+  font-size: 68px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 30px;
+  color: #82817d;
+}

@@ -50,7 +50,7 @@ Trying to add a `<script>` element by using `insertAdjacentHTML`. Look for globa
 
 
 ### Future Exercises
+  - Remember last scroll position Chrome: `history.scrollRestoration = 'manual';`
+  - `window.scroll` janky peformance (instead of `matchMedia`)
+  - Show random name and email of person who just made a purchase in a banner.(but TBD)
 
-Remember last scroll position Chrome 
-`history.scrollRestoration = 'manual';`
-`window.scroll` janky peformance (instead of `matchMedia`)
