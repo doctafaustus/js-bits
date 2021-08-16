@@ -4,11 +4,13 @@
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Gem Wizard</title>
+  <link rel="shortcut icon" type="image/png" sizes="32x32"  href="https://res.cloudinary.com/dzynqn10l/image/upload/v1629141126/Bug%20Bash/favicon-32x32_swftuv.png"/>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='./styles/reset.css'>
+  <link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick-theme.css"/>
   <link rel='stylesheet' type='text/css' media='screen' href='./styles/gem-wizard.css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700' rel='stylesheet' type='text/css'>
-  <script src='main.js'></script>
+
 </head>
 <body>
   <div class="banner">Free shipping on all gems in the US & Canada</div>
@@ -49,7 +51,109 @@
   <header>
     <h1 class="title">GemWizard</h1>
     <h2 class="subtitle">Mystical gems & crystals for spellcasting!</h2>
+    <div class="wrapper">
+      <div class="crystal-and-value-props">
+        <div class="big-crystal-container">
+          <img class="big-crystal" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629142258/Bug%20Bash/big-crystal-cut_vk2dyt.png">
+        </div>
 
+        <div class="value-props">
+          <div class="vp-grid">
+            <a class="cta" href="#">Learn More</a>
+            <div class="vp-col">
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139831/Bug%20Bash/icon-moon_ms0xcs.png">
+                <span class="vp-text">Wide array of dark and light magic</span>
+              </div>
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139828/Bug%20Bash/icon-crystal-ball_xmes9s.png">
+                <span class="vp-text"></span>Ripe with arcane incantations</span>
+              </div>
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139696/Bug%20Bash/icon-tident_brrzgc.png">
+                <span class="vp-text"></span>Special crystals to summon deities</span>
+              </div>
+            </div>
+            <div class="vp-col">
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629140247/Bug%20Bash/icon-crafting_vat9ph.png">
+                <span class="vp-text">Unlimited crafting potential</span>
+              </div>
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629140247/Bug%20Bash/icon-world_difolf.png">
+                <span class="vp-text">Buy & trade with fellow mages</span>
+              </div>
+              <div class="vp-item">
+                <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629140247/Bug%20Bash/icon-smoke_dunkhd.png">
+                <span class="vp-text">Fire, frost, and arcane concentrates</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gem-vid-container">
+      <video class="gem-vid" poster="" src="https://res.cloudinary.com/dzynqn10l/video/upload/v1629142362/Bug%20Bash/gem-bg-video_kewbdh_ix1geg.mp4" loop muted playsinline preload="auto" type="video/mp4" disableRemotePlayback></video>
+    </div>
   </header>
+
+  <section class="clients">
+    <div class="wrapper">
+      <div class="clients-title">Used by over 200,000+ mages and warlocks</div>
+      <div class="clients-title-line"></div>
+      <div class="client-slider">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146249/Bug%20Bash/client-pettigrew_hlnq7a.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146341/Bug%20Bash/client-ollivander_lkmzfo.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146249/Bug%20Bash/client-vlacido_pmeudn.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146394/Bug%20Bash/client-tatum_lqmcfh.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146511/Bug%20Bash/client-apherune_kgn76o.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146249/Bug%20Bash/client-enaxis_m6kzko.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629148501/Bug%20Bash/client-efarihm_ulejgz.png">
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146633/Bug%20Bash/client-ogrus_tycxu4.png">
+      </div>
+    </div>
+    <div class="clients-bottom-line"></div>
+    <button class="clients-reset">Reset</button>
+  </section>
+
+  <section class="gems wrapper">
+    <div class="gems-header">
+      <div class="gem-counter">
+        <span class="gems-num">234</span><span> Gems Available</span>
+      </div>
+      <div class="gem-filters">
+        <button class="gem-filter">Sort A - Z</button>
+        <button class="gem-filter">Sort Z - A</button>
+      </div>
+    </div>
+
+    <div class="gem-grid">
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+      <div class="gem-card">gem</div>
+    </div>
+  </section>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+  <script>
+    $('.client-slider').slick({
+      slidesToShow: 4,
+      arrows: true,
+      infinite: true
+    });
+  </script>
 </body>
 </html>

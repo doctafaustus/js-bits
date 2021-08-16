@@ -1,12 +1,28 @@
 body {
   font-family: 'Roboto', sans-serif;
   letter-spacing: .5px;
+  padding-bottom: 50vh;
 }
 
 .wrapper {
   margin: 0 auto;
   max-width: 1024px;
   padding: 0 20px;
+}
+
+.cta {
+  border: solid 3px #9005ca;
+  background-color: #c231ff;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.cta:hover {
+  background-color: #a51cde;
 }
 
 .banner {
@@ -40,7 +56,12 @@ nav::after {
   display: inline-block;
   background-color: #f8bbff;
   padding: 5px;
-  border-radius: 50%;
+  border-radius: 50%
+}
+
+.logo-image,
+.logo-text {
+  cursor: pointer;
 }
 
 .logo-image {
@@ -103,4 +124,192 @@ header {
 .subtitle {
   font-size: 30px;
   color: #82817d;
+  margin-bottom: 90px;
 }
+
+header .wrapper {
+  width: 100%;
+  background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1629137500/Bug%20Bash/grid-tile-2_1_f5plon.jpg);
+  background-position-y: 29px;
+}
+
+.crystal-and-value-props {
+  position: relative;
+  top: -50px;
+  z-index: 10;
+}
+
+.big-crystal {
+  position: relative;
+  top: 2px;
+}
+
+.value-props {
+  background-color: #fff;
+  border-radius: 10px;
+  border: solid 5px #e6e6e6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.vp-grid {
+  display: grid;
+  grid-template-columns: 170px auto auto;
+  padding: 20px 25px;
+  grid-column-gap: 20px;
+  text-align: left;
+}
+
+.vp-grid .cta {
+  height: 50px;
+}
+
+.vp-item {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding: 10px 6px;
+}
+
+.vp-item:hover {
+  border: dotted 1.5px rgb(194 49 255);
+  background-color: #fff0ff;
+  border-radius: 6px;
+}
+
+.vp-item-image {
+  margin-right: 12px;
+  width: 20px;
+}
+
+.gem-vid-container {
+  background-color: #fff;
+  margin-top: -135px;
+  position: relative;
+  z-index: 5;
+}
+
+.gem-vid {
+  height: 185px;
+  width: 100%;
+  object-fit: cover;
+  background: #000;
+  filter: invert(1) opacity(0.2);
+}
+
+.clients {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.clients-title {
+  text-transform: uppercase;
+  color: #82817d;
+  font-weight: 700;
+  position: relative;
+  z-index: 5;
+  display: inline-block;
+  padding: 0 16px;
+  background: #fff;
+}
+
+.clients-title-line {
+  height: 2px;
+  width: 100%;
+  background-color: #dedede;
+  position: relative;
+  top: -9px;
+}
+
+.client-slider {
+  position: relative;
+  width: 85%;
+  margin: 20px auto 0 auto;
+}
+
+.clients-bottom-line {
+  height: 2px;
+  width: 60%;
+  background-color: #dedede;
+  margin: 0 auto;
+}
+
+.slick-list {
+  margin: 0 -25px;
+  overflow: hidden;
+}
+
+
+.slick-slide {
+  margin: 0 25px;
+  vertical-align: text-top;
+}
+
+.slick-arrow {
+  z-index: 10;
+  top: 30px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #2294ae;
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.clients-reset {
+  color: #dfdfdf;
+  position: relative;
+  top: -30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.clients-reset:hover {
+  color: #828282;
+}
+
+.gems {
+  margin-top: 60px;
+}
+
+.gems-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.gem-filter {
+  background: #fff;
+  border: solid 3px #9005ca;
+  outline: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.gem-filter:hover {
+  background-color: #fff0ff;
+}
+
+.gem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+
