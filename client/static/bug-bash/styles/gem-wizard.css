@@ -299,6 +299,7 @@ header .wrapper {
   border-radius: 6px;
   padding: 8px 12px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .gem-filter:hover {
@@ -308,8 +309,77 @@ header .wrapper {
 .gem-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+  margin-top: 30px;
 }
 
+.last-row {
+  display: contents;
+}
 
+.gem-card {
+  border: solid 4px #e6e6e6;
+  border-radius: 8px;
+  padding: 16px 12px;
+}
 
+.card-title-price {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
 
+.card-title {
+  font-size: 18px;
+}
+
+.card-price {
+  color: #1bcd2b;
+}
+
+.card-image {
+  width: 100%;
+  padding: 30px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+  border: solid 3px #e6e6e6;
+}
+
+.gem-card:nth-child(1) .card-image { background-color: #d9ffff; }
+.gem-card:nth-child(2) .card-image { background-color: #fff8ca; }
+.gem-card:nth-child(3) .card-image { background-color: #fbd9f6; }
+.gem-card:nth-child(4) .card-image { background-color: #dbd2ff; }
+.gem-card:nth-child(5) .card-image { background-color: #d9f7d7; }
+.gem-card:nth-child(6) .card-image { background-color: #cee9ff; }
+.gem-card:nth-child(7) .card-image { background-color: #ffcbc3; }
+.gem-card:nth-child(8) .card-image { background-color: #ffe7ca; }
+.gem-card:nth-child(9) .card-image { background-color: #d7e4f7; }
+.gem-card:nth-child(10) .card-image { background-color: #eaffce; }
+.gem-card:nth-child(11) .card-image { background-color: #d5f3e2; }
+.gem-card:nth-child(12) .card-image { background-color: #fdd6e6; }
+.gem-card:nth-child(13) .card-image { background-color: #ffe2ce; }
+.gem-card:nth-child(14) .card-image { background-color: #fdeffc; }
+.gem-card:nth-child(15) .card-image { background-color: #d5f0f3; }
+.gem-card:nth-child(16) .card-image { background-color: #fff6ca; }
+
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more {
+  background-color: #fff;
+  border: solid 1px #82817d;
+  color: #82817d;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+
+.load-more:hover {
+  background-color: #f1f1f1;
+}
