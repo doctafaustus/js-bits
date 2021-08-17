@@ -42,8 +42,15 @@
           </li>
           <li>
             <img class="minicart-icon" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629131091/Bug%20Bash/icon-cart_jssxlj.png">
+            <span class="nav-link-text cart">Cart</span>
+          </li>
+          <li class="menu-close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path></svg>
           </li>
         </ul>
+        <div class="burger-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg>
+        </div>
       </div>
     </div>
   </nav>
@@ -59,7 +66,7 @@
 
         <div class="value-props">
           <div class="vp-grid">
-            <a class="cta" href="#">Learn More</a>
+            <a class="cta learn-more-top" href="#">Learn More</a>
             <div class="vp-col">
               <div class="vp-item">
                 <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139831/Bug%20Bash/icon-moon_ms0xcs.png">
@@ -67,11 +74,11 @@
               </div>
               <div class="vp-item">
                 <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139828/Bug%20Bash/icon-crystal-ball_xmes9s.png">
-                <span class="vp-text"></span>Ripe with arcane incantations</span>
+                <span class="vp-text">Ripe with arcane incantations</span>
               </div>
               <div class="vp-item">
                 <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629139696/Bug%20Bash/icon-tident_brrzgc.png">
-                <span class="vp-text"></span>Special crystals to summon deities</span>
+                <span class="vp-text">Special crystals to summon deities</span>
               </div>
             </div>
             <div class="vp-col">
@@ -86,8 +93,9 @@
               <div class="vp-item">
                 <img class="vp-item-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629140247/Bug%20Bash/icon-smoke_dunkhd.png">
                 <span class="vp-text">Fire, frost, and arcane concentrates</span>
+              </div>
             </div>
-            </div>
+            <a class="cta learn-more-bottom" href="#">Learn More</a>
           </div>
         </div>
       </div>
@@ -110,7 +118,6 @@
         <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146511/Bug%20Bash/client-apherune_kgn76o.png">
         <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146249/Bug%20Bash/client-enaxis_m6kzko.png">
         <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629148501/Bug%20Bash/client-efarihm_ulejgz.png">
-        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629146633/Bug%20Bash/client-ogrus_tycxu4.png">
       </div>
     </div>
     <div class="clients-bottom-line"></div>
@@ -381,14 +388,42 @@
 
 
   <script>
-    $('.client-slider').slick({
+    const slickSettings = {
+      infinite: true,
+      speed: 500,
       slidesToShow: 4,
-      arrows: true,
-      infinite: true
-    });
+      slidesToScroll: 3,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: false
+          }
+        }
+      ]
+    };
+
+    $('.client-slider').slick(slickSettings);
+
+
 
     const copyrightYear = document.querySelector('.copyright-year');
     copyrightYear.textContent = new Date().getFullYear(); 
+
+    const nav = document.querySelector('nav');
+    const burgerBtn = nav.querySelector('.burger-icon');
+    const closeBtn = nav.querySelector('.menu-close');
+
+    burgerBtn.addEventListener('click', () => toggleBurgerMenu('add'));
+    closeBtn.addEventListener('click', () => toggleBurgerMenu('remove'));
+
+    function toggleBurgerMenu(method) {
+      nav.classList[method]('open');
+    }
+
   </script>
 </body>
 </html>
