@@ -178,5 +178,13 @@ window.onscroll = () => {
 };
 
 
+const moreReviewsBtn = document.querySelector('.reviews-cta');
+moreReviewsBtn.addEventListener('click', () => {
+  fetch(`/bug-bash/reviews/1`)
+  .then(response => response.json())
+  .then(() => console.log('done'));
+});
+
+
 const copyrightYear = document.querySelector('.copyright-year');
 copyrightYear.textContent = new Date().getFullYear(); 

@@ -62,6 +62,35 @@ module.exports = app => {
     });
   });
 
+  app.get('/bug-bash/reviews/:index', (req, res) => {
+    const { index } = req.params;
+
+    const reviews = [
+      { 
+        review: '“I thought all magical gems were the same until I found this site. Now I only shop at GemWizard.”',
+        author: 'Clementina DuBuque'
+      },
+      {
+        review: 'Our guild loves these gems! We always look forward to the next GemWizard shipment!',
+        author: 'Anders Lee',
+      },
+      {
+        review: 'The crystals are so powerful! I\'m new to wizardry and these have helped me so much!',
+        author: 'Alexandra Mara',
+      },
+      {
+        review: 'Great gems! I was slightly hesitant to buy because of the price, but I\'m really glad I did!',
+        author: 'Rebecca Thurston',
+      },
+      {
+        review: 'Great quality and reasonable prices for a magical crystals. I love GemWizard!!',
+        author: 'Tony Hansen',
+      }
+    ];
+
+    res.json({ review: reviews[index] });
+  });
+
 
 }
 
