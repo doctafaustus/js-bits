@@ -26,10 +26,15 @@ body {
 }
 
 .banner {
+  display: none;
   background-color: #d9ffff;
   font-weight: 600;
   padding: 15px 0;
   text-align: center;
+}
+
+body.show-banner .banner {
+  display: block;
 }
 
 nav::after {
@@ -384,9 +389,12 @@ header .wrapper {
   padding: 16px 12px;
 }
 
-
 .gem-card.zoom .card-image {
   transform: scale(1.5);
+}
+
+.gem-card.overflow {
+  display: none;
 }
 
 .card-title-price {
@@ -434,7 +442,6 @@ header .wrapper {
   transition: all ease-out .1s;
   transform: scale(1);
 }
-
 
 .load-more-container {
   text-align: center;
@@ -533,12 +540,17 @@ header .wrapper {
 }
 
 .customer-status {
+  display: none;
   font-family: 'Courier New', sans-serif;
   text-transform: uppercase;
   font-size: 18px;
   color: #3e98f2;
   font-weight: 700;
   margin-bottom: 20px;
+}
+
+.customer-status.show {
+  display: block;
 }
 
 .gem-of-the-day {
@@ -548,7 +560,8 @@ header .wrapper {
 }
 
 .gotd-image {
-  width: 150px;
+  width: 65px;
+  zoom: 2;
   background-color: #d5eaff;
   border-radius: 50%;
   margin-bottom: 14px;
@@ -734,11 +747,15 @@ footer {
   nav.open .nav-links {
     position: absolute;
     z-index: 15;
-    top: 54px;
+    top: 8px;
     right: 12px;
     background-color: #fff;
     padding: 55px 40px 20px 40px;
     box-shadow: 0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), 0 -18px 60px -10px rgb(0 0 0 / 3%);
+  }
+
+  body.show-banner nav.open .nav-links {
+    top: 54px;
   }
 
   .nav-links li {
@@ -756,6 +773,11 @@ footer {
 
   .nav-links .nav-link-text.cart {
     margin-left: -5px;
+  }
+
+  .minicart-container {
+    z-index: 15;
+    top: 158px;
   }
 
   nav::after {

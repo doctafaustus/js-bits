@@ -12,6 +12,8 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700' rel='stylesheet' type='text/css'>
 
   <script src="./scripts/analytics.js"></script>
+  <script src="./scripts/gems.js"></script>
+  <script src="./scripts/utilities.js"></script>
 
 
 </head>
@@ -136,162 +138,17 @@
         <span class="gems-num">234</span><span> Gems Available</span>
       </div>
       <div class="gem-filters">
-        <button class="gem-filter">Sort A - Z</button>
-        <button class="gem-filter">Sort Z - A</button>
+        <button class="gem-filter" data-sort="a-z">Sort A - Z</button>
+        <button class="gem-filter" data-sort="z-a">Sort Z - A</button>
       </div>
     </div>
 
-    <div class="gem-grid">
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Padparadscha</div>
-          <div class="card-price">50e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629162043/Bug%20Bash/export_zxcfqx.png">
-        </div>
+    <form class="gem-form">
+      <div class="gem-grid"></div>
+      <div class="load-more-container">
+        <button class="load-more">Load More</button>
       </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Tourmaline</div>
-          <div class="card-price">520e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629162043/Bug%20Bash/blue-crystals_n27wlf.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Bari Neelam</div>
-          <div class="card-price">300e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629162043/Bug%20Bash/teal-hexagon_zq49rb.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Chalcendoy</div>
-          <div class="card-price">600e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629162043/Bug%20Bash/green-tall-crystal_ijxjha.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Legacy Diamond</div>
-          <div class="card-price">10e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629163076/Bug%20Bash/stared-diamond_1_kduour.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Quartz</div>
-          <div class="card-price">175e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164880/Bug%20Bash/ground_1_n2cqrh.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Angelite</div>
-          <div class="card-price">75e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164879/Bug%20Bash/cut-diamond_1_wgjhkd.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Citrine Pair</div>
-          <div class="card-price">275e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164879/Bug%20Bash/cystal-pair_1_ujugtf.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Swiss Topaz</div>
-          <div class="card-price">75e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164880/Bug%20Bash/shiny-green_1_ijrymy.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Spectrolite</div>
-          <div class="card-price">440e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164879/Bug%20Bash/green-pear_1_ial68d.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Nautral Diamonds</div>
-          <div class="card-price">50e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164879/Bug%20Bash/diamond-pair_1_azatp7.png">
-        </div>
-      </div>
-      <div class="gem-card">
-        <div class="card-title-price">
-          <div class="card-title">Calcite Golden</div>
-          <div class="card-price">375e</div>
-        </div>
-        <div class="card-image-container">
-          <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629166095/Bug%20Bash/yellow_1_pfkpg9.png">
-        </div>
-      </div>
-      <div class="last-row">
-        <div class="gem-card">
-          <div class="card-title-price">
-            <div class="card-title">Emerald</div>
-            <div class="card-price">75e</div>
-          </div>
-          <div class="card-image-container">
-            <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629166095/Bug%20Bash/green-crystal-tall2_1_esuumz.png">
-          </div>
-        </div>
-        <div class="gem-card">
-          <div class="card-title-price">
-            <div class="card-title">Ametrine</div>
-            <div class="card-price">500e</div>
-          </div>
-          <div class="card-image-container">
-            <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629166095/Bug%20Bash/uncut-red_1_zxn99c.png">
-          </div>
-        </div>
-        <div class="gem-card">
-          <div class="card-title-price">
-            <div class="card-title">Pink Fluorite</div>
-            <div class="card-price">300e</div>
-          </div>
-          <div class="card-image-container">
-            <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629166095/Bug%20Bash/pink-square_1_llxqi1.png">
-          </div>
-        </div>
-        <div class="gem-card">
-          <div class="card-title-price">
-            <div class="card-title">Amazonite</div>
-            <div class="card-price">125e</div>
-          </div>
-          <div class="card-image-container">
-            <img class="card-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629166095/Bug%20Bash/gems-more_1_ngdk0x.png">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="load-more-container">
-      <button class="load-more">Load More</button>
-    </div>
+    </form>
   </section>
 
   <section class="offers wrapper">
@@ -309,7 +166,10 @@
           <div class="customer-status-image-container">
             <img class="customer-status-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629217802/Bug%20Bash/pearl2_1_ldjv99.png">
           </div>
-          <div class="customer-status">Pearl</div>
+          <div class="customer-status pearl">Pearl</div>
+          <div class="customer-status platinum">Platinum</div>
+          <div class="customer-status emerald">Emerald</div>
+          <div class="customer-status gold">Gold</div>
           <div class="customer-status-line"></div>
           <div class="customer-status-terms">Enjoy a free customer status when you sign up today! Offer ends 12/31</div>
         </div>
@@ -318,7 +178,7 @@
       <div class="offer">
         <h1 class="gem-of-the-day">Gem of the Day</h1>
         <img class="gotd-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629164879/Bug%20Bash/pink_1_e9pr49.png">
-        <div class="gotd-title">Amorldozere</div>
+        <div class="gotd-title">Amorldozere - 100e</div>
         <a class="gotd-cta cta" href="#">Quick Add</a>
       </div>
     </div>
@@ -349,9 +209,9 @@
         <li><a href="#">Activity</a></li>
         <li><a href="#">Search</a></li>
         <li><a href="#">GemVerse</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Wizard's Guide</a></li>
-        <li><a href="#">Latest updates</a></li>
+        <li><a href="#" id="faq">FAQs</a></li>
+        <li><a href="#" id="guide">Wizard's Guide</a></li>
+        <li><a href="#" id="shipping">Shipping Info</a></li>
         <li><a href="#">Email us</a></li>
       </ul>
       <ul class="links-list">
