@@ -164,5 +164,19 @@ function addToCart() {
 }
 
 
+// Move script not so close to footer onscroll
+document.querySelector('.add-back-to-top').addEventListener('click', () => {
+  const backToTopScript = document.createElement('script');
+  backToTopScript.src = './scripts/back-to-top.js';
+  document.head.insertAdjacentElement('beforeend', backToTopScript);
+});
+
+
+window.onscroll = () => {
+  const chat = document.querySelector('.chat-container');
+  chat.style.bottom = `-${window.scrollY - 50}px`;
+};
+
+
 const copyrightYear = document.querySelector('.copyright-year');
 copyrightYear.textContent = new Date().getFullYear(); 

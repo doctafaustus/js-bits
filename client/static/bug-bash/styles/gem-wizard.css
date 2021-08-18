@@ -683,6 +683,19 @@ footer {
   color: #fff;
 }
 
+.chat-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;  
+  z-index: 25;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.chat-icon {
+  width: 60px;
+}
+
 @media (max-width: 1024px) {
   .wrapper {
     padding: 0 20px;
