@@ -198,7 +198,6 @@ function getReview(e) {
 
   setTimeout(() => {
     const randomIndex = getRandomIndex(indices);
-    console.log(randomIndex);
 
     fetch(`/bug-bash/reviews/${randomIndex}`)
       .then(response => response.json())
