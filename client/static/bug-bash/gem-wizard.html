@@ -11,6 +11,9 @@
   <link rel='stylesheet' type='text/css' media='screen' href='./styles/gem-wizard.css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700' rel='stylesheet' type='text/css'>
 
+  <script src="./scripts/analytics.js"></script>
+
+
 </head>
 <body>
   <div class="banner">Free shipping on all gems in the US & Canada</div>
@@ -40,7 +43,7 @@
             <img class="nav-link-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629131092/Bug%20Bash/icon-phone_fp90y8.png">
             <span class="nav-link-text">Contact</span>
           </li>
-          <li>
+          <li class="minicart">
             <img class="minicart-icon" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629131091/Bug%20Bash/icon-cart_jssxlj.png">
             <span class="nav-link-text cart">Cart</span>
           </li>
@@ -56,6 +59,9 @@
   </nav>
 
   <header>
+    <aside class="minicart-container">
+      No items in your cart
+    </aside>
     <h1 class="title">GemWizard</h1>
     <h2 class="subtitle">Mystical gems & crystals for spellcasting!</h2>
     <div class="wrapper">
@@ -102,7 +108,7 @@
     </div>
 
     <div class="gem-vid-container">
-      <video class="gem-vid" poster="" src="https://res.cloudinary.com/dzynqn10l/video/upload/v1629142362/Bug%20Bash/gem-bg-video_kewbdh_ix1geg.mp4" loop muted playsinline preload="auto" type="video/mp4" disableRemotePlayback></video>
+      <video class="gem-vid" poster autoplay src="https://res.cloudinary.com/dzynqn10l/video/upload/v1629142362/Bug%20Bash/gem-bg-video_kewbdh_ix1geg.mp4" loop muted playsinline preload="auto" type="video/mp4" disableRemotePlayback></video>
     </div>
   </header>
 
@@ -387,43 +393,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 
-  <script>
-    const slickSettings = {
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 3,
-      responsive: [
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-            arrows: false
-          }
-        }
-      ]
-    };
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/navigation.js"></script>
+  <!-- <script src="./scripts/heatmap.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.2.min.js"></script>
 
-    $('.client-slider').slick(slickSettings);
-
-
-
-    const copyrightYear = document.querySelector('.copyright-year');
-    copyrightYear.textContent = new Date().getFullYear(); 
-
-    const nav = document.querySelector('nav');
-    const burgerBtn = nav.querySelector('.burger-icon');
-    const closeBtn = nav.querySelector('.menu-close');
-
-    burgerBtn.addEventListener('click', () => toggleBurgerMenu('add'));
-    closeBtn.addEventListener('click', () => toggleBurgerMenu('remove'));
-
-    function toggleBurgerMenu(method) {
-      nav.classList[method]('open');
-    }
-
-  </script>
 </body>
 </html>

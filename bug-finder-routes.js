@@ -34,12 +34,34 @@ module.exports = app => {
     });
   });
 
+
+  // BUG BASH
   app.get('/bug-bash/gem-wizard', (req, res) => {
     const cookie = new Cookies(req, res);
 
     cookie.set('vipCustomerLevel', 'platinum', { expires: setDate(180) });
     res.sendFile(path.join(__dirname, 'client/static/bug-bash/gem-wizard.html'));
   });
+
+  app.post('/bug-bash/collect', (req, res) => {
+    console.log('/bug-bash/collect', req.body.event);
+    res.json({ success: true });
+  });
+
+  app.get('/bug-bash/pipe-to-crm/:event', (req, res) => {
+    console.log('/bug-finder/pipe-to-crm');
+    res.json({
+      success: true,
+      callback: `
+        const g = 'google';
+        const a = 'analytics';
+        const mockGA = g + '_' + a;
+
+        Object.defineProperty(window[mockGA], 'push', { value: () => {} });
+      `
+    });
+  });
+
 
 }
 
