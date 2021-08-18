@@ -179,12 +179,50 @@ window.onscroll = () => {
 
 
 const moreReviewsBtn = document.querySelector('.reviews-cta');
-moreReviewsBtn.addEventListener('click', () => {
-  fetch(`/bug-bash/reviews/1`)
-  .then(response => response.json())
-  .then(() => console.log('done'));
-});
+const reivewsContent = document.querySelector('.reviews-content');
+moreReviewsBtn.addEventListener('click', getReview);
 
+function getReview(e) {
+  e.target.disabled = true;
+  reivewsContent.classList.add('loading');
+
+
+  const indices = [];
+  for (var i = 0; i < 9; i++) {
+
+    // Delay to show animation
+    setTimeout(() => {
+      indices.push(i);
+    }, 500);
+  }
+
+  setTimeout(() => {
+    const randomIndex = getRandomIndex(indices);
+    console.log(randomIndex);
+
+    fetch(`/bug-bash/reviews/${randomIndex}`)
+      .then(response => response.json())
+      .then(handleRes.bind(null, e));
+  }, 1000);
+}
+
+function handleRes(e, data) {
+  const reviewTextEl = document.querySelector('.review-text');
+  const reviewAuthorEl = document.querySelector('.review-author-name');
+
+  reviewTextEl.textContent = data.review.review;
+  reviewAuthorEl.textContent = data.review.author;
+
+  e.target.disabled = false;
+  reivewsContent.classList.remove('loading');
+}
+
+function getRandomIndex(arr) {
+  const random = Math.random();
+  const arrLength = arr.length;
+
+  return arr[Math.floor(random * arrLength)];
+}
 
 const copyrightYear = document.querySelector('.copyright-year');
 copyrightYear.textContent = new Date().getFullYear(); 

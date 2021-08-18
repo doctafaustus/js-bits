@@ -85,6 +85,26 @@ module.exports = app => {
       {
         review: 'Great quality and reasonable prices for a magical crystals. I love GemWizard!!',
         author: 'Tony Hansen',
+      },
+      {
+        review: 'I can\'t say enough good things about GemWizard. Thank you for everything!',
+        author: 'Yunice Patricia',
+      },
+      {
+        review: 'What a beautiful mixture of stones!! Such good quality!!',
+        author: 'Amy Hansen',
+      },
+      {
+        review: 'They are beautiful. Precious gemstones with great variety and sparkle!',
+        author: 'Melissa McGuie',
+      },
+      {
+        review: 'These stones are beautiful - just as described, with so many varieties..',
+        author: 'Joe Andrews',
+      },
+      {
+        review: 'GemWizard has the absolute best stones for spellcrafting!',
+        author: 'Bob Probert',
       }
     ];
 

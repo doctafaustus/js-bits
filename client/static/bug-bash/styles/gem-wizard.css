@@ -614,6 +614,17 @@ header .wrapper {
   z-index: 10;
 }
 
+.review-text,
+.review-author {
+  opacity: 1;
+  transition: all ease-out .5s;
+}
+
+.reviews-content.loading .review-text,
+.reviews-content.loading .review-author {
+  opacity: 0;
+}
+
 .review-text {
   font-size: 36px;
   font-weight: 500;
@@ -633,6 +644,20 @@ header .wrapper {
   color: #82817d;
   font-weight: 500;
   margin-bottom: 25px;
+}
+
+.reviews-cta {
+  cursor: pointer;
+}
+
+.reviews-cta:disabled {
+  background-image: url(https://samherbert.net/svg-loaders/svg-loaders/three-dots.svg);
+  background-repeat: no-repeat;
+  background-color: #9005ca;
+  border-color: #c231ff;
+  background-size: 50px;
+  background-position: center;
+  color: transparent;
 }
 
 .links {
