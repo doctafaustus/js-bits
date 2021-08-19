@@ -8,7 +8,7 @@
 HttpOnly cookies.
 
 ## Exercise 2 `6/10`
-Filter event handler lost.
+Gem card zoom-in event handlers lost once a filter is applied.
 
 ## Exercise 3 `8/10`
 `setTimeout` variable binding.
@@ -17,7 +17,7 @@ Instruct to keep `setTimeout`s under the guise of wanting to show some of the an
 
 ## Exercise 4 `9/10`
 `analytics.js` is a slow-running script. It's execution is delaying video playback.
-What's causing the video to start so slowly?
+What's causing the video to start so slowly? Use memory profiler to identify.
 
 ## Exercise 5 `9/10`
 Red herring of a `setTimeout` declaring a window level variable that's already created by and element `id`.
