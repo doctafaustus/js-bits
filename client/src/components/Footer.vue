@@ -7,9 +7,9 @@
         <span class="footer-handle">@js_bits</span>
       </a>
 
-      <a class="footer-link" href="https://twitter.com/Cilly_Boloe" target="_blank">
+      <a class="footer-link" href="https://twitter.com/JS_Bits_Bill" target="_blank">
         <img class="footer-icon" src="@/assets/twitter-icon.webp" width="30" height="30">
-        <span class="footer-handle">@Cilly_Boloe</span>
+        <span class="footer-handle">@JS_Bits_Bill</span>
       </a>
     </div>
   </footer>
