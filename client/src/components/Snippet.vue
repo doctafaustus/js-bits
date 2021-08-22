@@ -32,7 +32,7 @@ export default {
 		},
 
     async getArticle() {
-      const response = await fetch(`https://dev.to/api/articles/cilly_boloe/${this.slug}`);
+      const response = await fetch(`https://dev.to/api/articles/js_bits_bill/${this.slug}`);
       const data = await response.json();
       this.snippet = data;
     },
@@ -43,7 +43,7 @@ export default {
         circleImage.style.width = '50px';
       }
 
-      const twitterLink = document.querySelector('#article-body a[href*="twitter.com/Cilly_Boloe"]');
+      const twitterLink = document.querySelector('#article-body a[href*="twitter.com/js_bits_bill"]');
       if (twitterLink) {
         twitterLink.setAttribute('target', '_blank');
       }
