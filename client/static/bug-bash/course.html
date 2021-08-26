@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>JS Bits Bug Bash Mini-Course</title>
+  <link rel="shortcut icon" type="image/png" sizes="32x32"  href="https://res.cloudinary.com/dzynqn10l/image/upload/v1629995189/Bug%20Bash/green-favicon_trao3g.png"/>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='./styles/reset.css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700' rel='stylesheet' type='text/css'>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171716275-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171716275-1');
+  </script>
+  <style>
+    body {
+      padding: 40px;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: .5px;
+    }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #000;
+      text-decoration: none;
+      margin-bottom: 140px;
+    }
+    .logo-image {
+      width: 45px;
+    }
+    .logo-text {
+      text-align: left;
+      margin-left: 8px;
+    }
+    .logo-text-large {
+      font-weight: 700;
+      font-size: 26px;
+    }
+    .logo-text-small {
+      margin: 3px 0 0 1px;
+    }
+    .course-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 140px auto;
+    }
+    .course-hero-left-inner {
+      display: inline-block;
+      text-align: left;
+    }
+    .bug-bash {
+      font-size: 68px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+    .bug-emoji {
+      font-size: 28px;
+    }
+    .mini-course {
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #22d71f;
+    }
+    .learn {
+      font-size: 24px;
+    }
+    .course-hero-right {
+      position: relative;
+    }
+    .browser-bg {
+      max-width: 320px;
+    }
+    .green-bug {
+      position: absolute;
+      width: 80px;
+      left: 0; 
+      right: 0; 
+      top: 26px;
+      bottom: 0;
+      margin: auto;
+      z-index: 5;
+      animation: wiggle 2.5s infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      80% { transform: rotate(0deg); }
+      85% { transform: rotate(5deg); }
+      95% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <a class="logo-container" href="/">
+    <img class="logo-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1629996484/JS%20Bits/logo-site-transparent_jrz7uq.webp">
+    <div class="logo-text">
+      <h1 class="logo-text-large">JS Bits</h1>
+      <h2 class="logo-text-small">with Bill</h2>
+    </div>
+  </a>
+
+  <section class="course-hero">
+    <div class="course-hero-left">
+      <div class="course-hero-left-inner">
+        <h1 class="bug-bash">Bug Bash <span class="bug-emoji">🐛</span></h1>
+        <h2 class="mini-course">Mini-Course</h2>
+        <div class="learn">
+          Learn debugging techniques.
+        </div>
+      </div>
+    </div>
+    <div class="course-hero-right">
+      <img class="browser-bg" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630009193/JS%20Bits/browser-bg_n3nhrn.webp">
+      <img class="green-bug" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630009209/JS%20Bits/green-bug_xanq7n.webp">
+    </div>
+  </section>
+
+  <section>
+    <p>We all know it: JavaScript is weird. Web development in general is riddle with bugs.</p>
+
+  </section>
+</body>
+</html>
