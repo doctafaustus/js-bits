@@ -74,7 +74,7 @@
       font-size: 50px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: #22d71f;
+      color: #4caf50;
     }
     .learn {
       font-size: 24px;
@@ -134,30 +134,12 @@
     }
     .value-props li {
       padding: 5px 0;
-      position: relative;
+      display: flex;
+      align-items: center;
     }
-    .value-props li::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-5_vrct1z.webp);
-      background-size: 20px 20px;
+    .value-props li img {
+      width: 20px; 
       margin-right: 10px;
-      position: relative;
-      top: 3px;
-    }
-    .value-props li:nth-child(2):before {
-      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-1_bmyvdq.webp);
-    }
-    .value-props li:nth-child(3):before {
-      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-2_rl2ght.webp);
-    }
-    .value-props li:nth-child(4):before {
-      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-4_rs9001.webp);
-    }
-    .value-props li:nth-child(5):before {
-      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-3_mndjku.webp);
     }
     .sign-up-form {
       text-align: center;
@@ -182,7 +164,7 @@
       justify-content: space-between;
     }
     footer a {
-      color: #22d71f;
+      color: #4caf50;
     }
     @media (max-width: 767px) {
       body {
@@ -231,9 +213,8 @@
         line-height: 20px;
       }
       .value-props {
-        margin-left: 32px;
+        margin-left: 20px;
         font-size: 16px;
-        padding-left: 10px;
       }
       .value-props li::before {
         position: absolute;
@@ -295,11 +276,22 @@
   <section class="course-info">
     <h2 class="subheading">What's included:</h2>
     <ul class="value-props">
-      <li>13 short video lessons, each investigating a different bug</li>
-      <li>Difficulty ranges from easy to diabolical</li>
-      <li>Mock "GemWizard" ecommerce website infested with bugs to bash</li>
-      <li>Follow along with a cloned version of the site's repo or just watch!</li>
-      <li>Sign up for notifications now to get an early bird discount 🐦</li>
+      <li>
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-5_vrct1z.webp">
+        <span class="vp-text">13 short video lessons, each investigating a different bug</li>
+      <li>
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-1_bmyvdq.webp">
+        <span class="vp-text">Difficulty ranges from easy to downright diabolical</span></li>
+      <li>
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-2_rl2ght.webp">
+        <span class="vp-text">Mock "GemWizard" ecommerce website infested with bugs to bash</span></li>
+      <li>
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-4_rs9001.webp">
+        <span class="vp-text">Follow along with a cloned version of the site's repo or just watch!</span></li>
+      <li>
+        <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-3_mndjku.webp">
+        <span class="vp-text">Sign up for notifications now to get an early bird discount 🐦</span>
+      </li>
     </ul>
 
     <p>By the time you've finished the course, I'm sure you will have learned something you didn't know before. Shoot me your email and you'll be the <b>first to know when it's ready! 😉</b></p>
