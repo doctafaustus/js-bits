@@ -7,7 +7,7 @@ module.exports = app => {
 
   app.use(bodyParser.json({ limit: '1mb' }));
 
-  app.get('/bug-bash/course', (req, res) => {
+  app.get('/bug-bash', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/static/bug-bash/course.html'));
   });
 
