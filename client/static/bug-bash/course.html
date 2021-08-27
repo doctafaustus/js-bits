@@ -105,45 +105,66 @@
     .subheading {
       font-size: 32px;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 30px;
+      line-height: 38px;
     }
     .course-info p {
-      margin-bottom: 30px;
+      margin-bottom: 50px;
     }
-
     .preview {
       text-align: center;
       max-width: 475px;
-      margin: 0 auto;
+      margin: 70px auto 80px auto;
     }
     .gemwizard-image {
       width: 100%;
       border: solid 1px #e1e1e1;
       border-radius: 6px;
-      margin-bottom:  0px;
+      margin-bottom: 6px;
     }
     figcaption {
       font-size: 18px;
       line-height: 22px;
       color: #5e5e5e;
     }
-
-
     .value-props {
       font-size: 18px;
       margin-left: 40px;
-      list-style-type: disc;
       margin-bottom: 30px;
     }
-
-    
-    
-    .top-form {
+    .value-props li {
+      padding: 5px 0;
+      position: relative;
+    }
+    .value-props li::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-5_vrct1z.webp);
+      background-size: 20px 20px;
+      margin-right: 10px;
+      position: relative;
+      top: 3px;
+    }
+    .value-props li:nth-child(2):before {
+      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-1_bmyvdq.webp);
+    }
+    .value-props li:nth-child(3):before {
+      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-2_rl2ght.webp);
+    }
+    .value-props li:nth-child(4):before {
+      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-4_rs9001.webp);
+    }
+    .value-props li:nth-child(5):before {
+      background-image: url(https://res.cloudinary.com/dzynqn10l/image/upload/v1630025742/JS%20Bits/bullet-3_mndjku.webp);
+    }
+    .sign-up-form {
       text-align: center;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 70px auto 140px auto;
     }
-    .top-form h2 {
+    .sign-up-form h2 {
       line-height: 42px;
       font-weight: 600;
       font-size: 28px;
@@ -156,7 +177,74 @@
     .underline {
       border-bottom: solid 3px #22d71f;
     }
-
+    footer {
+      display: flex;
+      justify-content: space-between;
+    }
+    footer a {
+      color: #22d71f;
+    }
+    @media (max-width: 767px) {
+      body {
+        padding: 20px;
+      }
+      .logo-container {
+        margin-bottom: 80px;
+      }
+      .course-hero {
+        display: block;
+        margin-bottom: 80px;
+      }
+      .course-hero-left-inner {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .bug-bash {
+        font-size: 58px;
+      }
+      .mini-course {
+        font-size: 42px;
+      }
+      .learn {
+        font-size: 20px;
+      }
+      .browser-bg {
+        max-width: 270px;
+      }
+      .subheading {
+        margin-bottom: 20px;
+        font-size: 30px;
+        line-height: 36px;
+      }
+      .course-info {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .course-info p {
+        margin-bottom: 30px;
+      }
+      .preview {
+        margin: 30px auto 50px auto;
+      }
+      figcaption {
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .value-props {
+        margin-left: 32px;
+        font-size: 16px;
+        padding-left: 10px;
+      }
+      .value-props li::before {
+        position: absolute;
+        left: -30px;
+        top: 18px;
+      }
+      .sign-up-form h2 {
+        font-size: 24px;
+        line-height: 36px;
+      }
+    }
 
     @keyframes wiggle {
       0% { transform: rotate(0deg); }
@@ -194,16 +282,17 @@
 
   <section class="course-info">
     <h2 class="subheading">We're gonna bash some bugs</h2>
-    <p>We all know it: JavaScript is weird. Web development in general is riddled with bugs. Over <b>55%</b> of developers say they spend <b>10-20 hours a week</b> fixing bugs instead of writing new code. While this may seem like an inordinate amout of time, it is often the case that <b>the biggest moments of learning arise from the time spent fixing bugs.</b></p>
+    <p>We all know it: JavaScript is weird. Web development in general is riddled with bugs. Over <b>55%</b> of developers say they spend <b>10-20 hours a week</b> fixing bugs instead of writing new code. While this may seem like an inordinate amout of time, it is often the case that <b>the biggest moments of learning arise from the time spent fixing bugs. 🛠️</b></p>
 
     <p>That's why I've put together this <b>13-lesson video mini-course</b> that will feature an assortment of HTML, CSS, and JS bugs. You'll have both the opportunity to solve them on your own or simply watch how we can debug them together. We'll look at common bugs, uncommon bugs, and even some super weird issues!</p>
+  </section>
 
-    <figure class="preview">
-      <img class="gemwizard-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630023910/JS%20Bits/Screen_Shot_2021-08-26_at_7.22.49_PM_fh1zby.png">
-      <figcaption>This "GemWizard" mock ecommerce site has a lot of bugs we'll need to bash together!</figcaption>
-    </figure>
+  <figure class="preview">
+    <img class="gemwizard-image" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1630023910/JS%20Bits/Screen_Shot_2021-08-26_at_7.22.49_PM_fh1zby.png">
+    <figcaption>This "GemWizard" mock ecommerce site has a lot of bugs we'll need to bash together!</figcaption>
+  </figure>
   
-
+  <section class="course-info">
     <h2 class="subheading">What's included:</h2>
     <ul class="value-props">
       <li>13 short video lessons, each investigating a different bug</li>
@@ -213,10 +302,10 @@
       <li>Sign up for notifications now to get an early bird discount 🐦</li>
     </ul>
 
-    <p>By the time you've finished the course, I'm sure you will have learned something you didn't know before. Shoot me your email and you'll be the <b>first to know when it's ready!</b></p>
+    <p>By the time you've finished the course, I'm sure you will have learned something you didn't know before. Shoot me your email and you'll be the <b>first to know when it's ready! 😉</b></p>
   </section>
 
-  <section class="top-form">
+  <section class="sign-up-form">
     <h2>Dropping in <span class="underline">Sept/Oct 2021</span></h2>
     <h2>Sign up to get notified when it's released!</h2>
     <iframe class="substack-form" src="https://jsbits.substack.com/embed" width="100%" height="320" frameborder="0" scrolling="no"></iframe>
@@ -224,5 +313,19 @@
 
 
   </section>
+
+  <footer>
+    <div class="footer-left">
+      &copy;<span class="copyright-year"></span> JS Bits with Bill</div>
+    </div>
+    <div class="footer-right">
+      <a href="https://twitter.com/JS_Bits_Bill" target="_blank">@JS_Bits_Bill</a>
+    </div>
+  </footer>
+
+  <script>
+    const copyrightYear = document.querySelector('.copyright-year');
+    copyrightYear.textContent = new Date().getFullYear(); 
+  </script>
 </body>
 </html>
