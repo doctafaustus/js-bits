@@ -80,8 +80,6 @@ export default {
 
       img {
         width: 100%;
-        max-width: 196px;
-        max-height: 260px;
         object-fit: cover;
       }
     }
