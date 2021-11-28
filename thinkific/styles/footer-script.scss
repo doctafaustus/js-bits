@@ -1,5 +1,14 @@
+header.header,
+footer.footer {
+  background-color: #000;
+}
+
+.header__nav-item > button:hover {
+  color: #fff;
+}
+
 .header__nav-item a[href="https://jsbits-yo.com/"] {
-  color: #000;
+  color: #fff;
   text-transform: none;
   font-size: 24px;
   font-weight: 600;
@@ -274,12 +283,14 @@ figcaption {
 .underline {
   border-bottom: solid 3px #22d71f;
 }
-footer {
-  display: flex;
-  justify-content: space-between;
-}
-footer a {
-  color: #4caf50;
+footer.footer {
+  margin-top: 60px;
+
+  .footer__nav-item {
+    a:hover {
+      color: #fff;
+    }
+  }
 }
 
 @media (max-width: 767px) {
