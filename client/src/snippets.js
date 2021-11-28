@@ -1,5 +1,61 @@
 const snippets = [
   {
+    "title": "HTML <dialog>",
+    "slug": "html-5201",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067893/JS%20Bits/leuf9rxzeq4kgd0anrvv_o4smlq.jpg",
+    "desc": "HTML's <dialog> element is a built-in tag to represent a dialog box or modal. It's not just a newer semantic element, it also includes an API and its own special CSS.",
+    "category": "article"
+  },
+  {
+    "title": "Easy console.log() inside one liner functions",
+    "slug": "easy-consolelog-inside-one-liner-functions-2mja",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067814/JS%20Bits/7dni9u0f0apw8v6er6wq_sepnyn.jpg",
+    "desc": "How to log variables inside one-liner functions without breaking up the code on multiple lines!",
+    "category": "article"
+  },
+  {
+    "title": "Creating a Text-To-Speech program in Vanilla JS",
+    "slug": "creating-a-text-to-speech-program-in-vanilla-js-586l",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067738/JS%20Bits/dqgqga22bkwg53txss7j_gxlynp.jpg",
+    "desc": "You might have discovered Edge's built-in \"Read Aloud\" feature which will speak the highlighted text out loud right in your browser. Let's make our own for Chrome!",
+    "category": "article"
+  },
+  {
+    "title": "3 Uncommon but useful HTML elements",
+    "slug": "3-uncommon-but-useful-html-elements-jdi",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067658/JS%20Bits/euv8g14astd4or1677va_1_bqjtlg.jpg",
+    "desc": "Here we'll look at the rare, but useful elements: <abbr>, <progress>, and <wbr>.",
+    "category": "article"
+  },
+  {
+    "title": "Collapsable content in Markdown with <details>",
+    "slug": "collapsable-content-in-markdown-with-details-48k8",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1633935146/JS%20Bits/HTML_details_in_markdown_1_1_wzr4bm.jpg",
+    "desc": " The HTML disclosure summary element (<details>) works with markdown so you can create collapsable sections in your READMEs.",
+    "category": "article"
+  },
+  {
+    "title": "Vanilla JS \"Who's that Pokémon?\" game with the PokéAPI",
+    "slug": "vanilla-js-who-s-that-pokemon-game-with-pokeapi-34m4",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067529/JS%20Bits/n7cb564nr18ktgzmdj10_n8c8v4.jpg",
+    "desc": "Remember that \"Who's that Pokémon?\" TV game? Well we can build our own version of this with the PokéAPI!",
+    "category": "article"
+  },
+  {
+    "title": "CSS Discord Logo",
+    "slug": "css-discord-logo-3954",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1632280924/JS%20Bits/cover_gaenes.jpg",
+    "desc": "My first attempt at CSS art! (I learned to stay away from complex shapes!)",
+    "category": "article"
+  },
+  {
+    "title": "What I learned from selling a side project online",
+    "slug": "what-i-learned-from-selling-a-side-project-online-370f",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1631854638/JS%20Bits/side_project_cover_oqd3qv.jpg",
+    "desc": "In 2014, I made a simple website and Chrome extension that let users save recipes online. Learn about my experience selling the site.",
+    "category": "article"
+  },
+  {
     "title": "HTML5 Video Picture-in-Picture Mode",
     "slug": "html5-video-picture-in-picture-mode-o40",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1627445358/JS%20Bits/Picture-in-Picture_-_Cover_pagn7q.webp",

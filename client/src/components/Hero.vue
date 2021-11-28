@@ -77,6 +77,12 @@ export default {
         }
       }
     }
+
+    .featured-snippet-right {
+      img {
+        object-fit: contain;
+      }
+    }
   }
 
   @media (max-width: 1024px) {

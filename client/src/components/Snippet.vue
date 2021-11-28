@@ -424,4 +424,17 @@ code {
   --syntax-name-color: #7ed07e;
   --syntax-string-color: #f2ca27
 }
+
+// One-off adjustments
+img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--ArPGFzRr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637190457/Msc/html-dialog-cover_1_v0owrg.jpg"] {
+  object-fit: contain;
+}
+img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--WED-8Xg7--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637171969/JS%2520Bits/browser_empty_ockj2t.png"] {
+  margin: 0 auto;
+  width: 290px !important;
+  height: auto;
+  display: block;
+  border: solid 1px #000;
+  border-radius: 5px;
+}
 </style>
