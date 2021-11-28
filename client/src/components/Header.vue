@@ -1,16 +1,21 @@
 <template>
   <header>
     <router-link to="/" class="logo-link">
-      <span class="logo-text-left">{</span><img class="js-logo" src="@/assets/js-logo.webp" width="34" height="34"><span class="logo-text-right">Bits }</span>
+      <div class="logo-container">
+        <img class="js-logo" src="@/assets/jsbits-logo.webp" width="44" height="44">
+        <div class="logo-text">
+          <div class="logo-text-large">JS Bits</div>
+          <div class="logo-text-small">with Bill</div>
+        </div>
+      </div>
+
     </router-link>
 
     <div class="header-links">
-      <router-link to="/tiktok" class="header-link tiktok-link">
-        <span>TikTok</span>
-        <img class="tiktok-icon" src="@/assets/tiktok-icon.webp" width="30" height="30">
-      </router-link>
       <router-link to="/code-bits" class="header-link">Code Bits</router-link>
       <router-link to="/interviews" class="header-link">Interviews</router-link>
+      <a href="https://js-bits-bug-bash.thinkific.com/courses/bug-bash" class="header-link">Bug Bash Course</a>
+      <router-link to="/tiktok" class="header-link">TikTok</router-link>
     </div>
   </header>
 </template>
@@ -33,71 +38,58 @@ header {
     color: #fff;
     text-decoration: none;
     
-    .logo-text-left {
-      padding-right: 6px;
-    }
+    .logo-container {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      grid-column-gap: 4px;
 
-    .js-logo {
-      width: 40px;
-      padding-right: 6px;
-      display: inline-block;
-      vertical-align: middle;
+      .logo-text {
+        text-align: left;
+
+        .logo-text-large {
+          font-weight: 700;
+        }
+
+        .logo-text-small {
+          font-size: 16px;
+          margin-top: 2px;
+        }
+      }
     }
   }
 
   .header-links {
-    position: absolute;
-    top: 23px;
-    right: 40px;
+    margin-top: 30px;
 
     .header-link {
-      color: #fff;
-      font-size: 20px;
+      color: #e6e6e6;
+      font-size: 18px;
 
       &:not(:last-child) {
-        padding-right: 15px;
+        padding-right: 10px;
 
         &::after {
           content: '|';
-          padding-left: 15px;
-        }
-      }
-
-      &.tiktok-link {
-        position: relative;
-
-        span {
-          display: inline-block;
-          padding-right: 30px;
-        }
-
-        .tiktok-icon {
-          position: absolute;
-          top: -3px;
-          right: 30px;
+          padding-left: 10px;
         }
       }
     }
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 490px) {
     margin-bottom: 40px;
     padding: 12px 0;
 
-    .logo-link {
-      font-size: 26px;
-
-      .js-logo {
-        width: 34px;
-      }
-    }
-
     .header-links {
-      position: static;
-      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
 
       .header-link {
-        font-size: 18px;
+        padding: 5px 0;
+
+        &:not(:last-child)::after {
+          content: none;
+        }
       }
     }
   }

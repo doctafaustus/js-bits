@@ -51,7 +51,9 @@ export default {
   margin-bottom: 80px;
 
   h2 {
-    line-height: 32px;
+    line-height: 26px;
+    font-size: 20px;
+    font-weight: 500;
   }
 }
 

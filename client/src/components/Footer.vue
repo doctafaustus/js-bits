@@ -3,7 +3,7 @@
     <div class="footer-left">&copy;2021 JS Bits</div>
     <div class="footer-right">
       <a class="footer-link" href="https://www.tiktok.com/@js_bits" target="_blank">
-        <img class="footer-icon" src="@/assets/tiktok-icon.webp" width="30" height="30">
+        <img class="footer-icon tiktok-icon" src="@/assets/tiktok-icon.webp" width="22" height="22">
         <span class="footer-handle">@js_bits</span>
       </a>
 
@@ -45,16 +45,9 @@
       display: inline-block;
       vertical-align: middle;
       margin-right: 6px;
-    }
-  }
 
-  @media (max-width: 767px) {
-    padding: 10px;
-
-    .footer-link {
-
-      &:not(:last-child) {
-        margin-right: 10px;
+      &.tiktok-icon {
+        width: 22px;
       }
     }
   }

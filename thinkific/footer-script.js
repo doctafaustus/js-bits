@@ -3,8 +3,22 @@ import css from '@/styles/footer-script.scss';
 
 document.head.insertAdjacentHTML('beforeend', `<style>${css}</style>`);
 
-const allCoursesLink = document.querySelector('.header__nav-item a[href="/collections"]');
-allCoursesLink.textContent = 'JS Bits with Bill';
+function updateAllCoursesLinks () {
+  const allCoursesLinks = document.querySelectorAll('a[href="/collections"]');
+  allCoursesLinks.forEach(link => {
+    link.textContent = 'JS Bits with Bill';
+    link.href = 'https://jsbits-yo.com/';
+  });
+}
+
+(function poll() {
+  const footerHome = document.querySelector('.footer__nav-item a[href="/"]');
+  if (footerHome) {
+    footerHome.textContent = 'Courses Home';
+    updateAllCoursesLinks();
+  } else setTimeout(poll, 250);
+})();
+
 
 const mainContent = document.querySelector('#main-content');
 mainContent.insertAdjacentHTML('afterbegin', `
@@ -46,7 +60,7 @@ mainContent.insertAdjacentHTML('afterbegin', `
       <div class="about-me-main">
         <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1638062406/Bug%20Bash/me-pic_1_kwhy2v.png">
         <p>
-          Hi! I'm Bill Coloe, and you might have seen me on <a href="https://www.tiktok.com/@js_bits">TikTok</a>, <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>, or <a href="https://blog.jsbits-yo.com/">on my blog</a>. I started my development career in 2013, first learning a little Ruby on Rails before going all in on JavaScript. I've had the pleasure of working as a 3rd party Front-End Developer for a digital optimization agency, developing client-side AB tests for Fortune 500 websites.
+          Hi! I'm Bill Coloe, and you might have seen me on <a href="https://www.tiktok.com/@js_bits">TikTok</a>, <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>, or <a href="https://jsbits-yo.com/">on my blog</a>. I started my development career in 2013, first learning a little Ruby on Rails before going all in on JavaScript. I've had the pleasure of working as a 3rd party Front-End Developer for a digital optimization agency, developing client-side AB tests for Fortune 500 websites.
         </p> 
         <p class="about-me-2">
           Since so much of my work has been developing outside the context of a client's source code, I've developed a knack for understanding what's under the hood of websites and have become more skilled in how to debug front-end applications. I hope the techniques and practice this course provides will prove beneficial to your skillset and career!

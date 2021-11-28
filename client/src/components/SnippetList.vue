@@ -43,6 +43,7 @@ export default {
     .snippet {
       display: inline-block;
       text-align: left;
+      overflow: hidden;
 
       a {
         display: inline-block;
