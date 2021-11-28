@@ -16,8 +16,15 @@ function updateAllCoursesLinks () {
   if (footerHome) {
     footerHome.textContent = 'Courses Home';
     updateAllCoursesLinks();
+    toggleBug4Preview();
   } else setTimeout(poll, 250);
 })();
+
+function toggleBug4Preview() {
+  const bug4Accordion = document.querySelector('button[aria-controls="chapter-5"]');
+  const signInEl = document.querySelector('.header__nav-sign-in');
+  if (bug4Accordion && signInEl) bug4Accordion.click();
+}
 
 
 const mainContent = document.querySelector('#main-content');
