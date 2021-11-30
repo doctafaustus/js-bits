@@ -8,7 +8,7 @@ module.exports = app => {
   app.use(bodyParser.json({ limit: '1mb' }));
 
   app.get('/bug-bash', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/static/bug-bash/course.html'));
+    res.status(301).redirect('https://js-bits-bug-bash.thinkific.com/courses/bug-bash');
   });
 
   app.get('/bug-bash/gem-wizard', (req, res) => {

@@ -3,9 +3,14 @@ footer.footer {
   background-color: #000;
 }
 
-.header__nav-item > button:hover {
-  color: #fff;
-}
+.header__nav-item {
+  button,
+  a {
+    &:hover {
+      color: #fff;
+    }
+  }
+} 
 
 .header__nav-item a[href="https://jsbits-yo.com/"] {
   color: #fff;
@@ -53,6 +58,9 @@ footer.footer {
       }
     } 
     
+    .course-curriculum__chapter-lesson--free {
+      background-color: #4caf4f;
+    }
   }
 }
 
