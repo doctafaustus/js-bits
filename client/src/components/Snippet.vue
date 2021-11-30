@@ -426,15 +426,25 @@ code {
 }
 
 // One-off adjustments
-img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--ArPGFzRr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637190457/Msc/html-dialog-cover_1_v0owrg.jpg"] {
-  object-fit: contain;
-}
-img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--WED-8Xg7--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637171969/JS%2520Bits/browser_empty_ockj2t.png"] {
-  margin: 0 auto;
-  width: 290px !important;
-  height: auto;
-  display: block;
-  border: solid 1px #000;
-  border-radius: 5px;
+#snippet {
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--ArPGFzRr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637190457/Msc/html-dialog-cover_1_v0owrg.jpg"] {
+    object-fit: contain;
+  }
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--WED-8Xg7--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1637171969/JS%2520Bits/browser_empty_ockj2t.png"] {
+    margin: 0 auto;
+    width: 290px !important;
+    height: auto;
+    display: block;
+    border: solid 1px #000;
+    border-radius: 5px;
+  }
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--3Vq-NV9g--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635438522/JS%2520Bits/edge-text-to-speech_y88jdn.jpg"],
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--dD7x6veM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635440825/JS%2520Bits/snippet_tnq2qw.jpg"],
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--AtrkL5ZY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635441350/JS%2520Bits/text-to-speech-final_d0pssc.jpg"] {
+    object-fit: contain;
+  }
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--Jv6aebj8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"] {
+    width: 140px;
+  }
 }
 </style>
