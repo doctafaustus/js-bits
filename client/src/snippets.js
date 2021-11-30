@@ -1,5 +1,13 @@
 const snippets = [
   {
+    "title": "Interview with Kirupa Chinnathambi 🍊",
+    "slug": "interview-with-kirupa-chinnathambi",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638297900/JS%20Bits/kirupa-interview_1_lvpmz1.jpg",
+    "desc": "It was an honor to interview the legendary Kirupa. He's been publishing high-quality educational content since 1998 and is someone I look up to. We chat about how he got started, advice for content creators, and his least/most favorites parts of dev!",
+    "category": "video",
+    "videoUrl": "https://www.youtube.com/watch?v=Ma26MYyF9q8"
+  },
+  {
     "title": "HTML <dialog>",
     "slug": "html-5201",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638067893/JS%20Bits/leuf9rxzeq4kgd0anrvv_o4smlq.jpg",
