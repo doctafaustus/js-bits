@@ -16,7 +16,7 @@ function updateAllCoursesLinks () {
   if (footerHome) {
     footerHome.textContent = 'Courses Home';
     updateAllCoursesLinks();
-    toggleBug4Preview();
+    // toggleBug4Preview();
   } else setTimeout(poll, 250);
 })();
 
