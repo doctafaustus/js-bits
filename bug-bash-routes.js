@@ -8,7 +8,7 @@ module.exports = app => {
   app.use(bodyParser.json({ limit: '1mb' }));
 
   app.get('/bug-bash', (req, res) => {
-    res.status(301).redirect('https://js-bits-bug-bash.thinkific.com/courses/bug-bash');
+    res.status(301).redirect('https://www.udemy.com/course/js-bits-bug-bash');
   });
 
   app.get('/bug-bash/gem-wizard', (req, res) => {
