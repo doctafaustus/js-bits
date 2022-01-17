@@ -14,7 +14,7 @@
     <div class="header-links">
       <router-link to="/code-bits" class="header-link">Code Bits</router-link>
       <router-link to="/interviews" class="header-link">Interviews</router-link>
-      <a href="https://js-bits-bug-bash.thinkific.com/courses/bug-bash" class="header-link">Bug Bash Course</a>
+      <a href="https://www.udemy.com/course/js-bits-bug-bash" class="header-link">Bug Bash Course</a>
       <router-link to="/tiktok" class="header-link">TikTok</router-link>
     </div>
   </header>
