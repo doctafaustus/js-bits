@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "Coding a Hank Hill Hotkey",
+    "slug": "coding-a-hank-hill-hotkey-23h9",
+    "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1644857833/JS%20Bits/8zzll25iy8l3phy9ebis_ltbz5d.webp",
+    "desc": "Today we'll be coding a hotkey easter-egg for your website that will display a random Hank Hill image in your viewport.",
+    "category": "article"
+  },
+  {
     "title": "Interview with Kirupa Chinnathambi 🍊",
     "slug": "interview-with-kirupa-chinnathambi",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1638297900/JS%20Bits/kirupa-interview_1_lvpmz1.jpg",
