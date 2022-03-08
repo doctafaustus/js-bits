@@ -43,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/doctafaustus/js-bits/issues"
   },
-  "homepage": "https://github.com/doctafaustus/js-bits#readme"
+  "homepage": "https://github.com/doctafaustus/js-bits#readme",
+  "engines": {
+    "node": "14.18.3"
+  }
 }
