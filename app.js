@@ -7,7 +7,7 @@ const compression = require('compression');
 const admin = require('firebase-admin');
 
 // Globals
-const $ = require('cheerio');
+const $ = require('cheerio').default;
 
 // Express app / Middleware
 const app = express();
@@ -67,6 +67,7 @@ async function updateMetaTags(req, res) {
   // Update the meta tag properties in the built bundle
   const baseHTML = await fs.promises.readFile(baseFile, 'utf-8');
   const tempHTML = baseHTML.replace('<html lang=en>', '<article>').replace('</html>', '</article>');
+
   const $base = $(tempHTML);
 
   $base.find('meta[property=og\\:url]').attr('content', `${req.protocol}://${req.get('host')}${req.originalUrl}`);
@@ -74,7 +75,6 @@ async function updateMetaTags(req, res) {
   $base.find('meta[property=og\\:title]').attr('content', snippetObj.title);
   $base.find('meta[property=og\\:image]').attr('content', snippetObj.image);
   $base.find('meta[property=og\\:description]').attr('content', snippetObj.desc);
-
 
   // Send the modified HTML as the response
   res.send($.html($base));
