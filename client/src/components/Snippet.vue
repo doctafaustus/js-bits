@@ -446,5 +446,15 @@ code {
   img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--Jv6aebj8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"] {
     width: 140px;
   }
+
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--IKdDqjyG--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://web-dev.imgix.net/image/admin/aUrrqhzMxaEX865Fk5zX.png%3Fauto%3Dformat%26w%3D1252"] {
+    width: 440px;
+    height: 138px;
+    padding-top: 10px;
+  }
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--DLGrguJb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://github.com/doctafaustus/html-portal/blob/preview-gif/chrome_1sXGgQBBtJ.gif%3Fraw%3Dtrue"],
+  img[src="https://res.cloudinary.com/practicaldev/image/fetch/s--bLeBGKwd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qp3516kt8kpz9yj4vq9q.jpg"] {
+    width: auto;
+  }
 }
 </style>

@@ -1,5 +1,12 @@
 const snippets = [
   {
+    "title": "HTML <portal>: Chrome's weird navigational element",
+    "slug": "html-chromes-weird-navigational-element-5b38",
+    "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--aED0LDTY--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5tyukpxhln8kus3p08jl.jpg",
+    "desc": "You might have never heard of the HTML <portal> element. It's an experimental feature since Chrome 75 (June, 2019) and its proposal is in the draft stages. But what is it exactly?",
+    "category": "article"
+  },
+  {
     "title": "Coding a Hank Hill Hotkey",
     "slug": "coding-a-hank-hill-hotkey-23h9",
     "image": "https://res.cloudinary.com/dzynqn10l/image/upload/v1644857833/JS%20Bits/8zzll25iy8l3phy9ebis_ltbz5d.webp",
