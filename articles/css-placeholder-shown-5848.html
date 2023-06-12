@@ -1,0 +1,121 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>CSS :placeholder-shown</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 6/28/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>The <code>:placeholder-shown</code> pseudo-class represents any <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> element that is displaying placeholder text.</p>
+
+<p>With this rule, we can do this type of styling that would otherwise require the aid of JavaScript:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--ChpIL1X2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1624899200/JS%2520Bits/placeholder-shown_itx2fy.gif" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ChpIL1X2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1624899200/JS%2520Bits/placeholder-shown_itx2fy.gif" alt="placeholder-shown" loading="lazy" width="316" height="111" data-animated="true"></a><br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"food"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">" "</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"food"</span>&gt;</span>Favorite food<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'input'</span>);
+
+input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'focus'</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-comment">// Add parent class to move label above input</span>
+});
+
+input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'blur'</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-comment">// Check if input has value</span>
+  <span class="hljs-comment">// Remove parent class to reset label</span>
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>But instead of all this overhead, we can leverage the <code>:focus</code> and <code>:placeholder-shown</code> CSS rules:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:focus</span> + <span class="hljs-selector-tag">label</span>,
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-pseudo">:placeholder-shown</span>) + <span class="hljs-selector-tag">label</span> {
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">14px</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">6px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Here we check if the input has focus OR if it does <em>not</em> have the placeholder shown (meaning there <em>is</em> a text value). If either of these states apply, we have the label float to the top left. </p>
+
+<p>A hell of a lot easier than JS event handlers! 😉</p>
+
+<h3>
+  <a name="heres-a-video-using-this-in-action" href="#heres-a-video-using-this-in-action">
+  </a>
+  Here's a video using this in action:
+</h3>
+
+<p><a href="https://www.tiktok.com/@js_bits/video/6978841329723870469?lang=en&amp;is_copy_url=1&amp;is_from_webapp=v1"><br>
+  <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--qd5cwqbS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1631846510/JS%2520Bits/css_placeholder_shown_aiwjjx.webp" alt="CSS placeholder-shown" loading="lazy" width="800" height="412"><br>
+</a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and <a href="https://www.tiktok.com/@js_bits?lang=en">TikTok</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

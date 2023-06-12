@@ -1,0 +1,80 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Another way to inspect global variables</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 8/17/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>As a follow up to my earlier post on <a href="https://dev.to/cilly_boloe/how-to-inspect-unique-globals-js-bits-2i7i">how to inspect unique global vars</a>, this is another method I use when I want to search for existing code on a site.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// First remove iframes to prevent cross-origin access errors</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'iframe'</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">iframe</span> =&gt;</span> iframe.<span class="hljs-title function_">remove</span>());
+
+<span class="hljs-comment">// Create cache array to save existing keys</span>
+<span class="hljs-keyword">let</span> cache = [];
+
+<span class="hljs-comment">// Use JSON.stringify replacer fn to allowlist non-circular props</span>
+<span class="hljs-keyword">const</span> globals = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">window</span>, <span class="hljs-function">(<span class="hljs-params">key, value</span>) =&gt;</span> {
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'object'</span> &amp;&amp; value !== <span class="hljs-literal">null</span>) {
+
+    <span class="hljs-comment">// If circular reference found, discard key</span>
+    <span class="hljs-keyword">if</span> (cache.<span class="hljs-title function_">indexOf</span>(value) !== -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">// Store value in our collection</span>
+    cache.<span class="hljs-title function_">push</span>(value);
+  }
+
+  <span class="hljs-keyword">return</span> value;
+});
+
+<span class="hljs-comment">// Collect garbage</span>
+cache = <span class="hljs-literal">null</span>; 
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(globals);
+<span class="hljs-title function_">copy</span>(globals); <span class="hljs-comment">// Chrome's built-in method to add to clipboard</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>This code allows us to construct a stringified JSON map of all of the window's properties and subproperties. If using Chrome's console, the built-in <code>copy()</code> method will copy the stringified object to your clipboard. From here, I usually paste the code into <a href="https://beautifier.io/">beautifier.io</a> to make it easier to read:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--JyZ-3jGZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/beautifier.io__1_wi2loj.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--JyZ-3jGZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/beautifier.io__1_wi2loj.png" loading="lazy"></a></p>
+
+<p>From there, I'll copy that beautified code into a normal text editor so that I can "Cmd/Ctrl + F" for values easier. The advantage of this method over the iframe way mentioned in my previous article is that this gives you an "at a glance" view of all the window's properties and so you can skim the list without having to toggle each object open in the console (the downside is that the window object might be huge depending on the site/page). You can also search for substring matches if you have an idea of what you're looking for with your code editor's search feature. </p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--HIyzK9TH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/dev_to_output_1_irmyby.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--HIyzK9TH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/dev_to_output_1_irmyby.jpg" loading="lazy"></a></p>
+
+<p>Perusing the output on dev.to, I noticed something interesting. Apparently there's a <code>window.currentUser</code> object which includes my followed tags as a string and apparently JavaScript has a <b>hotness_score</b> of 9940541 🔥. It's over <b>9 million</b>! (<em>breaks power scouter</em>) 💥</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

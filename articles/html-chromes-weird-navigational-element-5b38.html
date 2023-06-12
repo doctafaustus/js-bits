@@ -1,0 +1,190 @@
+<html><head></head><body><article>
+        <meta content="https://jsbits-yo.com/articles/html-chromes-weird-navigational-element-5b38" property="og:url">
+        <meta content="2838281769746622" property="fb:app_id">
+        <meta content="article" property="og:type">
+        <meta content="HTML <portal>: Chrome's weird navigational element" property="og:title">
+        <meta content="https://res.cloudinary.com/practicaldev/image/fetch/s--3oxff25x--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5tyukpxhln8kus3p08jl.jpg" property="og:image">
+        <meta content="What's a Portal?   You might have never heard of the HTML <portal> element. It's an..." property="og:description">
+
+        <div id="article-head">
+          <h1>HTML <portal>: Chrome's weird navigational element</portal></h1>
+
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 6/15/2022</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <h2>
+  <a name="whats-a-portal" href="#whats-a-portal">
+  </a>
+  What's a Portal?
+</h2>
+
+<p>You might have never heard of the HTML <code>&lt;portal&gt;</code> element. It's an experimental feature since Chrome 75 (June, 2019) and its proposal is in the draft stages. But what is it exactly? Essentially the <code>&lt;portal&gt;</code> is like a souped-up <code>&lt;iframe&gt;</code> and includes the ability to seamlessly navigate into embedded content. </p>
+
+<p>Similar to an <code>&lt;iframe&gt;</code>, <code>&lt;portal&gt;</code> includes a <code>src</code> attribute which is the URL of the page you want to embed and the embedded content will look identical to an <code>&lt;iframe&gt;</code>. The <code>&lt;portal&gt;</code> is clickable but is not interactable since its purpose is to provide a smooth navigation into a prerended page - similar to the way most SPAs navigate. This differs from iframes which cannot immediately be navigated to without another request to the source. Clicking on a portal will navigate you right into all that content that's already loaded and rendered as the child inset of the parent document.</p>
+
+<p>What's cool about portals is that they can be cross-origin, meaning you can create a portal to a different domain from where you're embedded it. </p>
+
+<h2>
+  <a name="how-to-use" href="#how-to-use">
+  </a>
+  How To Use
+</h2>
+
+<p>So since portals are an experimental, we need to enable 2 flags in Chrome at <code>about://flags/#enable-portals</code>:</p>
+
+<ul>
+<li>🚩 Enable Portals</li>
+<li>🚩 Enable cross-origin Portals</li>
+</ul>
+
+<p>Chrome will prompt you to relaunch your Browser and after doing so, you should see the <code>HTMLPortalElement</code> function available in your console:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--IKdDqjyG--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://web-dev.imgix.net/image/admin/aUrrqhzMxaEX865Fk5zX.png%3Fauto%3Dformat%26w%3D1252" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--IKdDqjyG--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://web-dev.imgix.net/image/admin/aUrrqhzMxaEX865Fk5zX.png%3Fauto%3Dformat%26w%3D1252" loading="lazy" width="auto" height="auto"></a></p>
+
+<p>So now let's create a basic portal! It's as easy as adding this HTML to your web page.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">portal</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://theoatmeal.com"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">portal</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>You can add styles to this element to adjust height, width, etc. but in its raw form you'll see the webpage from The Oatmeal embedded. When you click the portal, you navigate instantly to the source page and should not notice the normal "blink" you'd otherwise get from visiting a new Web page. </p>
+
+<h2>
+  <a name="lets-get-fancy" href="#lets-get-fancy">
+  </a>
+  Let's Get Fancy
+</h2>
+
+<p>Here's a use case where we'll create a list of popular webcomics. Each block of content will show a preview image of the comic and when the user hovers over it our code will render a portal in place that can be clicked to navigate directly to the the webcomic's page:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--DLGrguJb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://github.com/doctafaustus/html-portal/blob/preview-gif/chrome_1sXGgQBBtJ.gif%3Fraw%3Dtrue" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--DLGrguJb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://github.com/doctafaustus/html-portal/blob/preview-gif/chrome_1sXGgQBBtJ.gif%3Fraw%3Dtrue" loading="lazy" width="444" height="467" data-animated="true"></a></p>
+
+<p>First, the HTML:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Best Webcomics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>The Oatmeal<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> 
+      <span class="hljs-attr">class</span>=<span class="hljs-string">"comic-container"</span>
+      <span class="hljs-attr">data-src</span>=<span class="hljs-string">"https://theoatmeal.com/comics/forbidden_love"</span>
+    &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/forbidden_love_big.png"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"spinner"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/spinner.gif"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">portal</span> <span class="hljs-attr">src</span>=<span class="hljs-string">""</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">portal</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Repeat lis for other webcomics --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Notice we're using an empty <code>src</code> for the portal. To avoid unnecessary loading, we'll set the source in JavaScript only when the user hovers over <code>.comic-container</code> via the <code>mouseenter</code> event. As the source is being loaded, we'll show the spinner overlay so there's user feedback to show something is loading. Once fully loaded (by listening to the <code>load</code> event), we can display the portal over the existing image.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> blocks = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'.comic-container'</span>);
+blocks.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">block</span> =&gt;</span> {
+  block.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'mouseenter'</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    block.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">'hover'</span>);
+    <span class="hljs-keyword">const</span> portal = block.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'portal'</span>);
+    <span class="hljs-keyword">const</span> { src } = block.<span class="hljs-property">dataset</span>;
+    portal.<span class="hljs-property">src</span> = src;
+  });
+
+  <span class="hljs-comment">// Add "mouseleave" listener to reset classes</span>
+});
+
+<span class="hljs-keyword">const</span> portals = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'portal'</span>);
+portals.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">portal</span> =&gt;</span> {
+  portal.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (portal.<span class="hljs-title function_">closest</span>(<span class="hljs-string">'.comic-container'</span>).<span class="hljs-title function_">matches</span>(<span class="hljs-string">'.hover'</span>)) {
+      portal.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">'show-portal'</span>);
+    } 
+  });
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>From there, the user can click the portal and be instantly transported to the source page!</p>
+
+<p>The default click behavior on a portal can also be prevented if you wanted to create a fancy animation the on click event and then call <code>portal.activate()</code> to activate the portal programmatically.</p>
+
+<p>See full code here: <a href="https://github.com/doctafaustus/html-portal">https://github.com/doctafaustus/html-portal</a></p>
+
+<h2>
+  <a name="closing-thoughts" href="#closing-thoughts">
+  </a>
+  Closing Thoughts
+</h2>
+
+<p>While portals give us a new way to preview and prerender pages, it's unclear if they'll ever be standard in browsers. My first thoughts about security were assuaged by reading that portals do not allow user interaction to channel through to the "portaled" document. Additionally, the embedded content will not have direct access to the host document. However, portals would still introduce yet another opportunity to create clever browser exploits, so a sound content security policy (CSP) would be recommended.</p>
+
+<p>Nevertheless, they're still pretty cool!<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--bLeBGKwd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qp3516kt8kpz9yj4vq9q.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--bLeBGKwd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qp3516kt8kpz9yj4vq9q.jpg" alt="Image description" loading="lazy" width="540" height="407"></a></p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>, <a href="https://www.tiktok.com/@js_bits">TikTok</a> and I have a new <a href="https://www.udemy.com/course/js-bits-bug-bash/">debugging course</a> out now!</p>
+
+
+        </div>
+      </article>
+    </body></html>

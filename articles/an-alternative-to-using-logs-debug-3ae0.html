@@ -1,0 +1,58 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>An alternative to using logs: debug()</h1>
+
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 7/6/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>The Chrome console includes a helper method called <code>debug</code> that will pause execution in the debugger on the first line of a provided function.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">greeting</span>(<span class="hljs-params">msg</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg);
+}
+
+<span class="hljs-comment">// Debug the greeting function whenever it gets called</span>
+<span class="hljs-title function_">debug</span>(greeting);
+
+<span class="hljs-comment">// Once greeting is called the Sources panel in DevTools will automatically open</span>
+<span class="hljs-title function_">greeting</span>(<span class="hljs-string">'Hello World!'</span>);
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Ull7xBsE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/chrome-p6-KVK2-Mc-AH_re9njh.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ull7xBsE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/chrome-p6-KVK2-Mc-AH_re9njh.webp" loading="lazy" width="880" height="503"></a></p>
+
+<p>When using <code>debug</code>, the breakpoint is added to the function definition and paused regardless of where it is called. So this is just a quick way to see if and how a function is being called without having to add your own logs to it or manually track it down in the Sources to add a breakpoint! ⚡</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

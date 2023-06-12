@@ -1,0 +1,229 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Series Part VI: Symbol.match, Symbol.matchAll &amp; Symbol.replace</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 11/3/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Symbols Are Your Friend Series</b></p>
+
+<ul>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-a-gentle-introduction-js-bits-23af">Part I: A Gentle Introduction</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc">Part II: Symbol.for() &amp; Symbol.keyFor()</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4">Part III: Symbol.iterator</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25">Part IV: Symbol.search, Symbol.split, &amp; Symbol.species</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables-js-bits-nee">Part V: Symbol.toPrimitive, Symbol.toStringTag, &amp; Symbol.unscopables</a></li>
+</ul>
+
+
+<hr>
+
+<p>Well, we've made it this far 😅. We might as well explore the remaining Symbol properties. There's only 6 more left, but we'll break them up into 2 more articles. Today we'll look at:</p>
+
+<ul>
+  <li><code>Symbol.match</code></li>
+  <li><code>Symbol.matchAll</code></li>
+  <li><code>Symbol.replace</code></li>
+</ul>
+
+
+<hr>
+
+<p><b><code>Symbol.match</code></b><br>
+This symbol defines the matching behavior of a regular expression against a string. Here are 2 interesting ways this can be used:</p>
+
+<p>The first way allows us to override the internal check within certain String methods (like <code>.startsWith()</code>, <code>.includes()</code>, etc.) that check if the first argument is erroneously an regular expression. This internal check uses the <code>match</code> property so if we simple set it to false we can make our regex act as if it's not a regex and use those String methods:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> myRegex = <span class="hljs-regexp">/abc/</span>;
+<span class="hljs-string">'/abc/'</span>.<span class="hljs-title function_">startsWith</span>(myRegex); <span class="hljs-comment">// Throws error</span>
+
+<span class="hljs-comment">// Override myRegex to not be treated as a regular expression</span>
+myRegex[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">match</span>] = <span class="hljs-literal">false</span>;
+<span class="hljs-string">'/abc/'</span>.<span class="hljs-title function_">startsWith</span>(myRegex); <span class="hljs-comment">// true</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>The other way we can use <code>Symbol.match</code> is similar to some of the other well-known symbols we've seen already like <code>Symbol.split</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> myRegex = <span class="hljs-regexp">/abc/</span>;
+myRegex[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">match</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) {
+  <span class="hljs-keyword">const</span> index = string.<span class="hljs-title function_">search</span>(<span class="hljs-variable language_">this</span>);
+  <span class="hljs-keyword">if</span> (index &gt; -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">`Match found @ index <span class="hljs-subst">${index}</span>`</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'No match found'</span>;
+};
+
+<span class="hljs-string">'I know my 123\'s'</span>.<span class="hljs-title function_">match</span>(myRegex); <span class="hljs-comment">// Returns "No match found"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p><b><code>Symbol.matchAll</code></b><br>
+This symbol is a method that returns an iterator of results when you match a regular expression against a string. Before we check this out, note that there's already a <code>String.prototype.matchAll()</code> method that does the inverse: it matches a string against a regular expression:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> myRegex = <span class="hljs-regexp">/wood/g</span>;
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">'How much wood would a woodchuck chuck?'</span>;
+
+<span class="hljs-keyword">for</span> (result <span class="hljs-keyword">of</span> str.<span class="hljs-title function_">matchAll</span>(myRegex)) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);  <span class="hljs-comment">// Logs matches</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>So with <code>Symbol.matchAll</code> we can essentially swap the calling object and argument types:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> myRegex = <span class="hljs-regexp">/wood/g</span>;
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">'How much wood would a woodchuck chuck?'</span>;
+
+<span class="hljs-keyword">for</span> (result <span class="hljs-keyword">of</span> myRegex[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">matchAll</span>](str)) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result); <span class="hljs-comment">// Logs matches</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><code>RegExp.matchAll()</code> would otherwise throw a TypeError.</p>
+
+
+<hr>
+
+<p><b><code>Symbol.replace</code></b><br>
+This symbol defines the behavior for the <code>.replace()</code> method on a string.</p>
+
+<p>Default behavior:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> spoonRegex = <span class="hljs-regexp">/spoon/</span>;
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-string">'There is no spoon'</span>.<span class="hljs-title function_">replace</span>(spoonRegex, <span class="hljs-string">'fork'</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result); <span class="hljs-comment">// Logs "There is no fork"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><code>Symbol.replace</code> modification:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> spoonRegex = <span class="hljs-regexp">/spoon/</span>;
+spoonRegex[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">replace</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params">string, replacement</span>) {
+  <span class="hljs-keyword">const</span> match = string.<span class="hljs-title function_">match</span>(<span class="hljs-variable language_">this</span>) || [];
+  <span class="hljs-keyword">const</span> index = match.<span class="hljs-property">index</span>;
+
+  <span class="hljs-keyword">if</span> (!match.<span class="hljs-property">length</span>) <span class="hljs-keyword">return</span> string;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${string.slice(<span class="hljs-number">0</span>, index)}</span><span class="hljs-subst">${replacement}</span>, lol`</span>;
+};
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-string">'There is no spoon'</span>.<span class="hljs-title function_">replace</span>(spoonRegex, <span class="hljs-string">'fork'</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result); <span class="hljs-comment">// Logs "There is no fork, lol"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

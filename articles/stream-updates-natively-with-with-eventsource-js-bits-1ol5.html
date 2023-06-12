@@ -1,0 +1,109 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Stream updates natively with EventSource 📡</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 8/13/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>The <code>EventSource</code> object is a native Web interface used with server-sent events. If you're not familiar, server-sent events are messages sent by a server to client at any time (and not necessarily as an immediate response to a request like the tradition client-server model).</p>
+
+<p>The most typical use case for using <code>EventSource</code> is wherever you need to broadcast periodic events from your server, such as an online stock quote application or perhaps a social medial site where users can see real-time notifications. Using <code>EventSource</code>, you can open a persistent connection to your server and push events to your client without the need to constantly poll for updates.</p>
+
+<p>To see how this works, first create a new <code>EventSource</code> in your client code. The first argument is the URL of the server serving the events. From there, you can add event listeners for the <code>open</code> and <code>message</code> events:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> evtSource = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventSource</span>(<span class="hljs-string">'/connect'</span>);
+
+<span class="hljs-comment">// Listen for "open" event when connected</span>
+evtSource.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'open'</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Persistent connection to server opened'</span>);
+});
+
+<span class="hljs-comment">// Listen for "message" event when received from server</span>
+evtSource.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Data received: '</span>, e.<span class="hljs-property">data</span>);
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Here's a NodeJS server example that listens for the initial request and simulates sending periodic events:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/connect'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+
+  <span class="hljs-comment">// Set headers</span>
+  res.<span class="hljs-title function_">status</span>(<span class="hljs-number">200</span>).<span class="hljs-title function_">set</span>({
+    <span class="hljs-string">'Connection'</span>: <span class="hljs-string">'keep-alive'</span>,
+    <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/event-stream'</span>,
+    <span class="hljs-string">'Cache-Control'</span>: <span class="hljs-string">'no-cache'</span>
+  });
+
+  <span class="hljs-comment">// Broadcast a message with a random # every 2 seconds</span>
+  <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> number = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">100</span>));
+    res.<span class="hljs-title function_">write</span>(<span class="hljs-string">`data: <span class="hljs-subst">${number}</span> \n\n`</span>);
+  }, <span class="hljs-number">2000</span>);
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Some caveats: First, the headers should be exactly as shown since the events are sent in <code>text/event-stream</code> format and the connection needs to be kept alive with no caching.</p>
+
+<p>Secondly, when testing this, I had trouble receiving events on the client until I read that the event stream response format is very particular. The response text must begin with <code>data: </code>. The custom message should follow and the line must be terminated with 2 <code>\n</code> characters otherwise the message will not be sent. You can send bigger bits of data by simply using <code>JSON.stringify()</code> on an object.</p>
+
+<p>When you wish to close the connection simply run <code>evtSource.close()</code>.</p>
+
+<p>There's a bunch more on <code>EventSource</code> you can read on the MDN article linked below but that's how it works in a nutshell. What's really cool is that it's available natively in all modern browsers and is a much lighter-weight alternative to using a websocket library when all you need to do is broadcast events (websocket are needed for full-duplex communications however).</p>
+
+<p>Lastly, although <code>EventSource</code> has been around forever, I first read about it as a sneaky way hackers can open connections to a malicious server in a XSS attack. Even if Security Ops are monitoring requests by watching <code>fetch</code> events or <code>XMLHttpRequest</code>, <code>EventSource</code> may not always be noticed (perhaps because it's more obscure?). In any case, it's a pretty cool tool to use when the situation calls for it! 📡</p>
+
+<h3>Links</h3>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventSource">MDN Article on EventSource</a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

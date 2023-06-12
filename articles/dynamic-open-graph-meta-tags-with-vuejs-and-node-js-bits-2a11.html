@@ -1,0 +1,186 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Dynamic Open Graph Meta Tags with VueJS and Node</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 11/23/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>I recently faced an interesting dilemma where I was unable to solution for using dynamic Open Graph metadata for my custom built T-shirt website, <a href="https://www.fatcattitude.com">Fat Cattitude</a>.</p>
+
+<p>Essentially, I wanted to have each product page have its own OG image and description. The problem was that VueJS is a client-side framework with most content being dynamically created via JavaScript. When the Open Graph scraper requests a page it <b>does not run any JavaScript</b> - it only retrieves the content that is immediately returned from your server. You can see this content in Chrome by right clicking and choosing <code>View page source</code>:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--ni9Devqe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%2520Bits/view-source_obleo7.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ni9Devqe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%2520Bits/view-source_obleo7.png" loading="lazy"></a></p>
+
+<p>It is this content, and only this content, that is scraped by the <a href="https://developers.facebook.com/tools/debug">OG Debugger</a>:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--RI5y_4xJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%2520Bits/fc_og_drbooa.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--RI5y_4xJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%2520Bits/fc_og_drbooa.png" loading="lazy"></a></p>
+
+<p>So the only way to dynamically generate these OG meta fields is via a server-side solution. Here's mine!</p>
+
+<p>The only thing you'll need to have upfront is a seperate JS file of an array of objects containing the OG meta information for each page. You can then map your relevant paths to this object to render the appropriate content.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> products = [
+  {
+    <span class="hljs-attr">id</span>: <span class="hljs-number">111111111</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'Corporate Fat Cat'</span>,
+    <span class="hljs-attr">ogImage</span>: <span class="hljs-string">'https://cdn.com/corporate.jpg'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'The fat cats in Washington don’t even look this good'</span>
+  },
+  {
+    <span class="hljs-attr">id</span>: <span class="hljs-number">222222222</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'Gangsta Cat'</span>,
+    <span class="hljs-attr">ogImage</span>: <span class="hljs-string">'https://cdn.com/gangsta.jpg'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'That’s how we roll'</span>
+  },
+  {
+    <span class="hljs-attr">id</span>: <span class="hljs-number">333333333</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'Mechanic Cat'</span>,
+    <span class="hljs-attr">ogImage</span>: <span class="hljs-string">'https://cdn.com/mechanic.jpg'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'I have no idea what I’m doing.'</span>
+  }
+];
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>First, include some default OG meta tags in the <code>index.html</code> file that gets served with every request:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-comment">&lt;!-- OG Meta Tags --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:url"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://www.fatcattitude.com/"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"website"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"Fat Cattitude"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://cdn.com/fat-cattitude-logo.jpg"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"There’s attitude and there’s CATTITUDE..."</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Then set up the middleware on all routes:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>app.<span class="hljs-title function_">use</span>(<span class="hljs-string">'/*'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^\/api\//</span>.<span class="hljs-title function_">test</span>(req.<span class="hljs-property">originalUrl</span>)) <span class="hljs-title function_">next</span>();
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/\/item\//</span>.<span class="hljs-title function_">test</span>(req.<span class="hljs-property">originalUrl</span>)) <span class="hljs-title function_">updateMetaTags</span>(req, res);
+  <span class="hljs-keyword">else</span> res.<span class="hljs-title function_">sendFile</span>(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/client/dist/index.html`</span>);
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>All that's going on here is that if the request is an API route, then proceed to the next step in our route processing. If the route contains <code>/item/</code> then we call our <code>updateMetaTags</code> function (defined below). Otherwise, just serve the normal <code>index.html</code> from our <code>/dist</code> directory.</p>
+
+<p>Here's what happens in <code>updateMetaTags</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateMetaTags</span>(<span class="hljs-params">req, res</span>) {
+
+  <span class="hljs-comment">// Get and parse products array from app src</span>
+  <span class="hljs-keyword">const</span> productsSrc = <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/client/src/products.js`</span>;
+  <span class="hljs-keyword">const</span> productsText = <span class="hljs-keyword">await</span> fs.<span class="hljs-property">promises</span>.<span class="hljs-title function_">readFile</span>(productsSrc);
+  <span class="hljs-keyword">const</span> productsArr = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(productsText);
+
+  <span class="hljs-comment">// Retrieve product object that includes the current URL item id</span>
+  <span class="hljs-keyword">const</span> productID = (req.<span class="hljs-property">originalUrl</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/\d{9}/</span>) || [])[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> productObj = productsArr.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">prod</span> =&gt;</span> prod.<span class="hljs-property">id</span> == productID);
+
+  <span class="hljs-comment">// Update the meta tag properties in the built bundle w/ Cheerio</span>
+  <span class="hljs-keyword">const</span> baseSrc = <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/client//dist/index.html`</span>;
+  <span class="hljs-keyword">const</span> baseHTML = <span class="hljs-keyword">await</span> fs.<span class="hljs-property">promises</span>.<span class="hljs-title function_">readFile</span>(baseSrc);
+  <span class="hljs-keyword">const</span> $base = $(baseHTML);
+  <span class="hljs-keyword">const</span> $url = $base.<span class="hljs-title function_">find</span>(<span class="hljs-string">'meta[property=og\\:url]'</span>);
+  <span class="hljs-keyword">const</span> $title = $base.<span class="hljs-title function_">find</span>(<span class="hljs-string">'meta[property=og\\:title]'</span>);
+  <span class="hljs-keyword">const</span> $image = $base.<span class="hljs-title function_">find</span>(<span class="hljs-string">'meta[property=og\\:image]'</span>);
+  <span class="hljs-keyword">const</span> $desc = $base.<span class="hljs-title function_">find</span>(<span class="hljs-string">'meta[property=og\\:description]'</span>);
+
+  $url.<span class="hljs-title function_">attr</span>(<span class="hljs-string">'content'</span>, <span class="hljs-string">`https://<span class="hljs-subst">${req.get(<span class="hljs-string">'host'</span>)}</span><span class="hljs-subst">${req.originalUrl}</span>`</span>);
+  $title.<span class="hljs-title function_">attr</span>(<span class="hljs-string">'content'</span>, productObj.<span class="hljs-property">title</span>);
+  $image.<span class="hljs-title function_">attr</span>(<span class="hljs-string">'content'</span>, productObj.<span class="hljs-property">ogImage</span>);
+  $desc.<span class="hljs-title function_">attr</span>(<span class="hljs-string">'content'</span>, productObj.<span class="hljs-property">description</span>);
+
+  <span class="hljs-comment">// Send the modified HTML as the response</span>
+  res.<span class="hljs-title function_">send</span>($.<span class="hljs-title function_">html</span>($base));
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Our products array is retrieved with the File System module and then the relevant object is parsed with a simple <code>Array.find()</code>. From here we use the <a href="https://www.npmjs.com/package/cheerio">Cheerio</a> module to update the content attributes of our existing OG meta tags. Finally, we return the modified files as the server's response.</p>
+
+<p>And there we go! The OG content is served dynamically based on the requested URL:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--IfbzahPb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%2520Bits/corporate_og_uzq3mz.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--IfbzahPb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%2520Bits/corporate_og_uzq3mz.png" loading="lazy"></a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

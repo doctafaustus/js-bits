@@ -1,0 +1,147 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>The URL Object</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 7/21/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Here's a great trick to get URL properties from a string that I recently discovered thanks to dev.to user <a href="https://dev.to/dailydevtips1">Chris Bongers (Daily Dev Tips)</a></p>
+<p>This method involves using the <code>URL()</code> constructor, available in all modern browsers.</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> url = <span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">'http://www.example.com/snippet?utm_campaign=12345#documentation'</span>);
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>With the URL object, you can easily access URL properties as such:</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>{
+  <span class="hljs-attr">hash</span>: <span class="hljs-string">"#documentation"</span>,
+  <span class="hljs-attr">host</span>: <span class="hljs-string">"www.example.com"</span>,
+  <span class="hljs-attr">hostname</span>: <span class="hljs-string">"www.example.com"</span>,
+  <span class="hljs-attr">href</span>: <span class="hljs-string">"http://www.example.com/snippet?utm_campaign=12345"</span>,
+  <span class="hljs-attr">origin</span>: <span class="hljs-string">"http://www.example.com"</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">pathname</span>: <span class="hljs-string">"/snippet"</span>,
+  <span class="hljs-attr">port</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">protocol</span>: <span class="hljs-string">"http:"</span>,
+  <span class="hljs-attr">search</span>: <span class="hljs-string">"?utm_campaign=12345"</span>,
+  <span class="hljs-attr">searchParams</span>: <span class="hljs-title class_">URLSearchParams</span> {},
+  <span class="hljs-attr">username</span>: <span class="hljs-string">""</span>
+}
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url.<span class="hljs-property">pathname</span>); <span class="hljs-comment">// Logs "/snippet"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url.<span class="hljs-property">hostname</span>); <span class="hljs-comment">// Logs "www.example.com" </span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Note that one of the properties is the <code>searchParams</code> object, which provides an interface to manipulate the URL's query string (we'll look at it in-depth in another article).</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url.<span class="hljs-property">searchParams</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'utm_campaign'</span>)); <span class="hljs-comment">// Logs "12345"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>
+Before this awesome constructor came along, it was common to achieve the same result by creating an anchor tag in order to use the DOM's built-in methods to retrieve the URL info:
+</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> a = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'a'</span>);
+a.<span class="hljs-property">href</span> = <span class="hljs-string">'http://www.example.com/snippet?utm_campaign=12345#documentation'</span>;
+
+a.<span class="hljs-property">pathname</span> <span class="hljs-comment">// "/snippet"</span>
+a.<span class="hljs-property">hostname</span> <span class="hljs-comment">// "www.example.com" </span>
+a.<span class="hljs-property">search</span> <span class="hljs-comment">// "?utm_campaign=12345"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>
+While this worked, it felt cumbersome to have to create a document element solely to retrive URL data and could potentially confuse readers of your code of what your intent was. Plus, this would only work with the Web API and not in other environments like Node where <code>URL()</code> would clearly be the superior method. 👑
+</p>
+
+<h3>Links</h3>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/URL">MDN Article on URL() Interface</a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

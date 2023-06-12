@@ -1,0 +1,240 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Coding a Hank Hill Hotkey</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 2/11/2022</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Today we'll be coding a hotkey easter-egg for your website that will display a random Hank Hill image in your viewport. This will prove to be an essential feature that will <strong>delight your visitors, optimize the user experience, and improve your conversation rate</strong>.</p>
+
+<p>First we add a basic CSS style to scale and position the eventual images:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-variable language_">document</span>.<span class="hljs-property">head</span>.<span class="hljs-title function_">insertAdjacentHTML</span>(<span class="hljs-string">'beforeend'</span>, <span class="hljs-string">`
+  &lt;style&gt;
+    .hh {
+      position: fixed;
+      z-index: 999;
+      transform: scale(1.65);
+    }
+  &lt;/style&gt;
+`</span>);
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Next we add a <code>keydown</code> listener on the document, taking care to exit our callback early if the key was pressed inside an <code>input</code> or <code>form</code> element so we don't hijack real typing inside these elements:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'keydown'</span>, handleHotkey);
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleHotkey</span>(<span class="hljs-params">e</span>) {
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-title function_">matches</span>(<span class="hljs-string">'input, textarea'</span>)) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Then we'll map the <code>h</code> key to a <code>displayHank</code> function and detect if this key was pressed by checking the <code>code</code> property value on the event:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleHotkey</span>(<span class="hljs-params">e</span>) {
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-title function_">matches</span>(<span class="hljs-string">'input, textarea'</span>)) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">const</span> commands = {
+    <span class="hljs-string">'KeyH'</span>: displayHank,
+  };
+
+  <span class="hljs-keyword">const</span> enteredCommand = commands[e.<span class="hljs-property">code</span>]; 
+  <span class="hljs-keyword">if</span> (enteredCommand) <span class="hljs-title function_">enteredCommand</span>();
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Our <code>displayHank</code> function will grab a random image source from an array and insert it into the DOM with a random position obtained via the <code>getRandomPosition</code> function:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">displayHank</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> images = [
+    <span class="hljs-string">'9H8k4mF/200w-1.gif'</span>, 
+    <span class="hljs-string">'09T2y3p/giphy-4.gif'</span>, 
+    <span class="hljs-string">'k3VYFZk/giphy-5.gif'</span>, 
+  ]
+
+  <span class="hljs-keyword">const</span> image = images[<span class="hljs-title function_">randomIndex</span>(images)];
+  <span class="hljs-keyword">const</span> [x, y] = <span class="hljs-title function_">getRandomPosition</span>();
+
+  <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">insertAdjacentHTML</span>(<span class="hljs-string">'beforeend'</span>, <span class="hljs-string">`
+    &lt;img 
+      class="hh"
+      style="top: <span class="hljs-subst">${y}</span>px; left: <span class="hljs-subst">${x}</span>px"
+      src="https://i.ibb.co/<span class="hljs-subst">${image}</span>"
+    &gt;
+  `</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">randomIndex</span>(<span class="hljs-params">arr</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * arr.<span class="hljs-property">length</span>));
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now if we hit the <code>h</code> key, we'll see all these Hank Hill images pop up. Perfect! </p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--8yxPG2PZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1644726465/Msc/LYRwIB9H4h_q48rs3.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--8yxPG2PZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1644726465/Msc/LYRwIB9H4h_q48rs3.webp" loading="lazy" width="auto" height="auto"></a></p>
+
+<p>It's missing one thing, though... let's map another hotkey to play some soundbites:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleHotkey</span>(<span class="hljs-params">e</span>) {
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-title function_">matches</span>(<span class="hljs-string">'input, textarea'</span>)) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">const</span> commands = {
+    <span class="hljs-string">'KeyH'</span>: displayHank,
+    <span class="hljs-string">'KeyS'</span>: playSound
+  };
+
+  <span class="hljs-keyword">const</span> enteredCommand = commands[e.<span class="hljs-property">code</span>]; 
+  <span class="hljs-keyword">if</span> (enteredCommand) <span class="hljs-title function_">enteredCommand</span>();
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">playSound</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> baseURI = <span class="hljs-string">'https://res.cloudinary.com'</span> +
+  <span class="hljs-string">'/dzynqn10l/video/upload/v1644093214/Msc/'</span>;
+
+  <span class="hljs-keyword">const</span> sounds = [
+    <span class="hljs-string">'bwaaah_ckyvbs.mp3'</span>,
+    <span class="hljs-string">'dang-it-bobby_d8hvry_jh4civ.mp3'</span>,
+    <span class="hljs-string">'jpeg_hwasj2.mp3'</span>
+  ];
+
+  <span class="hljs-keyword">const</span> audio = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Audio</span>(<span class="hljs-string">`<span class="hljs-subst">${baseURI}</span><span class="hljs-subst">${sounds[randomIndex(sounds)]}</span>`</span>);
+  audio.<span class="hljs-title function_">play</span>();
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now if the user hits the <code>s</code> key, they'll hear a clip of Hank saying one of these phrases:</p>
+
+<ul>
+<li><em>Bwaaah!</em></li>
+<li><em>God dammit, Bobby.</em></li>
+<li><em>Do I look like I know what a JPEG is? I just want a picture of a god-dang hotdog.</em></li>
+</ul>
+
+<p>Spam these keys quickly for some real fun! 🤠</p>
+
+<p>Full script is here: <a href="https://github.com/doctafaustus/hank-hill-js">https://github.com/doctafaustus/hank-hill-js</a>.</p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>, <a href="https://www.tiktok.com/@js_bits">TikTok</a> and I have a new <a href="https://www.udemy.com/course/js-bits-bug-bash/">debugging course</a> out now!</p>
+
+
+        </div>
+      </article>
+    </body></html>

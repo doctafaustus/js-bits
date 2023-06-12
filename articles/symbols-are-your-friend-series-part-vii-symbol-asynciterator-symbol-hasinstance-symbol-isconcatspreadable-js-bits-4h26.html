@@ -1,0 +1,239 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Series Part VII: Symbol.asyncIterator, Symbol.hasInstance &amp; Symbol.isConcatSpreadable</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 11/10/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Symbols Are Your Friend Series</b></p>
+
+<ul>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-a-gentle-introduction-js-bits-23af">Part I: A Gentle Introduction</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc">Part II: Symbol.for() &amp; Symbol.keyFor()</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4">Part III: Symbol.iterator</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25">Part IV: Symbol.search, Symbol.split, &amp; Symbol.species</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables-js-bits-nee">Part V: Symbol.toPrimitive, Symbol.toStringTag, &amp; Symbol.unscopables</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-series-part-vi-symbol-match-symbol-matchall-symbol-replace-js-bits-539g">Part VI: Symbol.match, Symbol.matchAll &amp; Symbol.replace</a></li>
+</ul>
+
+
+<hr>
+
+<p>This is it - the last of the well-known symbols! Today we'll look at:</p>
+
+<ul>
+  <li><code>Symbol.asyncIterator</code></li>
+  <li><code>Symbol.hasInstance</code></li>
+  <li><code>Symbol.isConcatSpreadable</code></li>
+</ul>
+
+
+<hr>
+
+<p><b><code>Symbol.asyncIterator</code></b><br>
+Similar to <code>Symbol.iterator</code>, <code>Symbol.asyncIterator</code> functions the same way, except they return promises. This enables us to make an object that has asynchronous functionality iterable:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// Create iterable object</span>
+<span class="hljs-keyword">const</span> todos = {
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">asyncIterator</span>]: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> limit = <span class="hljs-number">4</span>;
+
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-keyword">async</span> <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">if</span> (i === limit) <span class="hljs-keyword">return</span> { <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span> };
+
+        i++;
+        <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchTodo</span>(i), <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span> }
+      }
+    }
+  },
+};
+
+<span class="hljs-comment">// Fetch a todo object</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchTodo</span>(<span class="hljs-params">num</span>) {
+  <span class="hljs-keyword">const</span> url = <span class="hljs-string">`https://jsonplaceholder.typicode.com/todos/<span class="hljs-subst">${num}</span>`</span>;
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();
+}
+
+<span class="hljs-comment">// Asynchronously iterate through todos</span>
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> todo <span class="hljs-keyword">of</span> todos) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(todo.<span class="hljs-property">title</span>);
+  }
+})();
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>With this example, we're effective making our <code>todos</code> object async iterable. <code>Symbol.asyncIterator</code> is also commonly implemented with generator functions but we'll explore those in another article.</p>
+
+
+<hr>
+
+<p><b><code>Symbol.hasInstance</code></b><br>
+This symbol is used to determine whether or not a constructor has an instance of another object when <code>instanceof</code> is used.</p>
+
+<p>This allows us to customize the behavior of <code>instanceof</code> when it operates on our constructor object:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">PowerRanger</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+  }
+
+  <span class="hljs-keyword">static</span> [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">hasInstance</span>](instance) {
+    <span class="hljs-keyword">const</span> rangersRegEx = <span class="hljs-regexp">/jason|zack|kim|billy|trini/i</span>;
+    <span class="hljs-keyword">return</span> rangersRegEx.<span class="hljs-title function_">test</span>(instance.<span class="hljs-property">name</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> jason = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PowerRanger</span>(<span class="hljs-string">'Jason'</span>);
+<span class="hljs-keyword">const</span> bob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PowerRanger</span>(<span class="hljs-string">'Bob'</span>);
+
+jason <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">PowerRanger</span>; <span class="hljs-comment">// true</span>
+bob <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">PowerRanger</span>; <span class="hljs-comment">// false</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p><b><code>Symbol.isConcatSpreadable</code></b><br>
+This symbol is a toggle that indicates if an object should be flatted when <code>Array.prototype.concat()</code> is used:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> pokemon = [<span class="hljs-string">'Eevee'</span>, <span class="hljs-string">'Snorlax'</span>, <span class="hljs-string">'Ditto'</span>];
+<span class="hljs-keyword">const</span> transformers = [<span class="hljs-string">'Jazz'</span>, <span class="hljs-string">'Grimlock'</span>, <span class="hljs-string">'Arcee'</span>];
+
+pokemon.<span class="hljs-title function_">concat</span>(transformers);
+<span class="hljs-comment">// Returns ["Eevee", "Snorlax", "Ditto", "Jazz", "Grimlock", "Arcee"]</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> pokemon = [<span class="hljs-string">'Eevee'</span>, <span class="hljs-string">'Snorlax'</span>, <span class="hljs-string">'Ditto'</span>];
+<span class="hljs-keyword">const</span> transformers = [<span class="hljs-string">'Jazz'</span>, <span class="hljs-string">'Grimlock'</span>, <span class="hljs-string">'Arcee'</span>];
+
+transformers[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">isConcatSpreadable</span>] = <span class="hljs-literal">false</span>;
+
+pokemon.<span class="hljs-title function_">concat</span>(transformers);
+<span class="hljs-comment">// Returns ["Eevee", "Snorlax", "Ditto", Array(3)]</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>A great use for this Symbol is to force normally unflattenable array-like objects to flatten:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> pokemon = [<span class="hljs-string">'Eevee'</span>, <span class="hljs-string">'Snorlax'</span>, <span class="hljs-string">'Ditto'</span>];
+<span class="hljs-keyword">const</span> transformers = {
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">isConcatSpreadable</span>]: <span class="hljs-literal">true</span>, 
+  <span class="hljs-attr">length</span>: <span class="hljs-number">3</span>, <span class="hljs-comment">// Length needed to specify # of props to add</span>
+  <span class="hljs-number">0</span>: <span class="hljs-string">'Jazz'</span>, 
+  <span class="hljs-number">1</span>: <span class="hljs-string">'Grimlock'</span>,
+  <span class="hljs-number">2</span>: <span class="hljs-string">'Arcee'</span>
+};
+
+pokemon.<span class="hljs-title function_">concat</span>(transformers);
+<span class="hljs-comment">// Returns ["Eevee", "Snorlax", "Ditto", "Jazz", "Grimlock", "Arcee"]</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p>This concludes the <b>Symbols Are Your Friend</b> series! We've just gone from Symbol zero to hero! 🦸</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

@@ -1,0 +1,83 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>The JavaScript Banana 🍌</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 5/21/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>You gotta make programming fun once in a while. Why not have a banana!<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>(<span class="hljs-string">'b'</span>+<span class="hljs-string">'a'</span>+ +<span class="hljs-string">'🍌'</span>+<span class="hljs-string">'a'</span>).<span class="hljs-title function_">toUpperCase</span>();
+<span class="hljs-comment">// BANANA</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><strong>WTF!</strong> 🙉<br>
+Depending on the context, <code>+</code> in JavaScript will function as the <strong>unary operator</strong> to convert an operand into a number. The first plus sign is used to concatenate the "b" and "a" strings while the third is used to convert 🍌 to a Number type - and this returns <code>NaN</code>. Add a trailing "a", use another <code>+</code> to concatenate <code>"ba" + NaN + "a"</code>, set it to all caps, and we get <code>BANANA</code>!</p>
+
+<p>&nbsp;</p>
+<h3>
+  <a name="bonus-shenanigans" href="#bonus-shenanigans">
+  </a>
+  Bonus Shenanigans
+</h3>
+
+<p>See what this returns in the Chrome console!<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> p1 = (+<span class="hljs-string">'🦇'</span>+<span class="hljs-string">'a'</span>+ +<span class="hljs-string">'👨'</span>+<span class="hljs-string">'a'</span>).<span class="hljs-title function_">repeat</span>(<span class="hljs-number">2</span>);
+
+<span class="hljs-keyword">const</span> str = <span class="hljs-variable language_">window</span>.<span class="hljs-property">BatteryManager</span>.<span class="hljs-title function_">toString</span>();
+<span class="hljs-keyword">const</span> p2 = str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">9</span>, <span class="hljs-number">19</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-string">'tery'</span>, <span class="hljs-string">''</span>);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${p1}</span> <span class="hljs-subst">${p2.toUpperCase()}</span>!`</span>);
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

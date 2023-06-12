@@ -1,0 +1,398 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Part III: Symbol.iterator</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/13/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Symbols Are Your Friend Series</b></p>
+
+<ul>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-a-gentle-introduction-js-bits-23af">Part I: A Gentle Introduction</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc">Part II: Symbol.for() &amp; Symbol.keyFor()</a></li>
+</ul>
+
+
+<hr>
+
+<p>So far, our first 2 looks at Symbol have been straightforward. We already know <code>Symbol</code> is a constructor that returns a symbol object which we already looked at, however this function also has a number of static properties including <code>Symbol.iterator</code> which is a method that returns the default iterator for an object. This one property of <code>Symbol</code> is so important and involved that it needs it's own focus...</p>
+
+<p>When you first research what an iterator is, you'll often come across vague definitions like this:</p>
+
+<p><b>Iterator</b>: Let's you iterate over a collection.</p>
+
+<p>But what exactly does this mean? To start, let's define what an <b>iteration</b> is: it's simply a repetition of a process. In JavaScript, a loop is an instruction to repeat until a certain condition is reached. Each repetition in a loop is called an <b>iteration</b>.</p>
+
+<p>Next, let's define what <b>iterable</b> means. To say that an object is iterable means that it <b>has the capability to have its values looped over with certain statements and expressions</b> like <code>for...of</code> or <code>yield*</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> lotteryNumbers = [<span class="hljs-number">16</span>, <span class="hljs-number">32</span>, <span class="hljs-number">7</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> lotteryNumbers) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num); <span class="hljs-comment">// Logs num on each iteration</span>
+} 
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>These types of loops are different than your standard <code>for</code> or <code>forEach()</code> loops. We'll explain that more soon...</p>
+
+<p>Iterable objects are those whose prototype includes the <code>Symbol.iterator</code> key. Since arrays are iterable, you can see this when you inspect its prototype:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--JHjdLQgj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%2520Bits/symbol-proto_dofjn4.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--JHjdLQgj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%2520Bits/symbol-proto_dofjn4.webp" loading="lazy"></a></p>
+
+<p>Other iterable objects include <code>String</code>, <code>Map</code>, <code>Set</code>. Note that <code>Object</code> is NOT iterable by default.</p>
+
+<p>Now for the hardest definition of <b>iterator</b>. An iterator is any object that implements the <b>iterator protocol</b>. Oh boy, what's that? 🙄</p>
+
+<p>Let's pause for this quick recap:</p>
+
+<ul>
+  <li>
+<b>Iteration</b>: A repetition in a sequence/loop.</li>
+  <li>
+<b>Iterable</b>: An object having the ability to be iterated upon.</li>
+  <li>
+<b>Iterator</b>: Any object that implements the iterator protocol.</li>
+</ul>
+
+<p>The <b>iterator protocol</b> is a standard way to produce a sequence of values and potentially a return value when all values have been produced. This is achieved via an object having a special <code>next()</code> method.</p>
+
+<p>If this is a lot of understand right now that's completely expected. Stick with me! To explain this further, we know that there are some built-in iterables like <code>Array</code>. We learned that <code>Array</code> is an iterable object because its prototype includes the <code>Symbol.iterator</code> key. We can see that this key is actually a method:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--vKmYL6F0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%2520Bits/chrome_aymvczzypU_txzapl.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--vKmYL6F0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%2520Bits/chrome_aymvczzypU_txzapl.webp" loading="lazy"></a></p>
+
+<p>Okay... so what does this method return when we call it?</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--golukGzt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%2520Bits/chrome_Vm54JXql4J_dbd0bs.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--golukGzt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%2520Bits/chrome_Vm54JXql4J_dbd0bs.webp" loading="lazy"></a></p>
+
+<p>Interesting! It returns an <b>iterator object</b> that includes that special <code>next()</code> method we mentioned above. </p>
+
+<p>Since <code>Array</code> is a built-in iterable, it implements the iterator protocol which is the way its values are iterated over. Let's check this out in code:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> zoo = [<span class="hljs-string">'lion'</span>, <span class="hljs-string">'fox'</span>, <span class="hljs-string">'lizard'</span>, <span class="hljs-string">'bat'</span>]; 
+<span class="hljs-keyword">const</span> iterator = zoo[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>](); <span class="hljs-comment">// Get zoo's iterator</span>
+
+iterator.<span class="hljs-title function_">next</span>(); <span class="hljs-comment">// Returns {value: "lion", done: false}</span>
+iterator.<span class="hljs-title function_">next</span>(); <span class="hljs-comment">// Returns {value: "fox", done: false}</span>
+iterator.<span class="hljs-title function_">next</span>(); <span class="hljs-comment">// Returns {value: "lizard", done: false}</span>
+iterator.<span class="hljs-title function_">next</span>(); <span class="hljs-comment">// Returns {value: "bat", done: false}</span>
+iterator.<span class="hljs-title function_">next</span>(); <span class="hljs-comment">// {value: undefined, done: true}</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>The object returned by the iterator's <code>next()</code> method will have 2 properties by default: </p>
+
+<ol>
+  <li>
+<b>done:</b> a boolean indicating if the iterator produced any value in the iteration.</li>
+  <li>
+<b>value:</b> the value returned by the iterator</li>
+</ol>
+
+<p>This whole procedure using <code>next()</code> and checking the return object's <code>value</code> and <code>done</code> properties is what's happing under the hood when you use a statement that expects iterables such as <code>for...of</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> animal <span class="hljs-keyword">of</span> zoo) {
+  <span class="hljs-comment">// Each iteration is internally calling next()</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(animal); 
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now if we go back to the formal description of <code>Symbol.iterator</code>'s behavior, it makes a little more sense:</p>
+
+<blockquote>
+<p>Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its <code>@@iterator</code> method is called with no arguments, and the returned iterator is used to obtain the values to be iterated. --<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator">MDN</a></p>
+</blockquote>
+
+<p>While this happens behind the scenes, we can manipulate <code>Symbol.iterator</code> to create some custom functionality. Note that when we do this we must follow that iterator protocol by adding the <code>next()</code> method that returns a object containing <code>value</code> and <code>done</code> properties:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> zoo = [<span class="hljs-string">'lion'</span>, <span class="hljs-string">'pizza'</span>, <span class="hljs-string">'fox'</span>, <span class="hljs-string">'lizard'</span>, <span class="hljs-string">'donut'</span>, <span class="hljs-string">'bat'</span>]; 
+zoo[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+
+  <span class="hljs-comment">// This must return the iteration obj w/ the iterator protocol</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">self</span>: zoo,
+    <span class="hljs-attr">step</span>: <span class="hljs-number">0</span>,
+
+    <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">const</span> current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">self</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span>];
+      <span class="hljs-keyword">const</span> isDone = <span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span> === <span class="hljs-variable language_">this</span>.<span class="hljs-property">self</span>.<span class="hljs-property">length</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span>++;
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/pizza|donut/</span>.<span class="hljs-title function_">test</span>(current)) {
+        <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: <span class="hljs-string">`<span class="hljs-subst">${current}</span>-monster`</span>, <span class="hljs-attr">done</span>: isDone };
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> {<span class="hljs-attr">value</span>: current, <span class="hljs-attr">done</span>: isDone };
+      }
+    }
+  }
+};
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>With the code above, we wanted to add the string <code>-monster</code> to any value in the array containing "pizza" or "donut." We used the array's <code>Symbol.iterator</code> property to create a custom iterator object (following the iterator protocol) to do implement this. Now when we iterator over this object we'll see that result:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> animal <span class="hljs-keyword">of</span> zoo) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(animal);
+}
+
+<span class="hljs-comment">/* Logs:
+  lion
+  pizza-monster
+  fox
+  lizard
+  donut-monster
+  bat
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now we understand that <code>Symbol.iterator</code> is <b>a symbol (unique value / method) that defines the iteration behavior (or "iteration protocol") of an object</b>. That's what <code>Symbol.iterator</code> is! 🎉</p>
+
+<p>We mentioned before that regular objects are not iterable (they have no <code>Symbol.iterator</code> property):<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> albums = {
+  <span class="hljs-string">'Kill \'Em All'</span>: <span class="hljs-number">1983</span>,
+  <span class="hljs-string">'Ride the Lightning'</span>: <span class="hljs-number">1984</span>,
+  <span class="hljs-string">'Master of Puppets'</span>: <span class="hljs-number">1986</span>,
+  <span class="hljs-string">'...And Justice for All'</span>: <span class="hljs-number">1988</span>,
+  <span class="hljs-string">'Metallica'</span>: <span class="hljs-number">1991</span>
+};
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> album <span class="hljs-keyword">of</span> albums) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(album);
+}  <span class="hljs-comment">// ❌ TypeError: albums is not iterable</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>But we can make it iterable!<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> albums = {
+  <span class="hljs-string">'Kill \'Em All'</span>: <span class="hljs-number">1983</span>,
+  <span class="hljs-string">'Ride the Lightning'</span>: <span class="hljs-number">1984</span>,
+  <span class="hljs-string">'Master of Puppets'</span>: <span class="hljs-number">1986</span>,
+  <span class="hljs-string">'...And Justice for All'</span>: <span class="hljs-number">1988</span>,
+  <span class="hljs-string">'Metallica'</span>: <span class="hljs-number">1991</span>,
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">step</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">values</span>: <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(albums),
+
+      <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> isDone = <span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span> === <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-property">length</span>;
+        <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span>];
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">step</span>++;
+
+        <span class="hljs-keyword">return</span> { value, <span class="hljs-attr">done</span>: isDone };
+      }
+    };
+  }
+};
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> album <span class="hljs-keyword">of</span> albums) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(album);
+}
+
+<span class="hljs-comment">/* Logs:
+  1983
+  1984
+  1986
+  1988
+  1991
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Pretty cool, right? You have the flexibility to make your iterator as simple or as complex and you want. </p>
+
+<p>Lastly, to tie up one loose-end, <code>for...of</code> works differently than the other looping constructs in JavaScript. For example, <code>for...in</code> will only loop over the enumerable properties of an object while <code>for...of</code> will loop over any data that is iterable (implemented with the iterable protocol):<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> album <span class="hljs-keyword">in</span> albums) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(album);
+}
+
+<span class="hljs-comment">/* Logs:
+  Kill 'Em All
+  Ride the Lightning
+  Master of Puppets
+  ...And Justice for All
+  Metallica
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Furthermore, after we modified our <code>zoo</code> array to return food monsters, a regular <code>forEach()</code> array method will continue to log the regular array values since we're not using the built-in iterator:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>zoo.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">animal</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(animal));
+
+<span class="hljs-comment">/* Logs:
+  lion
+  pizza
+  fox
+  lizard
+  donut
+  bat
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>As you can see, there's a big difference between these looping methods but <code>Symbol.iterator</code> allows for much greater control. 🎮</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a></p>
+
+
+        </div>
+      </article>
+    </body></html>

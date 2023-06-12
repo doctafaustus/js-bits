@@ -1,0 +1,71 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>JS Quirk: Element IDs are global variables!</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 12/14/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Here's an interesting quirk I recently discovered:</p>
+
+<p><b>Any HTML element containing an id creates a global variable of the same name.<b></b></b></p>
+
+<p>Let's start with our HTML:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"title"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>This is what we'll see in the console when we reference <code>window.title</code>:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--bJxRA9zz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608051521/JS%2520Bits/global-id-variable_mgvpqi.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--bJxRA9zz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608051521/JS%2520Bits/global-id-variable_mgvpqi.png" loading="lazy"></a></p>
+
+<p>There's some interesting behavior with this though. You can overwrite this variable as you'd expect:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--_rauNv4h--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608051743/JS%2520Bits/global-id-variable-overwrite_zgjihy.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--_rauNv4h--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608051743/JS%2520Bits/global-id-variable-overwrite_zgjihy.png" loading="lazy"></a></p>
+
+<p>But let's say we deleted our <code>&lt;h1&gt;</code> element and added another with the same id. Would this overwrite the global variable again?</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--cJSL7gk_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608052092/JS%2520Bits/global-id-variable-overwrite-2_bkahsz.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--cJSL7gk_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1608052092/JS%2520Bits/global-id-variable-overwrite-2_bkahsz.png" loading="lazy"></a></p>
+
+<p>It does not! 😮</p>
+
+<p>That's probably a good thing since this would probably cause many a confused developer!</p>
+
+<p>Although I couldn't locate the documentation for this quirk in the DOM specification, this behavior appears consistent across Chrome, Firefox, Edge, and Safari. Interesting!</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>
