@@ -49,6 +49,10 @@ app.get('/linkedin-badge', (req, res) => {
   res.render('linkedin-badge');
 });
 
+app.get('/bug-bash', (req, res) => {
+  res.status(301).redirect('https://www.udemy.com/course/js-bits-bug-bash');
+});
+
 app.listen(process.env.PORT || 8080, () => {
   console.log('App running...');
 });
