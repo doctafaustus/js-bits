@@ -219,7 +219,9 @@ article {
 article img { max-width: 100%; }
 article .article-body-image-wrapper { cursor: default; }
 
-
+.default a {
+  color: #0000ee;
+}
 
 @media (max-width: 1280px) {
   article {
