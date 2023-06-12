@@ -1,0 +1,110 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Journey into the Minification Abyss: The Peculiar '0' Placeholder</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 6/9/2023</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>In minified code, you'll often notice a pattern that looks like this:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>i.<span class="hljs-property">default</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"p"</span>, {
+  <span class="hljs-attr">dangerouslySetInnerHTML</span>: {
+    <span class="hljs-attr">__html</span>: (<span class="hljs-number">0</span>, $.sanitize)(n.<span class="hljs-property">desc</span>) <span class="hljs-comment">// What's the 0?</span>
+  },
+  <span class="hljs-attr">__self</span>: <span class="hljs-variable language_">this</span>,
+  <span class="hljs-attr">__source</span>: {
+    <span class="hljs-attr">fileName</span>: S,
+    <span class="hljs-attr">lineNumber</span>: <span class="hljs-number">328</span>,
+    <span class="hljs-attr">columnNumber</span>: <span class="hljs-number">13</span>
+  }
+})
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>With the line <code>__html: (0, $.sanitize)(n.desc)</code>, we see 2 curious things:</p>
+
+<ol>
+<li>Why do the parens in <code>(0, $.sanitize)</code> have two expressions?</li>
+<li>Why is there a seemingly useless number <code>0</code> present?</li>
+</ol>
+
+<p>Let's explain:<br>
+<code>(0, $.sanitize)(n.desc)</code> simply calls <code>$.sanitize</code> with <code>n.desc</code> as an argument. In other words, this is the same as:   <code>$.sanitize(n.desc)</code>.</p>
+
+<p>Inside the parenthesis, the comma operator evaluates all expressions in sequence but only returns the value of the <b>last</b> expression.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> (<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">1</span>+<span class="hljs-number">3</span>);
+}
+
+<span class="hljs-title function_">foo</span>(); <span class="hljs-comment">// returns 4</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>So by adding the <code>0</code> before the comma <code>,</code> in <code>(0, $.sanitize)(n.desc)</code> the transpiler is using the comma operator to create an expression where the value <code>0</code> is discarded, but the function <code>$.sanitize</code> is still executed. This ensures that the <code>$.sanitize</code> function is treated as a <b>standalone expression</b> and evaluated before the function call <code>(...)(...)</code> is made. This minute difference allows the transpiler to maintain <em>syntactic coherence</em> in it's rules for transformation which facilitate optimization and compatibility. What "syntactic coherence" you ask? </p>
+
+<p>Well it depends on a lot like the transpiler used, custom configurations, and the code context itself, but any one of these operations may require this pattern:</p>
+
+<ul>
+<li>
+<b>Module bundling</b>: to ensure module dependencies are resolved correctly.</li>
+<li>
+<b>Minification/optimization</b>: to apply a particular optimization to the code.</li>
+<li>
+<b>Interoperability</b>: to ensure compatibility with other tools/plugins in the build pipeline.</li>
+<li>
+<b>Code analysis</b>: to create a compatible output for proper analysis for code metrics.</li>
+</ul>
+
+<p>While <code>($.sanitize)(n.desc)</code> would still produce the same expression as <code>(0, $.sanitize)(n.desc)</code>, the addition of the <code>0</code> as a placeholder value highlights the intention for the function to be treated as a standalone expression.</p>
+
+<p>I always believed the <code>0</code> in these patterns were an index to another function in the code bundle, but it's not! It's just a placeholder to maintaining syntactic harmony according to the transpiler rules. ✨ </p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿 <a href="https://jsbits-yo.com">JS Bits Blog</a></p>
+
+
+        </div>
+      </article>
+    </body></html>
