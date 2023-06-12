@@ -1,0 +1,148 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Rest properties with object destructuring</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 7/24/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>If we want clone an object but remove certain properties we can use this fancy trick:</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> user = {
+  <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Homer'</span>,
+  <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Simpson'</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">40</span>,
+  <span class="hljs-attr">city</span>: <span class="hljs-string">'Springfield'</span>,
+};
+
+<span class="hljs-keyword">const</span> { age, ...userWithoutAge } = user;
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Let's see what's inside <code>userWithoutAge</code>:</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// userWithoutAge</span>
+{ 
+  <span class="hljs-attr">firstName</span>: <span class="hljs-string">"Homer"</span>,
+  <span class="hljs-attr">lastName</span>: <span class="hljs-string">"Simpson"</span>,
+  <span class="hljs-attr">city</span>: <span class="hljs-string">"Springfield"</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>So we have a clone of the original object, but without the <code>age</code> property. Umm, what? 🤔</p>
+
+<p>This is how it works!</p>
+
+<p>First, let's look at a simpler example without the use of the "rest spreading":</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> { age, city } = user;
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(age); <span class="hljs-comment">// 40</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(city); <span class="hljs-comment">// Springfield</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>
+  Here, we're simply destructuring the object to retrieve the <code>age</code> and <code>city</code> properties as new variables. Cool, so let's see what happens when we look at the original example:
+</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> { age, ...userWithoutAge } = user;
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>
+  First, we destructure the <code>age</code> property as we just saw, but also we utilize <b>object rest spreading</b> to collect the leftover properties into a variable we can name anything; in this case we call it <code>userWithoutAge</code>. This object we just created on the fly now contains all the original <code>user</code> properties except the age!
+</p>
+
+<p>
+Using rest properties for object destructuring assignment is a newer feature added in ECMAScript 2018 and is available in modern browsers.
+</p>
+
+<h3>Links</h3>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Article on spread syntax</a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

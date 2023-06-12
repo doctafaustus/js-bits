@@ -1,0 +1,166 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>"Happy Medium Commenting" in JavaScript</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 12/6/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Warning</b>: this is an opinionated post! 😱</p>
+
+<p>Having worked on a variety of front-end teams, I've observed a big difference of opinion on JavaScript commenting conventions. Everything from the practice of commenting every single function with a documentation generator from not commenting anything at all. I've found that there's a <b>happy medium</b> where we can comment only when necessary and still preserve clarity.</p>
+
+<p>An important principle I think we sometimes forget is that we write code so that both the computer and human can understand it. But there should be more effort devoted towards the human - otherwise we'd all be naming our variables <code>x</code>, <code>y</code>, or  <code>z</code>.</p>
+
+<p>With that mind, you can name your functions, variables, classes, etc. with very clear names which can allow your reader to easily understand what your code is doing. If you do this correctly, the use of comments you'd use otherwise would be redundant.</p>
+
+<p>While this is a highly subjective manner, I think it is possible to have situations where too many comments can damage readability. Take this example for instance:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// Add Mutation Observers for table subtotals</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addSubtotalObservers</span>(<span class="hljs-params"></span>) {
+
+  <span class="hljs-comment">// Get all table elements</span>
+  <span class="hljs-keyword">const</span> tables = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'.subscribe-table'</span>);
+
+  <span class="hljs-comment">// Loop through each table element</span>
+  tables.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">table</span> =&gt;</span> {
+
+    <span class="hljs-comment">// Get subtotal</span>
+    <span class="hljs-keyword">const</span> subtotal = table.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'.subtotal'</span>);
+
+    <span class="hljs-comment">// Create Mutation Observer callback on subtotal</span>
+    <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MutationObserver</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-comment">// Disconnect to prevent infinite loop</span>
+      observer.<span class="hljs-title function_">disconnect</span>();
+
+      <span class="hljs-comment">// Update subtotal total</span>
+      <span class="hljs-title function_">updateSubtableTotal</span>(subtotal);
+    });
+
+    <span class="hljs-comment">// Create Mutation Observer options</span>
+    <span class="hljs-keyword">const</span> options = { <span class="hljs-attr">attributes</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">childList</span>: <span class="hljs-literal">false</span> };
+
+    <span class="hljs-comment">// Init Mutation Observer</span>
+    observer.<span class="hljs-title function_">observe</span>(subtotal, options);
+  });
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Here we've added a comment for every single line. If we remove virtually all of the comments, I'd wager 99% of readers who are familiar with JS and the DOM API would understand this function perfectly fine. </p>
+
+<p>Let's redo this and only add a comment where it's truly important:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">addSubtotalObservers</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> tables = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'.subscribe-table'</span>);
+
+  tables.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">table</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> subtotal = table.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'.subtotal'</span>);
+
+    <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MutationObserver</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-comment">// Disconnect to prevent infinite loop</span>
+      observer.<span class="hljs-title function_">disconnect</span>();
+      <span class="hljs-title function_">updateSubtableTotal</span>(subtotal);
+    });
+
+    observer.<span class="hljs-title function_">observe</span>(subtotal, { <span class="hljs-attr">attributes</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">childList</span>: <span class="hljs-literal">false</span> });
+  });
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>I would argue this version improves readability. We can figure out what's going on from the naming itself, plus it's a shorter block that isn't bloating our file scroll depth. </p>
+
+<p>Perhaps any comment here would be better off telling the reader why this function is necessary in the first place. But maybe the context of the script already makes that obvious. That's the crux in all of this - but the what of the function is what I'm emphasizing here.</p>
+
+<p>But I really do think commenting can be abused. Take <a href="https://jsdoc.app/">JSDoc</a> for example. At a previous job, we adopted this standard and were supposed to use JSDoc's convention for every function:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">/**
+ * Callback for adding two numbers.
+ *
+ * <span class="hljs-doctag">@callback</span> <span class="hljs-variable">addNumsCallback</span>
+ * <span class="hljs-doctag">@param</span> {<span class="hljs-type">int</span>} <span class="hljs-variable">sum</span> - An integer.
+ */</span>
+
+<span class="hljs-comment">/**
+ * Add 2 numbers together, then pass the results to a callback function
+ *
+ * <span class="hljs-doctag">@param</span> {<span class="hljs-type">int</span>} <span class="hljs-variable">x</span> - An integer.
+ * <span class="hljs-doctag">@param</span> {<span class="hljs-type">int</span>} <span class="hljs-variable">y</span> - An integer.
+ * <span class="hljs-doctag">@param</span> {<span class="hljs-type">addNumsCallback</span>} <span class="hljs-variable">callback</span> - A callback to run.
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addNums</span>(<span class="hljs-params">x, y, callback</span>) {
+  <span class="hljs-title function_">callback</span>(x + y);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Imagine doing that for every single function in your code. That's 14 lines of comments for 3 lines of code. 😬</p>
+
+<p>Don't get me wrong, this kind of API-like commenting has it's place: like... documenting an API... but as a requirement to every block you write, I'd say this hurts more than it helps. </p>
+
+<p>Programmer Ryan Mcdermott writes in his guide, <a href="https://github.com/ryanmcdermott/clean-code-javascript">Clean Code JavaScript</a>, that "comments are an apology, not a requirement". In other words, comments should be used in places where you're sorry for having to do things a certain way, or apologizing for what could be perceived as a lack of clarity and righting the wrong with more detail. Otherwise, the way you write should make your intent clear.</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

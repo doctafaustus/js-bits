@@ -1,0 +1,98 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>How to restore native browser code</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 8/25/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Native code is functionality that has been included by the browser's engine and not defined by you, the programmer. Some browsers like Chrome allow you to see if a function is native by simply entering it in the console (and not calling it with parentheses):</p>
+<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--WCcWerKR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/chrome_uYVLnVqDXB_dx0xlc.png" loading="lazy">
+
+<p>Occasionally, you may encounter a scenario where some native code has been overwritten. In my experience as a 3rd party dev, I've seen a few instances where the console has been overwritten to an empty function. This is usually done by clients who are hyper-cautious about sensitive customer information being shown (but seriously, if someone really wants to find this info they will!). Trying to write code without a functioning console is a giant pain so I had a good use case to restore the console's native functionality. (Note this was only done for local development and not deployed live!).</p>
+
+<p>For example, the <a href="https://m.kohls.com/">Khols.com</a> mobile site has all their console methods overwritten to an empty function (Be sure to simulate the mobile site in your emulator).</p>
+<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ykXt5-jp--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/console_1_t2vatq.png" loading="lazy">
+
+<p>So here's how we can restore it:</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">createConsoleProxy</span>(<span class="hljs-params"></span>) {
+
+  <span class="hljs-comment">// Create dummy iframe to steal its fresh console object</span>
+  <span class="hljs-keyword">const</span> iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'iframe'</span>);
+
+  <span class="hljs-comment">// Add iframe to current window's scope in a hidden state</span>
+  iframe.<span class="hljs-property">id</span> = <span class="hljs-string">'console-proxy'</span>;
+  iframe.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">'none'</span>;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">insertAdjacentElement</span>(<span class="hljs-string">'beforeend'</span>, iframe);
+
+  <span class="hljs-comment">// Reassign value of console to iframe's console </span>
+  <span class="hljs-keyword">const</span> proxyIframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'#console-proxy'</span>);
+  <span class="hljs-variable language_">window</span>.<span class="hljs-property">console</span> = proxyIframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-property">console</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>When we enter <code>console.log;</code> in the console... BAM! It's back to it's "native" state!</p>
+<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--thkZkkfX--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/chrome_G2uvuA5ckm_ayqcf6.png" loading="lazy">
+
+<p>Before this method was used, a coworker came up with a clever alternative to view messages by creating a custom <code>log()</code> function that would take user input and prepend it to the body:</p>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">log</span>(<span class="hljs-params">msg</span>) {
+  <span class="hljs-keyword">const</span> body = <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>;
+  body.<span class="hljs-title function_">insertAdjacentHTML</span>(<span class="hljs-string">'afterbegin'</span>, <span class="hljs-string">`&lt;div&gt;<span class="hljs-subst">${msg}</span>&lt;/div&gt;`</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>This worked enough to see simple messages but we quickly realized we needed the ability to expand objects so it had limited use. But challenges like this are always fun. 🤪</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

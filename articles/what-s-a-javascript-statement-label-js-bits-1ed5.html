@@ -1,0 +1,152 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>What's a JavaScript Statement Label?</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 9/9/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>While perusing a list of JavaScript statement and declaration types, I noticed one I hadn't seen before and that was a "label."</p>
+
+<p>With a label you can namespace a statement:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-attr">myLabel</span>: {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'To be'</span>);
+  <span class="hljs-keyword">break</span> myLabel;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Or not to be'</span>);
+}
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'That is the question 💀'</span>);
+
+<span class="hljs-comment">/*
+Logs:
+
+  To be
+  That is the question 💀
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>We use a <code>break</code> to terminate the statement labeled <code>myLabel</code> and thus <code>console.log('Or not to be');</code> does not run.</p>
+
+<p>This code looks like we're creating an object with a key named <code>myLabel</code> and a value of another object but that is not it. As described in my earlier <a href="https://dev.to/js_bits_bill/how-javascript-blocks-work-js-bits-aha">article</a>, blocks are a set of zero or more statements grouped by curly braces. In our example, we've created a labeled block. Inside the block code we are breaking out of the same block referenced by its label.</p>
+
+<p>Although they're not commonly used (in lieu of function calls), labels can be used with loops to either continue or jump out of the iteration:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> fruit = [<span class="hljs-string">'🍇'</span>, <span class="hljs-string">'🍍'</span>, <span class="hljs-string">'🍎'</span>];
+
+<span class="hljs-attr">myLoop</span>:
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+
+  <span class="hljs-attr">loopDaFruit</span>:
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; fruit.<span class="hljs-property">length</span>; j++) {
+    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span> loopDaFruit;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i, fruit[j]);
+  }
+}
+
+<span class="hljs-comment">/*
+Logs:
+
+  0 "🍇"
+  0 "🍍"
+  0 "🍎"
+  2 "🍇"
+  2 "🍍"
+  2 "🍎"
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Conversely, we can achieve the same result using the first loop's label with <code>continue</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> fruit = [<span class="hljs-string">'🍇'</span>, <span class="hljs-string">'🍍'</span>, <span class="hljs-string">'🍎'</span>];
+
+<span class="hljs-attr">myLoop</span>:
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+
+  <span class="hljs-attr">loopDaFruit</span>:
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; fruit.<span class="hljs-property">length</span>; j++) {
+    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span> myLoop;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i, fruit[j]);
+  }
+}
+
+<span class="hljs-comment">/*
+Logs:
+
+  0 "🍇"
+  0 "🍍"
+  0 "🍎"
+  2 "🍇"
+  2 "🍍"
+  2 "🍎"
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Seeing a labeled statement first the first time threw me off because it almost looked like some form of object literal syntax. Now it's clear what's really going on on, even though labeled statements are rare to see in the wild. 🦁</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

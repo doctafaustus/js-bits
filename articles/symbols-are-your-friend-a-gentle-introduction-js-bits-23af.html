@@ -1,0 +1,290 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Part I: A Gentle Introduction</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 9/14/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>The concept of the Symbol can trip up many a developer. In this article, I'll attempt to demystify them and describe what they are.</p>
+
+<p>To start: <b>Symbols are a new primitive data type in JavaScript</b>. If you haven't memorized the 6 primitives in JS, I use the mnemonic device acronym of <b>BBUNSS</b> 🍔:</p>
+
+<ol>
+  <li>Boolean</li>
+  <li>BigInt</li>
+  <li>undefined</li>
+  <li>Number</li>
+  <li>String</li>
+  <li>Symbol</li>
+</ol>
+
+<p>The <b>Symbol</b> data type is simply <b>a unique value</b>. Unique values are useful to avoid name conflicts involving variables and object properties.</p>
+
+<p>To create a new symbol we simply call the global <code>Symbol</code> function, optionally passing in a descriptor string:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> s1 = <span class="hljs-title class_">Symbol</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(s1); <span class="hljs-comment">// logs Symbol()</span>
+
+<span class="hljs-keyword">const</span> s2 = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'abc'</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(s2); <span class="hljs-comment">// logs Symbol(abc);</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Note that these return values <b>are not strings</b> but rather <b>symbols</b>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> s2); <span class="hljs-comment">// Logs "symbol"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Another gotcha' with Symbol, is that every time you create one, it is totally unique from any other symbol you created before. This demonstrates that the string you pass into the function is not being coerced into a symbol - it's simply a label that can be used for clarity or debugging:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'abc'</span>) === <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'abc'</span>); <span class="hljs-comment">// false</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>While the return values of <code>Symbol('abc')</code> and <code>Symbol('abc')</code> print out exactly the same in the code, this doesn't mean that they're the same - these are unique entities.</p>
+
+<p>So why would we want to create these unique values? <b>Their main purpose is to function as an identifier for object properties</b>.</p>
+
+<p>But wait. We already use string-based keys to identify object properties. What benefit would symbols provide?</p>
+
+<p>Consider the following function <code>getRace()</code> that takes a string of your favorite Dragon Ball Z character and uses a switch statement to return their race:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">GOKU</span> = <span class="hljs-string">'Goku'</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PICCOLO</span> = <span class="hljs-string">'Piccolo'</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">BULMA</span> = <span class="hljs-string">'Bulma'</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">KRILLIN</span> = <span class="hljs-string">'Piccolo'</span>; <span class="hljs-comment">// &lt;- Oops, someone messed up!</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getRace</span>(<span class="hljs-params">character</span>) {
+  <span class="hljs-keyword">switch</span> (character) {
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">GOKU</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Saiyan'</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">PICCOLO</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Namekian'</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">BULMA</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Human'</span>;
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'No race found!'</span>);
+  }
+}
+
+<span class="hljs-title function_">getRace</span>(<span class="hljs-variable constant_">PICCOLO</span>); <span class="hljs-comment">// Returns 'Namekian'</span>
+<span class="hljs-title function_">getRace</span>(<span class="hljs-variable constant_">KRILLIN</span>); <span class="hljs-comment">// Returns 'Namekian' (D'oh!)</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Here we intended for only one unique "Piccolo" character to be created. But the variable <code>KRILLIN</code> was also created and set to the same value. So when <code>getRace(KRILLIN)</code> is called, our function returns <code>'Namekian'</code> because of this conflict. With symbols, we can create <b>100% unique identifiers</b>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">GOKU</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'Goku'</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PICCOLO</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'Piccolo'</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">BULMA</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'Bulma'</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">KRILLIN</span> = <span class="hljs-string">'Piccolo'</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getRace</span>(<span class="hljs-params">character</span>) {
+  <span class="hljs-keyword">switch</span> (character) {
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">GOKU</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Saiyan'</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">PICCOLO</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Namekian'</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-attr">BULMA</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'Human'</span>;
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'No race found!'</span>);
+  }
+}
+
+<span class="hljs-title function_">getRace</span>(<span class="hljs-variable constant_">PICCOLO</span>); <span class="hljs-comment">// Returns 'Namekian'</span>
+<span class="hljs-title function_">getRace</span>(<span class="hljs-variable constant_">KRILLIN</span>); <span class="hljs-comment">// Logs 'No race found!'</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now we're checking for those <b>exact unique symbols</b> inside that switch statement instead of non-unique strings to get a more expected result. </p>
+
+<p>Let's look at another example:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// app.js</span>
+
+<span class="hljs-comment">// Create character record</span>
+<span class="hljs-keyword">const</span> character = {
+  <span class="hljs-attr">id</span>: <span class="hljs-number">123</span>, 
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Goku'</span>,
+  <span class="hljs-attr">race</span>: <span class="hljs-string">'Saiyan'</span>
+};
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// service.js</span>
+
+<span class="hljs-comment">// Later in our app, some service overwrites the id 😠</span>
+character.<span class="hljs-property">id</span> = <span class="hljs-number">999</span>;
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Since we used a regular string-based key to create the id property, any other place in our app can have code that could access and modify the property's value. That is not always desirable.</p>
+
+<p>Let's use a symbol for the id instead:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">// app.js</span>
+
+<span class="hljs-comment">// Create character record w/ id symbol</span>
+<span class="hljs-keyword">const</span> id = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">'id'</span>);
+<span class="hljs-keyword">const</span> character = {
+  [id]: <span class="hljs-number">123</span>, <span class="hljs-comment">// Using [id] makes the key dynamic</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Goku'</span>,
+  <span class="hljs-attr">race</span>: <span class="hljs-string">'Saiyan'</span>
+};
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(character.<span class="hljs-property">id</span>) <span class="hljs-comment">// Logs undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(character[id]); <span class="hljs-comment">// Logs 123</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Now the id can only be read or changed if we explicitly use the "id" <b>symbol</b> to access the property. Other parts of the app will not be able to access this property unless we also provide the symbol. This prevents clashes since we're not using a string for the property access. </p>
+
+<p>You can see that the use of symbols can "harden" our logic in our code. There's plenty more to explore about symbols in another article, but hopefully this was a nice gentle introduction of their concept! 🐤</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

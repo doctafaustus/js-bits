@@ -1,0 +1,130 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>3 Uncommon but useful HTML elements</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/19/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <h2>1) <code>&lt;abbr&gt;</code>
+</h2>
+
+<p>The <b>abbreviation</b> <code>&lt;abbr&gt;</code> element is used to represent an acronym or abbreviation. If you include a <code>title</code> attribute, the text will be display as a tooltip on hover!<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  The <span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Product Detail Page"</span>&gt;</span>PDP<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span> provides
+  information on a specific product.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--5CJZfSC5--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687036/JS%2520Bits/abbr_tag_oimzss.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--5CJZfSC5--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687036/JS%2520Bits/abbr_tag_oimzss.jpg" loading="lazy" width="411" height="139"></a></p>
+
+
+<hr>
+
+<h2>2) <code>&lt;progress&gt;</code>
+</h2>
+
+<p>The <code>&lt;progress&gt;</code> element will display a progress bar indicator that can be easily controlled with it's <code>value</code> attribute. The JavaScript in this example will incrementally fill our progress bar every 100ms as shown here:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"progress"</span>&gt;</span>Progress:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"progress"</span> <span class="hljs-attr">max</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">const</span> progress = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'#progress'</span>);
+  <span class="hljs-keyword">let</span> val = <span class="hljs-number">0</span>;
+
+  <span class="hljs-title function_">setProgress</span>();
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">setProgress</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (val &gt; <span class="hljs-number">100</span>) val = <span class="hljs-number">0</span>;
+    progress.<span class="hljs-property">value</span> = ++val;
+    <span class="hljs-built_in">setTimeout</span>(setProgress, <span class="hljs-number">100</span>);
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Ccn0LFk---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687087/JS%2520Bits/progress_tag_jaqggk.gif" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ccn0LFk---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687087/JS%2520Bits/progress_tag_jaqggk.gif" loading="lazy" width="411" height="140" data-animated="true"></a></p>
+
+
+<hr>
+
+<h2>3) <code>&lt;wbr&gt;</code>
+</h2>
+
+<p>The word break opportunity <code>&lt;wbr&gt;</code> element will allow you to specify exactly where a line of text should break when there is overflow. For example, if we have a super long line of text like this URL, we can tell the browser where the text should break if it doesn't fit on one line:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+http://is.this.just.real.life.com/is<span class="hljs-tag">&lt;<span class="hljs-name">wbr</span>&gt;</span>/this/just/fantasy/caught/in/a/landslide/no/espace/from/reality
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--CGxaMNHt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687008/JS%2520Bits/wbr_z3gckm.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--CGxaMNHt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1634687008/JS%2520Bits/wbr_z3gckm.jpg" loading="lazy" width="411" height="139"></a></p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://www.tiktok.com/@js_bits">TikTok</a>, <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and I have a new <a href="https://jsbits-yo.com/bug-bash/">debugging course</a> dropping soon!</p>
+
+
+        </div>
+      </article>
+    </body></html>

@@ -1,0 +1,316 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>CSS Discord Logo</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 9/21/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>First, we'll need an HTML skeleton. We'll use 2 groups of identical <code>div</code>s for the sides of the logo and one <code>div</code> for the head/body.</p>
+
+<h1>
+  <a name="html-structure" href="#html-structure">
+  </a>
+  HTML Structure
+</h1>
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"discord-logo"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"group-left"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-top"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-mid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-bottom"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eye"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"group-right"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-top"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-mid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wing-bottom"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eye"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"head"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<h1>
+  <a name="css-styles" href="#css-styles">
+  </a>
+  CSS Styles
+</h1>
+
+<p>The CSS begins with styling the head as an oval with a drop shadow on the bottom:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#040714</span>;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">50px</span>;
+}
+
+<span class="hljs-selector-class">.head</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">5</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">322px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">216px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">22px</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">85px</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#404eed</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">box-shadow</span>: inset <span class="hljs-number">0</span> -<span class="hljs-number">12px</span> <span class="hljs-number">0</span> <span class="hljs-number">#00000026</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--su2hBfKd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279758/JS%2520Bits/Discord_Logo_1_sfjbpz.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--su2hBfKd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279758/JS%2520Bits/Discord_Logo_1_sfjbpz.jpg" loading="lazy"></a></p>
+
+<p>Then we'll add some shared styles for the other components:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.wing-top</span>,
+<span class="hljs-selector-class">.wing-mid</span>,
+<span class="hljs-selector-class">.wing-bottom</span>,
+<span class="hljs-selector-class">.eye</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#404eed</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">10</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Next we'll start creating the left "wing." The top piece will be an oblong oval transformed and skewed:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.wing-top</span> {
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">283px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">99px</span>;
+  <span class="hljs-attribute">top</span>: -<span class="hljs-number">47px</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">65px</span>;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">56deg</span>) <span class="hljs-built_in">skewY</span>(<span class="hljs-number">7deg</span>);
+  <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">7%</span> <span class="hljs-number">0</span> <span class="hljs-number">61%</span> <span class="hljs-number">0</span> round <span class="hljs-number">24px</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--6ovzknwu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279771/JS%2520Bits/Discord_Logo_2_nmxnl2.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--6ovzknwu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279771/JS%2520Bits/Discord_Logo_2_nmxnl2.jpg" loading="lazy"></a></p>
+
+<p>Once we apply that <code>clip-path</code> rule above, the shape will be cut away to look like this:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--dzxCEE2R--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279778/JS%2520Bits/Discord_Logo_3_krjj2d.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--dzxCEE2R--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279778/JS%2520Bits/Discord_Logo_3_krjj2d.jpg" loading="lazy"></a></p>
+
+<p>When we set the color of this shape to our bluish/purple then the overlap will blend in with the head/body. For the middle part of the wing, we'll add a similar shape then apply another <code>clip-path</code> rule:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.wing-mid</span> {
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">81px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">12px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">263px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">101px</span>;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">12deg</span>);
+  <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">7%</span> <span class="hljs-number">13%</span> <span class="hljs-number">15%</span> <span class="hljs-number">0</span> round <span class="hljs-number">25px</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Ld5x30wS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279788/JS%2520Bits/Discord_Logo_4_nmymdt.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ld5x30wS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279788/JS%2520Bits/Discord_Logo_4_nmymdt.jpg" loading="lazy"></a></p>
+
+<p>With the <code>clip-path</code> rule applied:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--sjvNByGN--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279795/JS%2520Bits/Discord_Logo_5_djtyf0.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--sjvNByGN--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279795/JS%2520Bits/Discord_Logo_5_djtyf0.jpg" loading="lazy"></a></p>
+
+<p>Then we'll add the bottom piece of the wing with this same procedure:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.wing-bottom</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">309px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">116px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">144px</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">box-shadow</span>: inset -<span class="hljs-number">14px</span> -<span class="hljs-number">7px</span> <span class="hljs-number">0px</span> <span class="hljs-number">3px</span> <span class="hljs-number">#00000026</span>;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">skewY</span>(<span class="hljs-number">342deg</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">38deg</span>);
+  <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">83px</span> <span class="hljs-number">118px</span> <span class="hljs-number">0</span> <span class="hljs-number">76px</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--49KJzlnQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279931/JS%2520Bits/Discord_Logo_6_k01coh.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--49KJzlnQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279931/JS%2520Bits/Discord_Logo_6_k01coh.jpg" loading="lazy"></a></p>
+
+<p>With <code>clip-path</code> applied:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--anJH22F9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279959/JS%2520Bits/Discord_Logo_7_jbhgt7.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--anJH22F9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279959/JS%2520Bits/Discord_Logo_7_jbhgt7.jpg" loading="lazy"></a></p>
+
+<p>Next we'll add a colored circle for the eye:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.eye</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#040714</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">61px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">70px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">116px</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">159px</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--TG2vI5Wx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279986/JS%2520Bits/Discord_Logo_8_uiu87e.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--TG2vI5Wx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632279986/JS%2520Bits/Discord_Logo_8_uiu87e.jpg" loading="lazy"></a></p>
+
+<p>Now all we need to do is reflect the <code>.group-right</code> element with an inverse <code>scaleX</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-class">.group-right</span> {
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">10</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">493px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleX</span>(-<span class="hljs-number">1</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>And we're done!</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--qiHlRgiZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632280069/JS%2520Bits/Discord_Logo_9_y3snfl.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--qiHlRgiZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1632280069/JS%2520Bits/Discord_Logo_9_y3snfl.jpg" loading="lazy"></a></p>
+
+<p>Here's the final code if you'd like to play around with it yourself: <a href="https://stackblitz.com/edit/web-platform-u1uzd3?file=index.html">https://stackblitz.com/edit/web-platform-u1uzd3?file=index.html</a></p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://www.tiktok.com/@js_bits">TikTok</a>, <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and I have a new <a href="https://jsbits-yo.com/bug-bash/">debugging course</a> dropping soon!</p>
+
+
+        </div>
+      </article>
+    </body></html>

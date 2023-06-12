@@ -1,0 +1,118 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Creating a Text-To-Speech program in Vanilla JS</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/28/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>If you haven't been too traumatized from using a Microsoft browser, you might have discovered Edge's built-in "Read Aloud" feature which will speak the highlighted text out loud right in your browser:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--3Vq-NV9g--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635438522/JS%2520Bits/edge-text-to-speech_y88jdn.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--3Vq-NV9g--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635438522/JS%2520Bits/edge-text-to-speech_y88jdn.jpg" loading="lazy" width="auto" height="auto"></a></p>
+
+<p>As of now, Chrome has no such feature so we're going to build it ourselves! Here's the code:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> text = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">getSelection</span>().<span class="hljs-title function_">toString</span>();
+  <span class="hljs-keyword">const</span> utterance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SpeechSynthesisUtterance</span>(text);
+  utterance.<span class="hljs-property">voice</span> = <span class="hljs-title function_">getFemaleVoice</span>();
+  speechSynthesis.<span class="hljs-title function_">speak</span>(utterance);
+}
+
+<span class="hljs-comment">// Optional - select one of several voices</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getFemaleVoice</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> voiceIndex = <span class="hljs-number">4</span>;
+  <span class="hljs-keyword">return</span> speechSynthesis.<span class="hljs-title function_">getVoices</span>()[voiceIndex];
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>So essentially we just pass in the string from <code>window.getSelection().toString()</code> to a new instance of <code>SpeechSynthesisUtterance</code> and call the <code>.speak()</code> method and that's it!</p>
+
+<p>But we need a way to trigger our <code>speak()</code> function. You could create a Chrome extension to add this functionality to the context menu but I've chosen to use DevTool's "Snippets" just to keep it simple. Snippets are your own custom saved scripts you can paste into your browser and run at will. They're super handy for utility functions like cookie getter/setters, JS libraries like Lodash or jQuery, custom UI modifications, etc. </p>
+
+<p>Once you create a snippet, you can run the code either by clicking "Run Snippet" or pressing Command/Control + Enter. You can also run them directly from the DevTools Command Menu. </p>
+
+<p>Snippets are located in the <b>Sources</b> tab and then on the sidebar click "Snippets":</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--dD7x6veM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635440825/JS%2520Bits/snippet_tnq2qw.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--dD7x6veM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635440825/JS%2520Bits/snippet_tnq2qw.jpg" loading="lazy" width="591" height="326"></a></p>
+
+<p>We just need a bit more overhead to account for the asynchronous loading of <code>speechSynthesis.getVoices()</code> so that our desired voice has loaded before the speech audio runs. The final code looks like this:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">if</span> (<span class="hljs-title function_">voiceLoaded</span>()) {
+  <span class="hljs-title function_">speak</span>();
+} <span class="hljs-keyword">else</span> {
+  speechSynthesis.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'voiceschanged'</span>, speak);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> text = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">getSelection</span>().<span class="hljs-title function_">toString</span>();
+  <span class="hljs-keyword">const</span> utterance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SpeechSynthesisUtterance</span>(text);
+  utterance.<span class="hljs-property">voice</span> = <span class="hljs-title function_">getFemaleVoice</span>();
+  speechSynthesis.<span class="hljs-title function_">speak</span>(utterance);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getFemaleVoice</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> voiceIndex = <span class="hljs-number">4</span>;
+  <span class="hljs-keyword">return</span> speechSynthesis.<span class="hljs-title function_">getVoices</span>()[voiceIndex];
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">voiceLoaded</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> speechSynthesis.<span class="hljs-title function_">getVoices</span>().<span class="hljs-property">length</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--AtrkL5ZY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635441350/JS%2520Bits/text-to-speech-final_d0pssc.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--AtrkL5ZY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1635441350/JS%2520Bits/text-to-speech-final_d0pssc.jpg" loading="lazy" width="auto" height="auto"></a></p>
+
+<p>And now we can do the laundry and have our article read to us at the same time! 🔊</p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>, <a href="https://www.tiktok.com/@js_bits">TikTok</a> and I have a new <a href="https://jsbits-yo.com/bug-bash/">debugging course</a> dropping soon!</p>
+
+
+        </div>
+      </article>
+    </body></html>

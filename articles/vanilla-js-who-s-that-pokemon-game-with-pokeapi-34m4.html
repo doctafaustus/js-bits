@@ -1,0 +1,305 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Vanilla JS "Who's that Pokémon?" game with the PokéAPI</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/4/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Remember that <em>"Who's that Pokémon?"</em> TV game? Well we can build our own version of this with the <a href="https://pokeapi.co/">PokéAPI</a>!</p>
+
+<p>If we make a <code>fetch</code> call to this endpoint (and specify that we want to limit it to the first 151 Pokémon), we'll get a results array:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'https://pokeapi.co/api/v2/pokemon?limit=151'</span>);
+  <span class="hljs-keyword">const</span> json = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();
+
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(json.<span class="hljs-property">results</span>);
+})();
+
+<span class="hljs-comment">// Logs:</span>
+[
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">'bulbasaur'</span>, <span class="hljs-attr">url</span>: <span class="hljs-string">'https://pokeapi.co/api/v2/pokemon/1/'</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">'ivysaur'</span>, <span class="hljs-attr">url</span>: <span class="hljs-string">'https://pokeapi.co/api/v2/pokemon/2/'</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">'venusaur'</span>, <span class="hljs-attr">url</span>: <span class="hljs-string">'https://pokeapi.co/api/v2/pokemon/3/'</span>},
+ <span class="hljs-comment">// ...</span>
+]
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>That <code>url</code> property inside each object is the pokémon-specific endpoint that can be hit for more information about that individual character. Inside this JSON, there will be a sprite URL like so: <br>
+<code>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png</code></p>
+
+<p>This is the sprite for Pokémon <code>#1</code>:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Jv6aebj8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Jv6aebj8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" loading="lazy"></a></p>
+
+<p>Since we saw in the original data that Bulbasaur's <code>url</code> property shows its number  (<code>1</code>), and this number is the same that's used in the sprite URL, we can use just this original request to get all the information we need to create a "Who's that Pokémon?" game:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--ecEhr_c8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1633385632/JS%2520Bits/bulbasaur_kga7x0.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ecEhr_c8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1633385632/JS%2520Bits/bulbasaur_kga7x0.jpg" loading="lazy"></a></p>
+
+<p>The full code for this project is hosted <a href="https://github.com/doctafaustus/whos-that-pokemon">here</a>, but the rest of this article will show the core components we'll need to make this work.</p>
+
+<p>First, our HTML structure:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fetching"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pokemon-container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pokeball"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"background.jpg"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pokemon-image"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"placeholder.png"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"answer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"bg-overlay"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"text-overlay"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"controls"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"play"</span>&gt;</span>Play<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"choices"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>The <code>#pokemon-image</code> source will be set dynamically to show the featured pokémon, and the <code>#choices</code> element will be populated with multiple-choice answers from the PokéAPI data. The steps to get the need we'll need is as follows:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>getPokeData = <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> pokemon = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getPokemon</span>(); <span class="hljs-comment">// #1</span>
+  <span class="hljs-keyword">const</span> randomPokemon = <span class="hljs-title function_">shuffle</span>(pokemon); <span class="hljs-comment">// #2</span>
+  <span class="hljs-keyword">const</span> pokemonChoices = <span class="hljs-title function_">get4Pokemon</span>(randomPokemon); <span class="hljs-comment">// #3</span>
+  <span class="hljs-keyword">const</span> [ firstPokemon ] = pokemonChoices; <span class="hljs-comment">// #4</span>
+  <span class="hljs-keyword">const</span> image = <span class="hljs-title function_">getPokemonImage</span>(firstPokemon); <span class="hljs-comment">// # 5</span>
+
+  <span class="hljs-keyword">return</span> { 
+    <span class="hljs-attr">pokemonChoices</span>: <span class="hljs-title function_">shuffle</span>(pokemonChoices),
+    <span class="hljs-attr">correct</span>: {
+      image,
+      <span class="hljs-attr">name</span>: firstPokemon.<span class="hljs-property">name</span>,
+    }
+  };
+};
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>1) Fetch the array of 151 Pokémon objects (show above).</p>
+
+<p>2) Shuffle the array show we can show a random group to the user:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">shuffle</span>(<span class="hljs-params">unshuffled</span>) {
+  <span class="hljs-keyword">const</span> shuffled = unshuffled
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> ({ value, <span class="hljs-attr">sort</span>: <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() }))
+    .<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.<span class="hljs-property">sort</span> - b.<span class="hljs-property">sort</span>)
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">{ value }</span>) =&gt;</span> value);
+
+  <span class="hljs-keyword">return</span> shuffled;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>3) Save the first 4 objects from this shuffled array:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">get4Pokemon</span>(<span class="hljs-params">randomPokemon</span>) {
+  <span class="hljs-keyword">return</span> randomPokemon.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>);
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>4) Save a reference to the first Pokémon object (the one we'll feature).</p>
+
+<p>5) Return an object containing the 4 Pokémon choices (shuffled again), and a "correct" object, containing both the name of the featured pokémon and the image URL to show:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">getPokemonImage</span>(<span class="hljs-params">{ url }</span>) {
+  <span class="hljs-keyword">const</span> number = <span class="hljs-title function_">getNumber</span>(url);
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`https://raw.githubusercontent.com/PokeAPI/`</span> +
+  <span class="hljs-string">`sprites/master/sprites/pokemon/<span class="hljs-subst">${number}</span>.png`</span>;
+};
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getNumber</span>(<span class="hljs-params">url</span>) {
+  <span class="hljs-keyword">const</span> numberRegEx = <span class="hljs-regexp">/(\d+)\/$/</span>;
+  <span class="hljs-keyword">return</span> (url.<span class="hljs-title function_">match</span>(numberRegEx) || [])[<span class="hljs-number">1</span>];
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>We'll then plug this URL source into our <code>&lt;img id="pokemon-image"&gt;</code> element and set the brightness of the PNG to <code>0</code> with CSS:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code><span class="hljs-selector-id">#pokemon-image</span> {
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">2.5</span>);
+  <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">brightness</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-attribute">transition</span>: filter .<span class="hljs-number">5s</span> ease-out;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>And generate our <code>#choices</code> content with answer buttons:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> { pokemonChoices } = gameData;
+<span class="hljs-keyword">const</span> choicesHTML = pokemonChoices.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">{ name }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;button data-name="<span class="hljs-subst">${name}</span>"&gt;<span class="hljs-subst">${name}</span>&lt;/button&gt;`</span>;
+}).<span class="hljs-title function_">join</span>(<span class="hljs-string">''</span>);
+
+choices.<span class="hljs-property">innerHTML</span> = choicesHTML;
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Once we hook up some additional event handlers and logic to check if the <code>dataset.name</code> selected matches the correct pokémon, we can toggle some classes to reveal both the right answers and show the full-color pokémon image!</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--vD9QI_Iz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1633387082/JS%2520Bits/bulbasaur-revealed_fadwt7.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--vD9QI_Iz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1633387082/JS%2520Bits/bulbasaur-revealed_fadwt7.jpg" loading="lazy"></a></p>
+
+<p>Project code available here: <a href="https://github.com/doctafaustus/whos-that-pokemon">https://github.com/doctafaustus/whos-that-pokemon</a></p>
+
+<h4>
+  <a name="full-youtube-tutorial" href="#full-youtube-tutorial">
+  </a>
+  Full YouTube Tutorial:
+</h4>
+
+<p><a href="https://www.youtube.com/watch?v=iBR-Pmr-l6E"><br>
+  <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Cc_8s-p_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1633388056/JS%2520Bits/maxresdefault_hvhdzq.jpg" loading="lazy"><br>
+</a></p>
+
+
+<hr>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow me if you crave more! 🍿</p>
+
+<p>I'm on <a href="https://www.tiktok.com/@js_bits">TikTok</a>, <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and I have a new <a href="https://jsbits-yo.com/bug-bash/">debugging course</a> dropping soon!</p>
+
+
+        </div>
+      </article>
+    </body></html>

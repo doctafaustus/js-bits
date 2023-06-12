@@ -1,0 +1,305 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Part V: Symbol.toPrimitive, Symbol.toStringTag, &amp; Symbol.unscopables</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/25/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Symbols Are Your Friend Series</b></p>
+
+<ul>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-a-gentle-introduction-js-bits-23af">Part I: A Gentle Introduction</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc">Part II: Symbol.for() &amp; Symbol.keyFor()</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4">Part III: Symbol.iterator</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25">Part IV: Symbol.search, Symbol.split, &amp; Symbol.species</a></li>
+</ul>
+
+
+<hr>
+
+<p>I know. You haven't gotten your fill of symbols yet. Rest assured, there's more! This week, we'll take a look at the following symbol static properties:</p>
+
+<ul>
+  <li><code>Symbol.toPrimitive</code></li>
+  <li><code>Symbol.toStringTag</code></li>
+  <li><code>Symbol.unscopables</code></li>
+</ul>
+
+
+<hr>
+
+<p><b><code>Symbol.toPrimitive</code></b><br>
+This symbol defines the method to convert an object to a primitive.</p>
+
+<p>Default behavior:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-string">`<span class="hljs-subst">${arr}</span>`</span>; <span class="hljs-comment">// "1,2,3"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><code>Symbol.toPrimitive</code> utilization:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+arr[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">toPrimitive</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params">type</span>) {
+  <span class="hljs-keyword">const</span> doubled = arr.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> item * <span class="hljs-number">2</span>;
+  });
+
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`doubled: <span class="hljs-subst">${doubled}</span>`</span>;
+};
+<span class="hljs-string">`<span class="hljs-subst">${arr}</span>`</span>; <span class="hljs-comment">// "doubled: 2,4,6"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p><b><code>Symbol.toStringTag</code></b><br>
+This symbol defines the behavior of an object when it is converted into its default string description. Essentially it lets you modify the value of <code>Object</code> in <code>"[object Object]"</code> when <code>Object.prototype.toString()</code> is used:</p>
+
+<p>Default behavior:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> shows = {
+    <span class="hljs-attr">cartoon</span>: <span class="hljs-string">'DuckTales'</span>,
+    <span class="hljs-attr">sitcom</span>: <span class="hljs-string">'Seinfeld'</span>,
+    <span class="hljs-attr">crime</span>: <span class="hljs-string">'NCIS'</span>
+};
+<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">toString</span>(shows); <span class="hljs-comment">// "[object Object]"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><code>Symbol.toStringTag</code> utilization:<br>
+Note that <code>Symbol.toStringTag</code> is a string valued property (and not a method).<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> shows = {
+  <span class="hljs-attr">cartoon</span>: <span class="hljs-string">'DuckTales'</span>,
+  <span class="hljs-attr">sitcom</span>: <span class="hljs-string">'Seinfeld'</span>,
+  <span class="hljs-attr">crime</span>: <span class="hljs-string">'NCIS'</span>
+};
+shows[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">toStringTag</span>] = <span class="hljs-string">'Shows'</span>;
+shows.<span class="hljs-title function_">toString</span>(); <span class="hljs-comment">// "[object Shows]"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>One thing that's odd about this symbol is that it does not seem to work with anything other than objects:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+arr[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">toStringTag</span>] = <span class="hljs-string">'Numbers'</span>;
+<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">toString</span>(arr); <span class="hljs-string">"[object Object]"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> str = <span class="hljs-string">'My string'</span>;
+str[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">toStringTag</span>] = <span class="hljs-string">'Custom String'</span>;
+<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">toString</span>(str); <span class="hljs-string">"[object Object]"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>If anyone knows why, please comment!</p>
+
+
+<hr>
+
+<p><b><code>Symbol.unscopables</code></b><br>
+This symbol is so incredibly useless but it at least introduced the <code>with</code> statement to me which I had never see before. Essentially, <code>Symbol.unscopables</code> modifies the behavior of <code>with</code>. So what exactly does that do?</p>
+
+<p><code>with</code> allows you to create a scope to a statement. The syntax is as follows:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight plaintext"><code>with (expression)
+  statement
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Here's an example:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">with</span> ({ <span class="hljs-attr">first</span>: <span class="hljs-string">'Charles'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Bronson'</span> }) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hi <span class="hljs-subst">${first}</span> <span class="hljs-subst">${last}</span>!`</span>);
+  <span class="hljs-comment">// Logs "Hi Charles Bronson!</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>So yeah, that's all it does. Also note that <code>with</code> is deprecated as it has browser compatibility issues.</p>
+
+<p>So all <code>Symbol.unscopables</code> allows you to do is define what properties of an object are excluded from a <code>with</code> environment binding:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> actor = {
+  <span class="hljs-attr">first</span>: <span class="hljs-string">'Charles'</span>,
+  <span class="hljs-attr">last</span>: <span class="hljs-string">'Bronson'</span>
+};
+
+actor[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">unscopables</span>] = {
+  <span class="hljs-attr">last</span>: <span class="hljs-literal">true</span>
+};
+
+<span class="hljs-keyword">with</span> (actor) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(first); <span class="hljs-comment">// Logs "Charles"</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(last); <span class="hljs-comment">// Logs ReferenceError</span>
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>More symbols in the next article! 😀</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

@@ -1,0 +1,445 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Symbols Are Your Friend Part IV: Symbol.search, Symbol.split, &amp; Symbol.species</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 10/19/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p><b>Symbols Are Your Friend Series</b></p>
+
+<ul>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-a-gentle-introduction-js-bits-23af">Part I: A Gentle Introduction</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc">Part II: Symbol.for() &amp; Symbol.keyFor()</a></li>
+<li><a href="https://dev.to/js_bits_bill/symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4">Part III: Symbol.iterator</a></li>
+</ul>
+
+
+<hr>
+
+<p>Since the wildly popular <b>Symbols Are Your Friend</b> article series has the momentum of a runaway freight train 🚂 (not really), let's check out some more static Symbol properties!</p>
+
+<ul>
+  <li><code>Symbol.search</code></li>
+  <li><code>Symbol.split</code></li>
+  <li><code>Symbol.species</code></li>
+</ul>
+
+
+<hr>
+
+<p><b><code>Symbol.search</code></b><br>
+This symbol defines the method that returns the index of a regular expression within a string. It is called internally when <code>String.prototype.search()</code> is used:</p>
+
+<p>Default behavior:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-string">'Wayne Gretzky: The Great One'</span>.<span class="hljs-title function_">search</span>(<span class="hljs-regexp">/Great/</span>); <span class="hljs-comment">// Returns 19</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>As you can see, <code>String.search()</code> returns the index of the provided regular expression. We can modify this behavior with <code>Symbol.search</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> testString = <span class="hljs-string">'Poke Tuna Meal: $10'</span>;
+<span class="hljs-keyword">const</span> priceRegEx = <span class="hljs-regexp">/\$/</span>;
+
+priceRegEx[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">search</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
+  <span class="hljs-keyword">const</span> indexResult = (str.<span class="hljs-title function_">match</span>(<span class="hljs-variable language_">this</span>) || []).<span class="hljs-property">index</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Position: <span class="hljs-subst">${indexResult || <span class="hljs-string">'not found'</span>}</span>`</span>;
+};
+
+testString.<span class="hljs-title function_">search</span>(priceRegEx); <span class="hljs-comment">// Returns "Position: 16"</span>
+<span class="hljs-string">'Water: FREE'</span>.<span class="hljs-title function_">search</span>(priceRegEx); <span class="hljs-comment">// Returns "Position: not found"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Note that if you provide a string to <code>String.search()</code> it will be implicitly converted to a Regular Expression thus allowing the use of <code>Symbol.search</code>. The same applies to the next few static Symbol properties.</p>
+
+
+<hr>
+
+<p><b><code>Symbol.split</code></b><br>
+Defines the method that splits a string at the indices that match a regular expression.</p>
+
+<p>Default behavior:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-string">'One Two Three'</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">' '</span>); <span class="hljs-comment">// Returns ["One", "Two", "Three"]</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><code>Symbol.split</code> modification:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> splitRegEx = <span class="hljs-regexp">/ /</span>;
+
+splitRegEx[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">split</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) {
+
+  <span class="hljs-comment">// Create copy of regex to prevent infinite loop</span>
+  <span class="hljs-keyword">const</span> regExCopy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-variable language_">this</span>);
+
+  <span class="hljs-comment">// Create modified result array</span>
+  <span class="hljs-keyword">const</span> array = string.<span class="hljs-title function_">split</span>(regExCopy);
+  <span class="hljs-keyword">return</span> array.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Char <span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>: <span class="hljs-subst">${item}</span>`</span>;
+  });
+
+};
+
+<span class="hljs-string">'Yamcha Goku Vegeta'</span>.<span class="hljs-title function_">split</span>(splitRegEx);
+<span class="hljs-comment">/*
+  Returns:
+  ["Char 1: Yamcha", "Char 2: Goku", "Char 3: Vegeta"]
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+<hr>
+
+<p><b><code>Symbol.species</code></b><br>
+This one's a bit tricky to wrap your head around. According to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/species">MDN</a>, <code>Symbol.species</code> specifies a function-valued property that the constructor function uses to create derived objects.</p>
+
+<p>Essentially what this is saying is that <code>Symbol.species</code> lets you change the default constructor of objects returned via methods on a "derived" class (a subclassed object). </p>
+
+<p>For example, let's say we have a basic <code>Fighter</code> class and an <code>AdvancedFighter</code> class that extends <code>Fighter</code>. Objects created via the <code>AdvancedFighter</code> class will automatically inherit the <code>Fighter</code>'s prototype by way of the constructor. Additionally, subclasses of <code>AdvancedFighter</code> will be instances of both <code>AdvancedFighter</code> and <code>Fighter</code>:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Fighter</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, weapon</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">weapon</span> = weapon;
+  }
+
+  <span class="hljs-title function_">basicAttack</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>: Uses <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.weapon}</span> - 2 dmg`</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AdvancedFighter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Fighter</span> {
+
+  <span class="hljs-title function_">advancedAttack</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>: Uses <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.weapon}</span> - 10 dmg`</span>);
+  }
+
+  <span class="hljs-comment">// Create a subclass object with the species we specified above</span>
+  <span class="hljs-title function_">createSensei</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-variable language_">this</span>.name, <span class="hljs-variable language_">this</span>.weapon</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Sensei</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, weapon</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">weapon</span> = weapon;
+  }
+
+  <span class="hljs-title function_">generateWisdom</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Lost time is never found again.'</span>);
+  }
+}
+
+
+<span class="hljs-keyword">const</span> splinter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AdvancedFighter</span>(<span class="hljs-string">'Splinter'</span>, <span class="hljs-string">'fists'</span>);
+<span class="hljs-keyword">const</span> splinterSensei = splinter.<span class="hljs-title function_">createSensei</span>();
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Fighter</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">AdvancedFighter</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Sensei</span>); <span class="hljs-comment">// false</span>
+
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei.<span class="hljs-title function_">basicAttack</span>()); <span class="hljs-comment">// ✅ Logs attack</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei.<span class="hljs-title function_">generateWisdom</span>()); <span class="hljs-comment">// ❌ TypeError </span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>You can see in this code, we also created a <code>Sensei</code> class. We can use <code>Symbol.species</code> to specify <code>AdvancedFighter</code>'s derived classes to use the <code>Sensei</code> constructor:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">Fighter</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, weapon</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">weapon</span> = weapon;
+  }
+
+  <span class="hljs-title function_">basicAttack</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>: Uses <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.weapon}</span> - 2 dmg`</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AdvancedFighter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Fighter</span> {
+
+  <span class="hljs-comment">// Override default constructor for subclasses</span>
+  <span class="hljs-keyword">static</span> get [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>]() { <span class="hljs-keyword">return</span> <span class="hljs-title class_">Sensei</span>; }
+
+  <span class="hljs-title function_">advancedAttack</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>: Uses <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.weapon}</span> - 10 dmg`</span>);
+  }
+
+  <span class="hljs-comment">// Create a subclass object with the species we specified above</span>
+  <span class="hljs-title function_">createSensei</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>] ||
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>)(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">weapon</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Sensei</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, weapon</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">weapon</span> = weapon;
+  }
+
+  <span class="hljs-title function_">generateWisdom</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Lost time is never found again.'</span>);
+  }
+}
+
+
+<span class="hljs-keyword">const</span> splinter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AdvancedFighter</span>(<span class="hljs-string">'Splinter'</span>, <span class="hljs-string">'fists'</span>);
+<span class="hljs-keyword">const</span> splinterSensei = splinter.<span class="hljs-title function_">createSensei</span>();
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Fighter</span>);  <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">AdvancedFighter</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Sensei</span>); <span class="hljs-comment">// true</span>
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei.<span class="hljs-title function_">generateWisdom</span>()); <span class="hljs-comment">// ✅ Logs wisdom</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(splinterSensei.<span class="hljs-title function_">basicAttack</span>()); <span class="hljs-comment">// ❌ TypeError </span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>The confusing part here is that <b><code>Symbol.species</code> only specifies the constructor of subclass objects</b>. These are created when a class method creates a new instance of a class with...<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>);
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>if there is no defined species or:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>]();
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>if we've added a custom species getter. </p>
+
+<p>We can combine some Symbol static property concepts together to illustrate this further:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRegExp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">RegExp</span> {
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">search</span>](str) {
+    <span class="hljs-comment">// Hack search() to return "this" (an instance of MyRegExp)</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>] ||
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>)();
+  }
+}
+
+<span class="hljs-keyword">const</span> fooRegEx = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyRegExp</span>(<span class="hljs-string">'foo'</span>);
+<span class="hljs-keyword">const</span> derivedObj = <span class="hljs-string">'football'</span>.<span class="hljs-title function_">search</span>(fooRegEx);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(derivedObj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">MyRegExp</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(derivedObj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">RegExp</span>); <span class="hljs-comment">// true</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRegExp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">RegExp</span> {
+
+  <span class="hljs-comment">// Force MyRegExp subclasses to use the SpecialClass constructor</span>
+  <span class="hljs-keyword">static</span> get [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>]() { <span class="hljs-keyword">return</span> <span class="hljs-title class_">SpecialClass</span>; }
+
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">search</span>](str) {
+    <span class="hljs-comment">// Hack search() to return "this" (an instance of MyRegExp)</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">species</span>] ||
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span>)();
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SpecialClass</span> {
+  <span class="hljs-title function_">message</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'I\'m special!'</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> fooRegEx = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyRegExp</span>(<span class="hljs-string">'foo'</span>);
+<span class="hljs-keyword">const</span> derivedObj = <span class="hljs-string">'football'</span>.<span class="hljs-title function_">search</span>(fooRegEx);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(derivedObj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">MyRegExp</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(derivedObj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">RegExp</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(derivedObj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">SpecialClass</span>); <span class="hljs-comment">// true</span>
+
+derivedObj.<span class="hljs-title function_">message</span>(); <span class="hljs-comment">// Logs "I'm special!"</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>A potential use case for <code>Symbol.species</code> would be if you wanted to create a custom API class object that includes all your internal / private methods but you wish for publicly created subclasses to use a different constructor.</p>
+
+<p>See you in the next part! 👋</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

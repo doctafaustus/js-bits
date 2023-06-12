@@ -1,0 +1,122 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>HTML5 Video Picture-in-Picture Mode</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 7/27/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>The native Picture-in-Picture API allows you to create a floating, pinned HTML5 video that overlays on top of your workspace. This API is seamlessly integrated into the <code>HTMLVideoElement</code> interface and is super simple to use:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vid"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"my-video.mp4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pip-btn"</span>&gt;</span>Enter PIP<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-keyword">const</span> vid = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'#vid'</span>);
+<span class="hljs-keyword">const</span> pipBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'#pip-btn'</span>);
+
+<span class="hljs-comment">// On click of button, enter PIP mode</span>
+pipBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function">() =&gt;</span> {
+  vid.<span class="hljs-title function_">requestPictureInPicture</span>();
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>And that's it! By calling <code>requestPictureInPicture</code> on the video element, our video will enter PIP mode:</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--yNSGi5In--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1627417689/JS%2520Bits/rDRkgGNc2B_lledce.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--yNSGi5In--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1627417689/JS%2520Bits/rDRkgGNc2B_lledce.webp" alt="pip" loading="lazy"></a></p>
+
+<p>If required, this API also exposes the <code>enterpictureinpicture</code> and <code>leavepictureinpicture</code> events which you can leverage to run callbacks:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code>vid.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'enterpictureinpicture'</span>, <span class="hljs-function">() =&gt;</span> {
+  pipBtn.<span class="hljs-property">textContent</span> = <span class="hljs-string">'Vid is now PIP'</span>;
+  pipBtn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;
+});
+
+vid.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'leavepictureinpicture'</span>, <span class="hljs-function">() =&gt;</span> {
+  pipBtn.<span class="hljs-property">textContent</span> = <span class="hljs-string">'Enter PIP'</span>;
+  pipBtn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;
+});
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Picture-in-Picture is supported in all modern browsers except Firefox, which has a similar proprietary feature.</p>
+
+<h4>
+  <a name="heres-a-quick-tutorial-video-of-me-using-the-pictureinpicture-api" href="#heres-a-quick-tutorial-video-of-me-using-the-pictureinpicture-api">
+  </a>
+  Here's a quick tutorial video of me using the Picture-in-Picture API:
+</h4>
+
+<p><a href="https://www.tiktok.com/@js_bits/video/6989996588286364934"><br>
+  <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--CfGjrvZi--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1627418420/JS%2520Bits/pip-vid_kcdxb9.webp" alt="pip-vid" loading="lazy"><br>
+</a></p>
+
+<p><b>Yo!</b> I post byte-sized tips like these often. Follow if you want more! 🍿</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and <a href="https://www.tiktok.com/@js_bits?lang=en">TikTok</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>

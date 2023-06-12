@@ -1,0 +1,120 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>How to inspect unique globals</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 7/28/2020</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>As a 3rd party developer, I often need to leverage existing site functionality without access to our client's source code. It's usually the case that we need to figure out which code is publicly accessible to reuse or extend in our A/B testing platform or tag manager.</p>
+
+<p>Here's a handy function I created to inspect what unique properties are available on the window. The approach is to create a new iframe (with <code>about:blank</code> as the src) and use its <code>contentWindow</code> object as the blank canvas to compare against the parent window object to determine what properties were added to the global scope.<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-comment">/**
+ * Logs an object w/ all the unique global variables on a page 
+ * 
+ * <span class="hljs-doctag">@return</span> {<span class="hljs-type">undefined</span>}
+ */</span>
+(<span class="hljs-keyword">function</span> <span class="hljs-title function_">inspectUniqueGlobals</span>(<span class="hljs-params"></span>) {
+
+  <span class="hljs-comment">// Create object that will contain unique global variables</span>
+  <span class="hljs-keyword">const</span> uniqueProperties = {};
+
+  <span class="hljs-comment">// Use an iframe to compare variables</span>
+  <span class="hljs-keyword">const</span> iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'iframe'</span>);
+
+  <span class="hljs-comment">// Attach blank source iframe to DOM</span>
+  iframe.<span class="hljs-property">src</span> = <span class="hljs-string">'about:blank'</span>;
+
+  <span class="hljs-comment">// On iframe load, process global properties</span>
+  iframe.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+
+    <span class="hljs-comment">// Get list of standard global objects from the iframe</span>
+    <span class="hljs-keyword">const</span> defaultGlobals = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(iframe.<span class="hljs-property">contentWindow</span>);
+
+    <span class="hljs-comment">// Loop through every window-level variable</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>) {
+      <span class="hljs-keyword">const</span> prop = <span class="hljs-variable language_">window</span>[item];
+
+      <span class="hljs-comment">/* If the property is not found in the iframe's globals,
+         then add it to the uniqueProperties object */</span>
+      <span class="hljs-keyword">if</span> (defaultGlobals.<span class="hljs-title function_">indexOf</span>(item) === -<span class="hljs-number">1</span> &amp;&amp;
+          <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">hasOwnProperty</span>(item)) {
+            uniqueProperties[item] = prop;
+      }
+    }
+
+    <span class="hljs-comment">// Inspect unique window properties</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uniqueProperties);
+  };
+
+  <span class="hljs-comment">// Add to document</span>
+  <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(iframe);
+})();
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>We can test this out right on this page on dev.to if we enter this code in the console:<br>
+<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--tQFbSY-c--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/Screen_Shot_2020-07-28_at_10.52.36_PM_bzbvhl.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--tQFbSY-c--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/Screen_Shot_2020-07-28_at_10.52.36_PM_bzbvhl.png" loading="lazy"></a> </p>
+
+<p>All of these properties are unique to the dev.to blog post page. Depending on what we're trying to achieve, we may get lucky and find a function that's already built and does exactly what we're looking for. As an example, on this page there's a global <code>toggleMenu</code> function.</p>
+
+<p>If we run it, we'll see that the user menu opens up:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight javascript"><code><span class="hljs-variable language_">window</span>.<span class="hljs-title function_">toggleMenu</span>();
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--LvKHVgb9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/Screen_Shot_2020-07-28_at_10.55.59_PM_fxvgfr.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--LvKHVgb9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/Screen_Shot_2020-07-28_at_10.55.59_PM_fxvgfr.png" loading="lazy"></a></p>
+
+<p>You can learn a lot about a site with what their developers have set to the global scope. Sometimes you'll see some not-so-great things like potential vulnerabilities or even promo codes that were probably not meant to have been discovered by the average visitor. 🙊</p>
+
+<p>Whatever your use case, I hope you found this handy and insightful :)</p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a>!</p>
+
+
+        </div>
+      </article>
+    </body></html>

@@ -1,0 +1,95 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Simple Lazy Loading</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 6/23/2021</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>Typically we need to write JavaScript to handle image lazy loading, often in the form of a scroll handler or intersection observer:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"lazyload"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"placeholder.jpg"</span> <span class="hljs-attr">data-src</span>=<span class="hljs-string">"pine.png"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'scroll'</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> scrollTop = <span class="hljs-variable language_">window</span>.<span class="hljs-property">pageYOffset</span>;
+      <span class="hljs-keyword">const</span> lazyImages = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">'.lazyload'</span>); 
+
+      lazyImages.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">img</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (img.<span class="hljs-property">offsetTop</span> &lt; (<span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span> + scrollTop)) {
+          img.<span class="hljs-property">src</span> = img.<span class="hljs-property">dataset</span>.<span class="hljs-property">src</span>;
+          img.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">'lazyload'</span>);
+        }
+      });
+    });
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>But now there's an experimental feature where you can simply use <code>loading="lazy"</code> to achieve the same result:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight html"><code><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"pine.jpg"</span> <span class="hljs-attr">loading</span>=<span class="hljs-string">"lazy"</span>&gt;</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>With the loading attribute set to <code>lazy</code>, the browser will do all the heavy lifting and will only load the image sources once the user scrolls near the image. We don't even need to use placeholder images to keep our markup valid!</p>
+
+<p>As of now, this feature is supported in Chrome, Edge, and Firefox. Come on, Safari - get with it!</p>
+
+<h3>
+  <a name="heres-a-video-using-this-in-action" href="#heres-a-video-using-this-in-action">
+  </a>
+  Here's a video using this in action:
+</h3>
+
+<p><a href="https://www.tiktok.com/@js_bits/video/6977049064646970630?lang=en&amp;is_copy_url=1&amp;is_from_webapp=v1"><br>
+  <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--6_DH4ri9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1631845930/JS%2520Bits/lazyload_cover_-_Twitter_skdbot_1_levqmv.webp" alt="lazyloading TikTok" loading="lazy"><br>
+</a></p>
+
+
+<hr>
+
+<p>Check out more #JSBits at my blog, <a href="http://jsbits-yo.com/">jsbits-yo.com</a>. Or follow me on <a href="https://twitter.com/JS_Bits_Bill">Twitter</a> and <a href="https://www.tiktok.com/@js_bits?lang=en">TikTok</a></p>
+
+
+        </div>
+      </article>
+    </body></html>
