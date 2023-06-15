@@ -80,25 +80,58 @@
 
 
 
-<p>So by adding the <code>0</code> before the comma <code>,</code> in <code>(0, $.sanitize)(n.desc)</code> the transpiler is using the comma operator to create an expression where the value <code>0</code> is discarded, but the function <code>$.sanitize</code> is still executed. This ensures that the <code>$.sanitize</code> function is treated as a <b>standalone expression</b> and evaluated before the function call <code>(...)(...)</code> is made. This minute difference allows the transpiler to maintain <em>syntactic coherence</em> in it's rules for transformation which facilitate optimization and compatibility. What "syntactic coherence" you ask? </p>
+<p>So by adding the <code>0</code> before the comma <code>,</code> in <code>(0, $.sanitize)(n.desc)</code> the transpiler is using the comma operator to create an expression where the value <code>0</code> is discarded (so it could technically be any other expression without side effects), but the function <code>$.sanitize</code> is still executed. This ensures that the <code>$.sanitize</code> function is treated as a <b>standalone expression</b> and evaluated before the function call <code>(...)(...)</code> is made. </p>
 
-<p>Well it depends on a lot like the transpiler used, custom configurations, and the code context itself, but any one of these operations may require this pattern:</p>
+<p>This pattern shows a specific transformation in the bundled output by ensuring the <code>fn</code> in <code>(0, fn)(arg)</code> is invoked with a <code>this</code> value of <code>undefined</code>:<br>
+</p>
 
-<ul>
-<li>
-<b>Module bundling</b>: to ensure module dependencies are resolved correctly.</li>
-<li>
-<b>Minification/optimization</b>: to apply a particular optimization to the code.</li>
-<li>
-<b>Interoperability</b>: to ensure compatibility with other tools/plugins in the build pipeline.</li>
-<li>
-<b>Code analysis</b>: to create a compatible output for proper analysis for code metrics.</li>
-</ul>
+<div class="highlight js-code-highlight">
+<pre class="highlight jsx"><code><span class="hljs-meta">'use strict'</span>;
 
-<p>While <code>($.sanitize)(n.desc)</code> would still produce the same expression as <code>(0, $.sanitize)(n.desc)</code>, the addition of the <code>0</code> as a placeholder value highlights the intention for the function to be treated as a standalone expression.</p>
+<span class="hljs-keyword">const</span> spellbook = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Arcanum'</span>,
+    <span class="hljs-title function_">enchant</span>(<span class="hljs-params">weapon</span>) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Enchanting <span class="hljs-subst">${weapon}</span>`</span>);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);
+  }
+};
 
-<p>I always believed the <code>0</code> in these patterns were an index to another function in the code bundle, but it's not! It's just a placeholder to maintaining syntactic harmony according to the transpiler rules. ✨ </p>
+<span class="hljs-comment">// Will log "this" as {title: 'Arcanum', enchant: ƒ}</span>
+spellbook.<span class="hljs-title function_">enchant</span>(<span class="hljs-string">'sword'</span>); 
 
+<span class="hljs-comment">// Will log "this" as undefined</span>
+(<span class="hljs-number">0</span>, spellbook.<span class="hljs-property">enchant</span>)(<span class="hljs-string">'sword'</span>);
+
+<span class="hljs-comment">/* 
+  Note that "this" will refer to the global object in
+  non-strict mode or "undefined" in strict mode.
+*/</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>This transformation ensures that exported functions are not called with a different <code>this</code> context which will lead to incorrect function behavior. </p>
+
+<p>Even though not all functions will need to access <code>this</code>, this transformation is applied regardless so the transpiler does not need to waste time analyzing wether or not the code accesses it.</p>
+
+<p>Instead of <code>(0, fn)(arg)</code>, could we have called the function in this manner: <code>(fn)(arg)</code>?</p>
+
+<p>No, because the the parentheses around <code>fn</code> would be interpreted simply as a grouping operator rather than the comma operator, and it is the comma operator that triggers the behavior of calling the function without any specific context.</p>
+
+<p>I always believed the&nbsp;<code>0</code>&nbsp;in these patterns was an index to another function in the code bundle, but it's not! It’s a transformation pattern used when exporting functions to ensure that they are not unintentionally bound to a different context. ✨</p>
 
 <hr>
 
