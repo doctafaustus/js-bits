@@ -6,6 +6,13 @@
   <h1>Topics Iframe</h1>
   <script>
     console.log('topics-iframe running');
+
+    console.log("Script executed inside iframe");
+    async function getTopics() {
+      const topics = await document.browsingTopics();
+      console.log('topics:', topics);
+    }
+    getTopics();
   </script>
 </body>
 </html>
