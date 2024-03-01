@@ -16,7 +16,7 @@
           const topicIds = topics.map(topic => topic.topic).join(',');
 
           console.log('posting message');
-          window.top.postMessage([10, 20, 30], '*');
+          window.top.postMessage({topicIds: [10, 20, 30]}, '*');
         } else {
           console.log('document.browsingTopics() not supported');
         }
