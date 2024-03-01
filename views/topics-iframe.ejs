@@ -12,7 +12,7 @@
           const topics = await document.browsingTopics();
           console.log('topics:', topics);
 
-          if (!topics.length) return;
+          // if (!topics.length) return;
           const topicIds = topics.map(topic => topic.topic).join(',');
 
           console.log('posting message');
