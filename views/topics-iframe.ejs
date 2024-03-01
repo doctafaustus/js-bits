@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
-<body>
-  <h1>Topics Iframe</h1>
-  <script>
-    console.log('topics-iframe running');
 
-    console.log("Script executed inside iframe");
+<body>
+  <script>
     async function getTopics() {
-      const topics = await document.browsingTopics();
-      console.log('topics:', topics);
+      try {
+        if ('browsingTopics' in document && document.featurePolicy.allowsFeature('browsing-topics')) {
+          const topics = await document.browsingTopics();
+          console.log('topics:', topics);
+
+          if (!topics.length) return;
+          const topicIds = topics.map(topic => topic.topic).join(',');
+
+          console.log('posting message');
+          window.postMessage(topicIds, '*');
+        } else {
+          console.log('document.browsingTopics() not supported');
+        }
+      } catch(error) {
+        console.log('Topics API error:', error);
+      } 
     }
     getTopics();
   </script>
