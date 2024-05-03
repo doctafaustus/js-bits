@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/topics-iframe', function(req, res) {
+  res.render('topics-iframe.ejs');
+});
+
 app.post('/articles/:slug', (req, res) => {
   const slug = req.params.slug;
   res.sendFile(__dirname + `/articles/${slug}.html`);
