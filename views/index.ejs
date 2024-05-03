@@ -1,388 +1,542 @@
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <title>JS Bits Dev Blog</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>JS Bits Dev Blog</title>
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/main.css">
-  <link rel="stylesheet" type="text/css" href="/code.css">
+    <link href="/favicon.ico" rel="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <link rel="stylesheet" type="text/css" href="/code.css" />
 
-  <meta content="https://www.jsbits-yo.com" property="og:url">
-  <meta content="2838281769746622" property="fb:app_id">
-  <meta content="website" property="og:type">
-  <meta content="JS Bits" property="og:title">
-  <meta content="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/og-image_1_oy4qfj.jpg" property="og:image">
-  <meta content="JavaScript tips and tricks for the inquisitive developer" property="og:description">
+    <meta content="https://www.jsbits-yo.com" property="og:url" />
+    <meta content="2838281769746622" property="fb:app_id" />
+    <meta content="website" property="og:type" />
+    <meta content="JS Bits" property="og:title" />
+    <meta
+      content="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924033/JS%20Bits/og-image_1_oy4qfj.jpg"
+      property="og:image"
+    />
+    <meta
+      content="JavaScript tips and tricks for the inquisitive developer"
+      property="og:description"
+    />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171716275-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-171716275-1');
-  </script>
-</head>
-<body>
-  <header>
-    <div class="header-left">
-      <button class="burger-container">
-        <img src="/images/icon-burger-menu.webp">
-      </button>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-171716275-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-171716275-1');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button class="burger-container">
+          <img src="/images/icon-burger-menu.webp" />
+        </button>
 
-      <a class="home-link" href="/">
-        <img class="logo" src="/images/jsbits-logo.webp" width="28" height="28">
-        <div class="logo-text">
-          <div class="logo-text-bold">JS Bits</div>
-          <div class="logo-text-nonbold"><span class="desktop-logo-text">front-end </span>dev<span class="desktop-logo-text">elopment</span> blog</div>
-        </div>
-      </a>
-    </div>
-    <div class="header-right">
-      <ul class="socials">
-        <li>
-          <a href="https://twitter.com/JS_Bits_Bill" target="_blank"><img class="social-icon twitter" src="/images/icon-twitter.png"></a>
-        </li>
-        <li>
-          <a href="https://www.tiktok.com/@js_bits" target="_blank"><img class="social-icon tiktok" src="/images/icon-tiktok.webp"></a>
-        </li>
-        <li>
-          <a href="mailto:jsbitsyo@gmail.com" target="_blank"><img class="social-icon email" src="/images/icon-gmail.png"></a>
-        </li>
-      </ul>
-    </div>
-  </header>
+        <a class="home-link" href="/">
+          <img
+            class="logo"
+            src="/images/jsbits-logo.webp"
+            width="28"
+            height="28"
+          />
+          <div class="logo-text">
+            <div class="logo-text-bold">JS Bits</div>
+            <div class="logo-text-nonbold">
+              <span class="desktop-logo-text">front-end </span>dev<span
+                class="desktop-logo-text"
+                >elopment</span
+              >
+              blog
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <ul class="socials">
+          <li>
+            <a href="https://twitter.com/JS_Bits_Bill" target="_blank"
+              ><img class="social-icon twitter" src="/images/icon-twitter.png"
+            /></a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@js_bits" target="_blank"
+              ><img class="social-icon tiktok" src="/images/icon-tiktok.webp"
+            /></a>
+          </li>
+          <li>
+            <a href="mailto:jsbitsyo@gmail.com" target="_blank"
+              ><img class="social-icon email" src="/images/icon-gmail.png"
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
-  <main>
-    <nav>
-      <h3 class="nav-title">Top Resources</h3>
-      <ul>
-        <li><a class="external-link" href="https://www.udemy.com/course/js-bits-bug-bash" target="_blank">Udemy Bug Bash Mini-Course</a></li>
-        <li><a class="external-link" href="https://www.tiktok.com/@js_bits" target="_blank">TikTok Micro Tutorials</a></li>
-      </ul>
+    <main>
+      <nav>
+        <h3 class="nav-title">Top Resources</h3>
+        <ul>
+          <li>
+            <a
+              class="external-link"
+              href="https://www.udemy.com/course/js-bits-bug-bash"
+              target="_blank"
+              >Udemy Bug Bash Mini-Course</a
+            >
+          </li>
+          <li>
+            <a
+              class="external-link"
+              href="https://www.tiktok.com/@js_bits"
+              target="_blank"
+              >TikTok Micro Tutorials</a
+            >
+          </li>
+        </ul>
 
-      <h3 class="nav-title">Blog Articles</h3>
-      <ul class="articles">
-        <li class="current">
-          <a data-slug="journey-into-the-minification-abyss-the-peculiar-0-placeholder-70j" href="#">Journey into the Minification Abyss: The Peculiar '0' Placeholder</a>
-        </li>
-        <li class="current">
-          <a data-slug="html-chromes-weird-navigational-element-5b38" href="#">HTML
-          &lt;portal&gt;: Chrome's weird navigational element</a>
-        </li>
-        <li>
-          <a data-slug="coding-a-hank-hill-hotkey-23h9" href="#">Coding a Hank Hill
-          Hotkey</a>
-        </li>
-        <li>
-          <a data-slug="html-5201" href="#">HTML &lt;dialog&gt;</a>
-        </li>
-        <li>
-          <a data-slug="easy-consolelog-inside-one-liner-functions-2mja" href=
-          "#">Easy console.log() inside one liner functions</a>
-        </li>
-        <li>
-          <a data-slug="creating-a-text-to-speech-program-in-vanilla-js-586l" href=
-          "#">Creating a Text-To-Speech program in Vanilla JS</a>
-        </li>
-        <li>
-          <a data-slug="3-uncommon-but-useful-html-elements-jdi" href="#">3
-          Uncommon but useful HTML elements</a>
-        </li>
-        <li>
-          <a data-slug="collapsable-content-in-markdown-with-details-48k8" href=
-          "#">Collapsable content in Markdown with &lt;details&gt;</a>
-        </li>
-        <li>
-          <a data-slug="vanilla-js-who-s-that-pokemon-game-with-pokeapi-34m4" href=
-          "#">Vanilla JS "Who's that Pokémon?" game with the PokéAPI</a>
-        </li>
-        <li>
-          <a data-slug="css-discord-logo-3954" href="#">CSS Discord Logo</a>
-        </li>
-        <li >
-          <a data-slug="what-i-learned-from-selling-a-side-project-online-370f"
-          href="#">What I learned from selling a side project online</a>
-        </li>
-        <li>
-          <a data-slug="html5-video-picture-in-picture-mode-o40" href="#">HTML5
-          Video Picture-in-Picture Mode</a>
-        </li>
-        <li>
-          <a data-slug="css-placeholder-shown-5848" href="#">CSS
-          :placeholder-shown</a>
-        </li>
-        <li >
-          <a data-slug="svg-cleanup-c08" href="#">SVG Cleanup</a>
-        </li>
-        <li>
-          <a data-slug="css-placeholder-shown-5848" href="#">CSS
-          :placeholder-shown</a>
-        </li>
-        <li>
-          <a data-slug="simple-lazy-loading-4i75" href="#">Simple Lazy Loading</a>
-        </li>
-        <li>
-          <a data-slug="how-to-check-trusted-events-js-bits-1el4" href="#">How to
-          check trusted events</a>
-        </li>
-        <li>
-          <a data-slug="the-javascript-banana-js-bits-2epb" href="#">The JavaScript
-          Banana 🍌</a>
-        </li>
-        <li>
-          <a data-slug=
-          "what-is-this-why-you-should-avoid-arrow-functions-on-vue-methods-a71"
-          href="#">What is "this"? Why you should avoid arrow functions on Vue
-          methods</a>
-        </li>
-        <li>
-          <a data-slug="htmlinputelement-valueasnumber-js-bits-3pfl" href=
-          "#">HTMLInputElement.valueAsNumber</a>
-        </li>
-        <li>
-          <a data-slug="underscores-as-number-separators-js-bits-1cjm" href=
-          "#">Underscores as number separators</a>
-        </li>
-        <li>
-          <a data-slug="reflections-on-blogging-js-bits-12go" href="#">Reflections
-          on blogging</a>
-        </li>
-        <li>
-          <a data-slug="how-to-easily-copy-and-modify-network-requests-js-bits-o70"
-          href="#">How to Easily Copy and Modify Network Requests</a>
-        </li>
-        <li>
-          <a data-slug="js-quirk-element-ids-are-global-variables-js-bits-1dka"
-          href="#">JS Quirk: Element IDs are global variables!</a>
-        </li>
-        <li>
-          <a data-slug="happy-medium-commenting-in-javascript-js-bits-461k" href=
-          "#">"Happy Medium Commenting" in JavaScript</a>
-        </li>
-        <li>
-          <a data-slug="event-delegation-with-vanilla-js-js-bits-2lnb" href=
-          "#">Event Delegation with Vanilla JS</a>
-        </li>
-        <li>
-          <a data-slug="capture-global-js-errors-with-window-onerror-4c99" href=
-          "#">Capture global JS errors with window.onerror()</a>
-        </li>
-        <li>
-          <a data-slug=
-          "dynamic-open-graph-meta-tags-with-vuejs-and-node-js-bits-2a11" href=
-          "#">Dynamic Open Graph Meta Tags with VueJS and Node</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-series-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable-js-bits-4h26"
-          href="#">Symbols Are Your Friend Series Part VII: Symbol.asyncIterator,
-          Symbol.hasInstance &amp; Symbol.isConcatSpreadable</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-series-part-vi-symbol-match-symbol-matchall-symbol-replace-js-bits-539g"
-          href="#">Symbols Are Your Friend Series Part VI: Symbol.match,
-          Symbol.matchAll &amp; Symbol.replace</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-part-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables-js-bits-nee"
-          href="#">Symbols Are Your Friend Part V: Symbol.toPrimitive,
-          Symbol.toStringTag, &amp; Symbol.unscopables</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25"
-          href="#">Symbols Are Your Friend Part IV: Symbol.search, Symbol.split,
-          &amp; Symbol.species</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4" href=
-          "#">Symbols Are Your Friend Part III: Symbol.iterator</a>
-        </li>
-        <li>
-          <a data-slug=
-          "symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc"
-          href="#">Symbols Are Your Friend Part II: Symbol.for() &amp;
-          Symbol.keyFor()</a>
-        </li>
-        <li>
-          <a data-slug="symbols-are-your-friend-a-gentle-introduction-js-bits-23af"
-          href="#">Symbols Are Your Friend Part I: A Gentle Introduction</a>
-        </li>
-        <li>
-          <a data-slug="what-s-a-javascript-statement-label-js-bits-1ed5" href=
-          "#">What's a JavaScript Statement Label?</a>
-        </li>
-        <li>
-          <a data-slug="how-javascript-blocks-work-js-bits-aha" href="#">How
-          JavaScript Blocks work 🧱</a>
-        </li>
-        <li>
-          <a data-slug="the-curious-case-of-the-empty-statement-js-bits-31ha" href=
-          "#">The curious case of the Empty Statement</a>
-        </li>
-        <li>
-          <a data-slug="how-to-restore-native-browser-code-3e6e" href="#">How to
-          restore native browser code</a>
-        </li>
-        <li>
-          <a data-slug="another-way-to-inspect-global-variables-js-bits-38hn" href=
-          "#">Another way to inspect global variables</a>
-        </li>
-        <li>
-          <a data-slug="stream-updates-natively-with-with-eventsource-js-bits-1ol5"
-          href="#">Stream updates natively with EventSource 📡</a>
-        </li>
-        <li>
-          <a data-slug="how-svgs-can-be-dangerous-js-bits-mjh" href="#">How SVGs
-          can be dangerous 👿</a>
-        </li>
-        <li>
-          <a data-slug="how-to-inspect-unique-globals-js-bits-2i7i" href="#">How to
-          inspect unique globals</a>
-        </li>
-        <li>
-          <a data-slug="element-classlist-toggle-js-bits-1c6i" href=
-          "#">Element.classList.toggle()</a>
-        </li>
-        <li>
-          <a data-slug="rest-properties-with-object-destructuring-42d7" href=
-          "#">Rest properties with object destructuring</a>
-        </li>
-        <li>
-          <a data-slug="addeventlistener-once-js-bits-565d" href=
-          "#">addEventListener "once"</a>
-        </li>
-        <li>
-          <a data-slug="cleartimeout-and-clearinterval-are-interchangeable-30bg"
-          href="#">clearTimeout and clearInterval Are Interchangeable!</a>
-        </li>
-        <li>
-          <a data-slug="the-url-object-js-bits-f7p" href="#">The URL Object</a>
-        </li>
-        <li>
-          <a data-slug="filter-log-by-script-source-js-bits-22ji" href="#">Filter
-          Log by Script Source</a>
-        </li>
-        <li>
-          <a data-slug="cleaner-settimeout-callbacks-js-bits-2fbe" href="#">Cleaner
-          setTimeout Callbacks</a>
-        </li>
-        <li>
-          <a data-slug="a-nifty-way-to-do-basic-argument-validation-js-bit-49ko"
-          href="#">A Nifty Way to do Basic Argument Validation</a>
-        </li>
-        <li>
-          <a data-slug="test-3f5a" href="#">Debugging Tip: "Continue to here"</a>
-        </li>
-        <li>
-          <a data-slug="an-alternative-to-using-logs-debug-3ae0" href="#">An
-          alternative to using logs: debug()</a>
-        </li>
-      </ul>
-    </nav>
-  
-    <section id="content"></section>
-  </main>
+        <h3 class="nav-title">Blog Articles</h3>
+        <ul class="articles">
+          <li class="current">
+            <a data-slug="simplify-shadow-dom-with-sethtmlunsafe-1fne" href="#"
+              >Simplify Shadow DOM with setHTMLUnsafe</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="journey-into-the-minification-abyss-the-peculiar-0-placeholder-70j"
+              href="#"
+              >Journey into the Minification Abyss: The Peculiar '0'
+              Placeholder</a
+            >
+          </li>
+          <li>
+            <a data-slug="html-chromes-weird-navigational-element-5b38" href="#"
+              >HTML &lt;portal&gt;: Chrome's weird navigational element</a
+            >
+          </li>
+          <li>
+            <a data-slug="coding-a-hank-hill-hotkey-23h9" href="#"
+              >Coding a Hank Hill Hotkey</a
+            >
+          </li>
+          <li>
+            <a data-slug="html-5201" href="#">HTML &lt;dialog&gt;</a>
+          </li>
+          <li>
+            <a
+              data-slug="easy-consolelog-inside-one-liner-functions-2mja"
+              href="#"
+              >Easy console.log() inside one liner functions</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="creating-a-text-to-speech-program-in-vanilla-js-586l"
+              href="#"
+              >Creating a Text-To-Speech program in Vanilla JS</a
+            >
+          </li>
+          <li>
+            <a data-slug="3-uncommon-but-useful-html-elements-jdi" href="#"
+              >3 Uncommon but useful HTML elements</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="collapsable-content-in-markdown-with-details-48k8"
+              href="#"
+              >Collapsable content in Markdown with &lt;details&gt;</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="vanilla-js-who-s-that-pokemon-game-with-pokeapi-34m4"
+              href="#"
+              >Vanilla JS "Who's that Pokémon?" game with the PokéAPI</a
+            >
+          </li>
+          <li>
+            <a data-slug="css-discord-logo-3954" href="#">CSS Discord Logo</a>
+          </li>
+          <li>
+            <a
+              data-slug="what-i-learned-from-selling-a-side-project-online-370f"
+              href="#"
+              >What I learned from selling a side project online</a
+            >
+          </li>
+          <li>
+            <a data-slug="html5-video-picture-in-picture-mode-o40" href="#"
+              >HTML5 Video Picture-in-Picture Mode</a
+            >
+          </li>
+          <li>
+            <a data-slug="css-placeholder-shown-5848" href="#"
+              >CSS :placeholder-shown</a
+            >
+          </li>
+          <li>
+            <a data-slug="svg-cleanup-c08" href="#">SVG Cleanup</a>
+          </li>
+          <li>
+            <a data-slug="css-placeholder-shown-5848" href="#"
+              >CSS :placeholder-shown</a
+            >
+          </li>
+          <li>
+            <a data-slug="simple-lazy-loading-4i75" href="#"
+              >Simple Lazy Loading</a
+            >
+          </li>
+          <li>
+            <a data-slug="how-to-check-trusted-events-js-bits-1el4" href="#"
+              >How to check trusted events</a
+            >
+          </li>
+          <li>
+            <a data-slug="the-javascript-banana-js-bits-2epb" href="#"
+              >The JavaScript Banana 🍌</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="what-is-this-why-you-should-avoid-arrow-functions-on-vue-methods-a71"
+              href="#"
+              >What is "this"? Why you should avoid arrow functions on Vue
+              methods</a
+            >
+          </li>
+          <li>
+            <a data-slug="htmlinputelement-valueasnumber-js-bits-3pfl" href="#"
+              >HTMLInputElement.valueAsNumber</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="underscores-as-number-separators-js-bits-1cjm"
+              href="#"
+              >Underscores as number separators</a
+            >
+          </li>
+          <li>
+            <a data-slug="reflections-on-blogging-js-bits-12go" href="#"
+              >Reflections on blogging</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="how-to-easily-copy-and-modify-network-requests-js-bits-o70"
+              href="#"
+              >How to Easily Copy and Modify Network Requests</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="js-quirk-element-ids-are-global-variables-js-bits-1dka"
+              href="#"
+              >JS Quirk: Element IDs are global variables!</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="happy-medium-commenting-in-javascript-js-bits-461k"
+              href="#"
+              >"Happy Medium Commenting" in JavaScript</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="event-delegation-with-vanilla-js-js-bits-2lnb"
+              href="#"
+              >Event Delegation with Vanilla JS</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="capture-global-js-errors-with-window-onerror-4c99"
+              href="#"
+              >Capture global JS errors with window.onerror()</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="dynamic-open-graph-meta-tags-with-vuejs-and-node-js-bits-2a11"
+              href="#"
+              >Dynamic Open Graph Meta Tags with VueJS and Node</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-series-part-vii-symbol-asynciterator-symbol-hasinstance-symbol-isconcatspreadable-js-bits-4h26"
+              href="#"
+              >Symbols Are Your Friend Series Part VII: Symbol.asyncIterator,
+              Symbol.hasInstance &amp; Symbol.isConcatSpreadable</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-series-part-vi-symbol-match-symbol-matchall-symbol-replace-js-bits-539g"
+              href="#"
+              >Symbols Are Your Friend Series Part VI: Symbol.match,
+              Symbol.matchAll &amp; Symbol.replace</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-part-v-symbol-toprimitive-symbol-tostringtag-symbol-unscopables-js-bits-nee"
+              href="#"
+              >Symbols Are Your Friend Part V: Symbol.toPrimitive,
+              Symbol.toStringTag, &amp; Symbol.unscopables</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-part-iv-symbol-search-symbol-split-symbol-species-js-bits-4i25"
+              href="#"
+              >Symbols Are Your Friend Part IV: Symbol.search, Symbol.split,
+              &amp; Symbol.species</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-part-iii-symbol-iterator-js-bits-18c4"
+              href="#"
+              >Symbols Are Your Friend Part III: Symbol.iterator</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-part-ii-symbol-for-symbol-keyfor-js-bits-3clc"
+              href="#"
+              >Symbols Are Your Friend Part II: Symbol.for() &amp;
+              Symbol.keyFor()</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="symbols-are-your-friend-a-gentle-introduction-js-bits-23af"
+              href="#"
+              >Symbols Are Your Friend Part I: A Gentle Introduction</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="what-s-a-javascript-statement-label-js-bits-1ed5"
+              href="#"
+              >What's a JavaScript Statement Label?</a
+            >
+          </li>
+          <li>
+            <a data-slug="how-javascript-blocks-work-js-bits-aha" href="#"
+              >How JavaScript Blocks work 🧱</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="the-curious-case-of-the-empty-statement-js-bits-31ha"
+              href="#"
+              >The curious case of the Empty Statement</a
+            >
+          </li>
+          <li>
+            <a data-slug="how-to-restore-native-browser-code-3e6e" href="#"
+              >How to restore native browser code</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="another-way-to-inspect-global-variables-js-bits-38hn"
+              href="#"
+              >Another way to inspect global variables</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="stream-updates-natively-with-with-eventsource-js-bits-1ol5"
+              href="#"
+              >Stream updates natively with EventSource 📡</a
+            >
+          </li>
+          <li>
+            <a data-slug="how-svgs-can-be-dangerous-js-bits-mjh" href="#"
+              >How SVGs can be dangerous 👿</a
+            >
+          </li>
+          <li>
+            <a data-slug="how-to-inspect-unique-globals-js-bits-2i7i" href="#"
+              >How to inspect unique globals</a
+            >
+          </li>
+          <li>
+            <a data-slug="element-classlist-toggle-js-bits-1c6i" href="#"
+              >Element.classList.toggle()</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="rest-properties-with-object-destructuring-42d7"
+              href="#"
+              >Rest properties with object destructuring</a
+            >
+          </li>
+          <li>
+            <a data-slug="addeventlistener-once-js-bits-565d" href="#"
+              >addEventListener "once"</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="cleartimeout-and-clearinterval-are-interchangeable-30bg"
+              href="#"
+              >clearTimeout and clearInterval Are Interchangeable!</a
+            >
+          </li>
+          <li>
+            <a data-slug="the-url-object-js-bits-f7p" href="#"
+              >The URL Object</a
+            >
+          </li>
+          <li>
+            <a data-slug="filter-log-by-script-source-js-bits-22ji" href="#"
+              >Filter Log by Script Source</a
+            >
+          </li>
+          <li>
+            <a data-slug="cleaner-settimeout-callbacks-js-bits-2fbe" href="#"
+              >Cleaner setTimeout Callbacks</a
+            >
+          </li>
+          <li>
+            <a
+              data-slug="a-nifty-way-to-do-basic-argument-validation-js-bit-49ko"
+              href="#"
+              >A Nifty Way to do Basic Argument Validation</a
+            >
+          </li>
+          <li>
+            <a data-slug="test-3f5a" href="#"
+              >Debugging Tip: "Continue to here"</a
+            >
+          </li>
+          <li>
+            <a data-slug="an-alternative-to-using-logs-debug-3ae0" href="#"
+              >An alternative to using logs: debug()</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-  <script>
-    const defaultPath = '/articles/default';
-    const initialPath = window.location.pathname === '/' ? 
-      defaultPath : window.location.pathname;
+      <section id="content"></section>
+    </main>
 
-    fetchAndUpdate(initialPath);
+    <script>
+      const defaultPath = '/articles/default';
+      const initialPath =
+        window.location.pathname === '/'
+          ? defaultPath
+          : window.location.pathname;
 
-    const contentSection = document.querySelector('#content');
-    const navLinks = document.querySelectorAll('nav .articles a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const path = `/articles/${link.dataset.slug}`;
+      fetchAndUpdate(initialPath);
 
-        fetchAndUpdate(path);
-        history.pushState({ path }, '', path);
-        if (isMobile()) {
-          document.body.classList.add('nav-closed');
-        }
-      });
-    });
+      const contentSection = document.querySelector('#content');
+      const navLinks = document.querySelectorAll('nav .articles a');
+      navLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = `/articles/${link.dataset.slug}`;
 
-    window.addEventListener('popstate', e => {
-      const { state } = e;
-      const path = state === null ? defaultPath : state.path;
-      fetchAndUpdate(path);
-    });
-
-    function fetchAndUpdate(path) {
-      console.log('path', path);
-      fetch(path, { method: 'POST', body: {} })
-        .then(response => response.text())
-        .then(data => {
-          contentSection.innerHTML = data;
-          window.scrollTo(0,0);
-          highlightCurrent();
-        })
-        .catch(error => {
-          console.error(error);
+          fetchAndUpdate(path);
+          history.pushState({ path }, '', path);
+          if (isMobile()) {
+            document.body.classList.add('nav-closed');
+          }
         });
-    }
-
-    highlightCurrent();
-    function highlightCurrent() {
-      const currentClass = 'current';
-      navLinks.forEach(link => {
-        link.parentElement.classList.remove(currentClass);
       });
-      const slug = window.location.pathname.split('/').pop();
-      if (!slug) return;
 
-      navLinks.forEach(link => {
-        if (link.dataset.slug === slug) {
-          link.parentElement.classList.add(currentClass);
-        }
+      window.addEventListener('popstate', (e) => {
+        const { state } = e;
+        const path = state === null ? defaultPath : state.path;
+        fetchAndUpdate(path);
       });
-    }
 
+      function fetchAndUpdate(path) {
+        console.log('path', path);
+        fetch(path, { method: 'POST', body: {} })
+          .then((response) => response.text())
+          .then((data) => {
+            contentSection.innerHTML = data;
+            window.scrollTo(0, 0);
+            highlightCurrent();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
 
-    initMobileMenu();
-    function initMobileMenu() {
-      const burger = document.querySelector('.burger-container');
-      const closeClass = 'nav-closed';
+      highlightCurrent();
+      function highlightCurrent() {
+        const currentClass = 'current';
+        navLinks.forEach((link) => {
+          link.parentElement.classList.remove(currentClass);
+        });
+        const slug = window.location.pathname.split('/').pop();
+        if (!slug) return;
 
-      burger.addEventListener('click', () => {
-        if (document.body.classList.contains(closeClass)) {
-          document.body.classList.remove(closeClass);
-        } else {
+        navLinks.forEach((link) => {
+          if (link.dataset.slug === slug) {
+            link.parentElement.classList.add(currentClass);
+          }
+        });
+      }
+
+      initMobileMenu();
+      function initMobileMenu() {
+        const burger = document.querySelector('.burger-container');
+        const closeClass = 'nav-closed';
+
+        burger.addEventListener('click', () => {
+          if (document.body.classList.contains(closeClass)) {
+            document.body.classList.remove(closeClass);
+          } else {
+            document.body.classList.add(closeClass);
+          }
+        });
+
+        // Hide menu on page load for mobile
+        if (isMobile()) {
           document.body.classList.add(closeClass);
         }
-      });
-
-      // Hide menu on page load for mobile
-      if (isMobile()) {
-        document.body.classList.add(closeClass);
       }
-    }
 
-    preventImageInNewTab();
-    function preventImageInNewTab() {
-      document.addEventListener('click', e => {
-        if (e.target.matches('.article-body-image-wrapper > img')) {
-          e.preventDefault();
-        }
-      });
-    }
+      preventImageInNewTab();
+      function preventImageInNewTab() {
+        document.addEventListener('click', (e) => {
+          if (e.target.matches('.article-body-image-wrapper > img')) {
+            e.preventDefault();
+          }
+        });
+      }
 
-    function isMobile() {
-      const mql = window.matchMedia('(max-width: 1200px)');
-      return mql.matches;
-    }
-  </script>
-</body>
+      function isMobile() {
+        const mql = window.matchMedia('(max-width: 1200px)');
+        return mql.matches;
+      }
+    </script>
+  </body>
 </html>

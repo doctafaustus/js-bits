@@ -1,0 +1,185 @@
+<html>
+  <head></head>
+  <body>
+    <article>
+      <div id="article-head">
+        <h1>Simplify Shadow DOM with setHTMLUnsafe</h1>
+        <div id="article-info">
+          <div id="avatar-container">
+            <img
+              src="https://media.dev.to/cdn-cgi/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F226642%2F12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg"
+            />
+          </div>
+          <div id="author-and-date">
+            <div id="author">Bill Coloe</div>
+            <div id="date">Posted on 5/3/2024</div>
+          </div>
+        </div>
+      </div>
+      <div id="article-body">
+        <p>
+          It's typical for Web developers to create encapsulated DOM elements in
+          order to isolate both styles and functionality within a component. To
+          achieve this, the <code>element.attachShadow</code> method is used to
+          create a shadow DOM: a hidden subtree attached to an element. While
+          powerful, it can be somewhat verbose and complex to set up:<br />
+        </p>
+
+        <div class="highlight js-code-highlight">
+          <pre
+            class="highlight javascript"
+          ><code><span class="hljs-keyword">const</span> sectionElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'section'</span>);
+<span class="hljs-keyword">const</span> shadowTemplate = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'template'</span>);
+shadowTemplate.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">`
+  &lt;style&gt;
+    /* Shadow styles applied only within the shadow DOM */
+    h2 { color: blue; }
+  &lt;/style&gt;
+  &lt;h2&gt;Shadow Content&lt;/h2&gt;
+`</span>;
+shadowTemplate.<span class="hljs-property">content</span>.<span class="hljs-property">shadowRootMode</span> = <span class="hljs-string">'open'</span>
+<span class="hljs-keyword">const</span> shadowHost = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'div'</span>);
+<span class="hljs-keyword">const</span> shadowRoot = shadowHost.<span class="hljs-title function_">attachShadow</span>({
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">'open'</span>
+});
+shadowRoot.<span class="hljs-title function_">appendChild</span>(shadowTemplate.<span class="hljs-property">content</span>.<span class="hljs-title function_">cloneNode</span>(<span class="hljs-literal">true</span>));
+sectionElement.<span class="hljs-title function_">appendChild</span>(shadowHost);
+sectionElement.<span class="hljs-title function_">insertAdjacentHTML</span>(<span class="hljs-string">'beforeend'</span>, <span class="hljs-string">`
+  &lt;h2&gt;Light Content&lt;/h2&gt;
+`</span>);
+</code></pre>
+          <div class="highlight__panel js-actions-panel">
+            <div class="highlight__panel-action js-fullscreen-code-action">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-on"
+              >
+                <title>Enter fullscreen mode</title>
+                <path
+                  d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+                ></path>
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-off"
+              >
+                <title>Exit fullscreen mode</title>
+                <path
+                  d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <p>This produces the following rendered HTML:</p>
+
+        <p>
+          <a
+            href="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fzy91xhq6vt9469s73n17.png"
+            class="article-body-image-wrapper"
+            ><img
+              src="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fzy91xhq6vt9469s73n17.png"
+              alt="Image description"
+              loading="lazy"
+              width="640"
+              height="276"
+          /></a>
+        </p>
+
+        <p>
+          Notice how we must create the shadow DOM using the
+          <code>.attachShadow</code> method first and <b>then</b> we can access
+          the shadow root and use <code>.innerHTML</code> to populate the
+          content.
+        </p>
+
+        <p>
+          Also note how <code>.innerHTML</code> cannot be used to directly
+          create this output. This method is not designed to understand shadow
+          elements within the template. Further, it also prevents this content
+          from rendering due to a browser security restriction. If
+          user-generated content is inserted with <code>.innerHTML</code>, it
+          could contain malicious scripts that execute within your page. Shadow
+          DOM creates a separate DOM tree that prevents styles and scripts from
+          leaking into the main page.
+        </p>
+
+        <p>
+          However, if we understand and accept the security implications, we can
+          take advantage of the new <code>setHTMLUnsafe</code> method to
+          directly set HTML content, including shadow DOM declarations,
+          bypassing the need for separate shadow DOM attachment methods like
+          <code>.attachShadow</code>:<br />
+        </p>
+
+        <div class="highlight js-code-highlight">
+          <pre
+            class="highlight javascript"
+          ><code><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'section'</span>).<span class="hljs-title function_">setHTMLUnsafe</span>(<span class="hljs-string">`
+  &lt;div&gt;
+    &lt;template shadowrootmode="open"&gt;
+      &lt;style&gt;
+        /* Shadow styles applied only within the shadow DOM */
+        h2 { color: blue; }
+      &lt;/style&gt;
+      &lt;h2&gt;Shadow Content&lt;/h2&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+  &lt;h2&gt;Light Content&lt;/h2&gt;
+`</span>)
+</code></pre>
+          <div class="highlight__panel js-actions-panel">
+            <div class="highlight__panel-action js-fullscreen-code-action">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-on"
+              >
+                <title>Enter fullscreen mode</title>
+                <path
+                  d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+                ></path>
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-off"
+              >
+                <title>Exit fullscreen mode</title>
+                <path
+                  d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          With <code>setHTMLUnsafe</code>, you don't need to manage separate
+          template elements, shadow hosts, or shadow roots manually. This can
+          reduce the complexity of your codebase and make it easier to maintain,
+          especially in larger projects where encapsulation of DOM elements is a
+          common practice.
+        </p>
+
+        <p>
+          <code>setHTMLUnsafe</code> is available now in Chrome 124 (and
+          supported in Edge, Safari, and Firefox).
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
