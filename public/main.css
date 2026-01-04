@@ -199,6 +199,7 @@ article {
 #avatar-container img {
   width: 40px;
   margin-right: 6px;
+  border-radius: 50%;
 }
 
 #author {

@@ -3,7 +3,7 @@
           <h1>Dynamic Open Graph Meta Tags with VueJS and Node</h1>
           <div id="article-info">
             <div id="avatar-container">
-              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+              <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1767510443/JS%20Bits/1732214886812_1_gqfioj.jpg">
             </div>
             <div id="author-and-date">
               <div id="author">Bill Coloe</div>
@@ -16,11 +16,11 @@
 
 <p>Essentially, I wanted to have each product page have its own OG image and description. The problem was that VueJS is a client-side framework with most content being dynamically created via JavaScript. When the Open Graph scraper requests a page it <b>does not run any JavaScript</b> - it only retrieves the content that is immediately returned from your server. You can see this content in Chrome by right clicking and choosing <code>View page source</code>:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--ni9Devqe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%2520Bits/view-source_obleo7.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--ni9Devqe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%2520Bits/view-source_obleo7.png" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%20Bits/view-source_obleo7.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1606182856/JS%20Bits/view-source_obleo7.png" loading="lazy"></a></p>
 
 <p>It is this content, and only this content, that is scraped by the <a href="https://developers.facebook.com/tools/debug">OG Debugger</a>:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--RI5y_4xJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%2520Bits/fc_og_drbooa.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--RI5y_4xJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%2520Bits/fc_og_drbooa.png" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%20Bits/fc_og_drbooa.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1606182761/JS%20Bits/fc_og_drbooa.png" loading="lazy"></a></p>
 
 <p>So the only way to dynamically generate these OG meta fields is via a server-side solution. Here's mine!</p>
 
@@ -173,7 +173,7 @@
 
 <p>And there we go! The OG content is served dynamically based on the requested URL:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--IfbzahPb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%2520Bits/corporate_og_uzq3mz.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--IfbzahPb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%2520Bits/corporate_og_uzq3mz.png" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%20Bits/corporate_og_uzq3mz.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1606184876/JS%20Bits/corporate_og_uzq3mz.png" loading="lazy"></a></p>
 
 
 <hr>

@@ -3,7 +3,7 @@
           <h1>Symbols Are Your Friend Part III: Symbol.iterator</h1>
           <div id="article-info">
             <div id="avatar-container">
-              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+              <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1767510443/JS%20Bits/1732214886812_1_gqfioj.jpg">
             </div>
             <div id="author-and-date">
               <div id="author">Bill Coloe</div>
@@ -59,7 +59,7 @@
 
 <p>Iterable objects are those whose prototype includes the <code>Symbol.iterator</code> key. Since arrays are iterable, you can see this when you inspect its prototype:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--JHjdLQgj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%2520Bits/symbol-proto_dofjn4.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--JHjdLQgj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%2520Bits/symbol-proto_dofjn4.webp" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%20Bits/symbol-proto_dofjn4.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1602643656/JS%20Bits/symbol-proto_dofjn4.webp" loading="lazy"></a></p>
 
 <p>Other iterable objects include <code>String</code>, <code>Map</code>, <code>Set</code>. Note that <code>Object</code> is NOT iterable by default.</p>
 
@@ -80,11 +80,11 @@
 
 <p>If this is a lot of understand right now that's completely expected. Stick with me! To explain this further, we know that there are some built-in iterables like <code>Array</code>. We learned that <code>Array</code> is an iterable object because its prototype includes the <code>Symbol.iterator</code> key. We can see that this key is actually a method:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--vKmYL6F0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%2520Bits/chrome_aymvczzypU_txzapl.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--vKmYL6F0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%2520Bits/chrome_aymvczzypU_txzapl.webp" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%20Bits/chrome_aymvczzypU_txzapl.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1602647571/JS%20Bits/chrome_aymvczzypU_txzapl.webp" loading="lazy"></a></p>
 
 <p>Okay... so what does this method return when we call it?</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--golukGzt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%2520Bits/chrome_Vm54JXql4J_dbd0bs.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--golukGzt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%2520Bits/chrome_Vm54JXql4J_dbd0bs.webp" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%20Bits/chrome_Vm54JXql4J_dbd0bs.webp" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1602648235/JS%20Bits/chrome_Vm54JXql4J_dbd0bs.webp" loading="lazy"></a></p>
 
 <p>Interesting! It returns an <b>iterator object</b> that includes that special <code>next()</code> method we mentioned above. </p>
 

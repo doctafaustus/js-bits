@@ -3,7 +3,7 @@
           <h1>Another way to inspect global variables</h1>
           <div id="article-info">
             <div id="avatar-container">
-              <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uyxdQa8V--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/226642/12db3c79-aafb-40ea-9dab-b98bce5eb6af.jpg">
+              <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1767510443/JS%20Bits/1732214886812_1_gqfioj.jpg">
             </div>
             <div id="author-and-date">
               <div id="author">Bill Coloe</div>
@@ -61,11 +61,11 @@ cache = <span class="hljs-literal">null</span>;
 
 <p>This code allows us to construct a stringified JSON map of all of the window's properties and subproperties. If using Chrome's console, the built-in <code>copy()</code> method will copy the stringified object to your clipboard. From here, I usually paste the code into <a href="https://beautifier.io/">beautifier.io</a> to make it easier to read:</p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--JyZ-3jGZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/beautifier.io__1_wi2loj.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--JyZ-3jGZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%2520Bits/beautifier.io__1_wi2loj.png" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/beautifier.io__1_wi2loj.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924034/JS%20Bits/beautifier.io__1_wi2loj.png" loading="lazy"></a></p>
 
 <p>From there, I'll copy that beautified code into a normal text editor so that I can "Cmd/Ctrl + F" for values easier. The advantage of this method over the iframe way mentioned in my previous article is that this gives you an "at a glance" view of all the window's properties and so you can skim the list without having to toggle each object open in the console (the downside is that the window object might be huge depending on the site/page). You can also search for substring matches if you have an idea of what you're looking for with your code editor's search feature. </p>
 
-<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--HIyzK9TH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/dev_to_output_1_irmyby.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--HIyzK9TH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%2520Bits/dev_to_output_1_irmyby.jpg" loading="lazy"></a></p>
+<p><a href="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/dev_to_output_1_irmyby.jpg" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1600924032/JS%20Bits/dev_to_output_1_irmyby.jpg" loading="lazy"></a></p>
 
 <p>Perusing the output on dev.to, I noticed something interesting. Apparently there's a <code>window.currentUser</code> object which includes my followed tags as a string and apparently JavaScript has a <b>hotness_score</b> of 9940541 🔥. It's over <b>9 million</b>! (<em>breaks power scouter</em>) 💥</p>
 
