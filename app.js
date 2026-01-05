@@ -5,17 +5,21 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const fetch = require('cross-fetch');
 
+const healthCheckHandler = require('./utils/healthCheck');
+const { startMonitoring } = require('./utils/keepAlive');
 
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.get('/health', healthCheckHandler);
+
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/topics-iframe', function(req, res) {
+app.get('/topics-iframe', function (req, res) {
   res.render('topics-iframe.ejs');
 });
 
@@ -26,15 +30,21 @@ app.post('/articles/:slug', (req, res) => {
 
 app.get('/articles/:slug', (req, res) => {
   const slug = req.params.slug;
-  const fileContent = fs.readFileSync(path.join(__dirname, 'views', 'index.ejs'), 'utf8');
+  const fileContent = fs.readFileSync(
+    path.join(__dirname, 'views', 'index.ejs'),
+    'utf8'
+  );
   const $ = cheerio.load(fileContent);
 
   const basePath = 'https://dev.to/api/articles/js_bits_bill';
   const url = `${basePath}/${slug}`;
   fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      $('meta[property="og:url"]').attr('content', `https://jsbits-yo.com/articles/${data.slug}`);
+    .then((res) => res.json())
+    .then((data) => {
+      $('meta[property="og:url"]').attr(
+        'content',
+        `https://jsbits-yo.com/articles/${data.slug}`
+      );
       $('meta[property="og:type"]').attr('content', 'article');
       $('meta[property="og:title"]').attr('content', data.title);
       $('meta[property="og:image"]').attr('content', data.social_image);
@@ -43,7 +53,7 @@ app.get('/articles/:slug', (req, res) => {
       const modifiedFileContent = $.html();
       res.send(modifiedFileContent);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       res.render('index');
     });
@@ -57,6 +67,13 @@ app.get('/bug-bash', (req, res) => {
   res.status(301).redirect('https://www.udemy.com/course/js-bits-bug-bash');
 });
 
-app.listen(process.env.PORT || 8080, () => {
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
   console.log('App running...');
+
+  if (process.env.NODE_ENV === 'production') {
+    const serverUrl =
+      process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+    startMonitoring(serverUrl, 12);
+  }
 });
