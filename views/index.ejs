@@ -14,6 +14,7 @@
     />
     <link rel="stylesheet" type="text/css" href="/main.css" />
     <link rel="stylesheet" type="text/css" href="/code.css" />
+    <link rel="stylesheet" type="text/css" href="/company-modal.css" />
 
     <meta content="https://www.jsbits-yo.com" property="og:url" />
     <meta content="2838281769746622" property="fb:app_id" />
@@ -443,6 +444,25 @@
       </nav>
 
       <section id="content"></section>
+
+       <div class="param-modal-overlay" id="modalOverlay" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+        <div class="param-modal">
+          <button class="param-modal-close-btn" id="closeBtn" aria-label="Close welcome modal">×</button>
+            
+          <h1 id="modalTitle">Hi <span class="param-modal-company-name" id="companyName">there</span>!</h1>
+            
+          <p id="modalDescription">Thanks for checking out my application and for visiting my dev blog. I'd really enjoy the chance to be part of your team. Here's the quick version of me:</p>
+            
+          <div class="param-modal-about-list">
+            <div class="param-modal-about-item">I care a lot about healthy engineering culture and love to share my knowledge and learn from others.</div>
+            <div class="param-modal-about-item">I've worked on lots of different projects: A/B Test Development, 3rd Party JS, SaaS applications, performance optimization, and UI platform work.</div>
+            <div class="param-modal-about-item">My most controversial opinion is that no one <em>really</em> likes IPAs.</div>
+            <div class="param-modal-about-item">Outside of work, I like discovering new recipes, playing <a href="https://en.wikipedia.org/wiki/Floorball" target="_blank" rel="noopener noreferrer">Floorball</a>, group fitness like Orangetheory, and the occasional video game.</div>
+          </div>
+            
+          <p class="param-modal-closing">Thanks for reading and looking forward to the possibility of working together!</p>
+        </div>
+      </div>
     </main>
 
     <script>
@@ -538,5 +558,53 @@
         return mql.matches;
       }
     </script>
+
+  <script>
+    function parseCompanyName(companyParam) {
+      if (!companyParam) return null;
+
+      return companyParam
+        .replace(/([A-Z])/g, ' $1')
+        .trim();
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const companyParam = urlParams.get('plzHireMe');
+
+    if (companyParam) {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const closeBtn = document.getElementById('closeBtn');
+      const companyNameElement = document.getElementById('companyName');
+
+      const companyName = parseCompanyName(companyParam);
+      if (companyName) companyNameElement.textContent = companyName;
+      
+      modalOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      function closeModal() {
+        modalOverlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+
+        setTimeout(() => {
+          modalOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 300);
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+    }
+  </script>
   </body>
 </html>
