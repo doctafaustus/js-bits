@@ -563,9 +563,7 @@
     function parseCompanyName(companyParam) {
       if (!companyParam) return null;
 
-      return companyParam
-        .replace(/([A-Z])/g, ' $1')
-        .trim();
+      return decodeURIComponent(companyParam.replace(/\+/g, ' '));
     }
 
     const urlParams = new URLSearchParams(window.location.search);
