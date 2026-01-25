@@ -1,0 +1,171 @@
+<html>
+  <head></head>
+  <body>
+    <article>
+      <div id="article-head">
+        <h1>Adding Emoji Search to Google Messages for Web</h1>
+        <div id="article-info">
+          <div id="avatar-container">
+            <img
+              src="https://res.cloudinary.com/dzynqn10l/image/upload/v1767510443/JS%20Bits/1732214886812_1_gqfioj.jpg"
+            />
+          </div>
+          <div id="author-and-date">
+            <div id="author">Bill Coloe</div>
+            <div id="date">Posted on 1/25/2026</div>
+          </div>
+        </div>
+      </div>
+      <div id="article-body">
+        <h2>
+          <a name="the-problem" href="#the-problem"> </a>
+          The Problem
+        </h2>
+
+        <p>
+          If you've ever used
+          <a
+            href="https://messages.google.com/web"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Messages for Web</a
+          >, you know the pain: you want to send a particular emoji, but instead
+          of searching for it, you're stuck scrolling through endless categories
+          hoping to find the right one. It's 2026, this SO shouldn't be a thing!
+        </p>
+
+        <h2>
+          <a name="the-solution" href="#the-solution"> </a>
+          The Solution
+        </h2>
+
+        <p>
+          <strong>Messages for Web Emoji Search</strong> adds keyboard-friendly
+          emoji search directly into the UI where you can type what you want and
+          get instant results. IMO, this is way easier than browsing annoying
+          "categories" or having to endlessly scroll just to find the clown
+          emoji.
+        </p>
+
+        <p>
+          <a
+            href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fpcas4jw2ba3pu0bnqf26.png"
+            class="article-body-image-wrapper"
+            ><img
+              src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fpcas4jw2ba3pu0bnqf26.png"
+              alt="Messages for Web Emoji Search"
+              loading="lazy"
+              width="800"
+              height="500"
+          /></a>
+        </p>
+
+        <h2>
+          <a name="how-it-works" href="#how-it-works"> </a>
+          How It Works
+        </h2>
+
+        <p>
+          The extension uses a <code>MutationObserver</code> to watch for when
+          the emoji picker appears and injects a search input at the top:<br />
+        </p>
+
+        <div class="highlight js-code-highlight">
+          <pre
+            class="highlight javascript"
+          ><code><span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MutationObserver</span>(<span class="hljs-function">(<span class="hljs-params">mutations</span>) =&gt;</span> {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> mutation <span class="hljs-keyword">of</span> mutations) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> node <span class="hljs-keyword">of</span> mutation.<span class="hljs-property">addedNodes</span>) {
+      <span class="hljs-keyword">if</span> (node.<span class="hljs-property">nodeType</span> === <span class="hljs-title class_">Node</span>.<span class="hljs-property">ELEMENT_NODE</span>) {
+        <span class="hljs-keyword">const</span> pickerClass = <span class="hljs-string">'emoji-picker-content-wrapper'</span>;
+        <span class="hljs-keyword">const</span> picker = node.<span class="hljs-property">classList</span>?.<span class="hljs-title function_">contains</span>(pickerClass)
+          ? node
+          : node.<span class="hljs-property">querySelector</span>?.(<span class="hljs-string">`.<span class="hljs-subst">${pickerClass}</span>`</span>);
+        <span class="hljs-keyword">if</span> (picker) <span class="hljs-title function_">injectIntoEmojiPicker</span>(picker);
+      }
+    }
+  }
+});
+observer.<span class="hljs-title function_">observe</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>, { <span class="hljs-attr">childList</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">subtree</span>: <span class="hljs-literal">true</span> });
+</code></pre>
+          <div class="highlight__panel js-actions-panel">
+            <div class="highlight__panel-action js-fullscreen-code-action">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-on"
+              >
+                <title>Enter fullscreen mode</title>
+                <path
+                  d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"
+                ></path>
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                class="highlight-action crayons-icon highlight-action--fullscreen-off"
+              >
+                <title>Exit fullscreen mode</title>
+                <path
+                  d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Once detected, it injects a custom search interface with autocomplete
+          that filters through a database of emojis by name
+          <strong>and</strong> keywords. Looking for "skull"? You'll get 💀
+          Skull, ☠️ Skull and Crossbones, 🏴‍☠️ Pirate Flag, and more.
+        </p>
+
+        <p>
+          When you select an emoji, it gets inserted directly into your message
+          input at the cursor position, just like the native picker.
+        </p>
+
+        <h2>
+          <a name="try-it-out" href="#try-it-out"> </a>
+          Try It Out
+        </h2>
+
+        <p>
+          The extension is live on the Chrome Web Store and the code is open
+          source:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Chrome Extension</strong>:
+            <a
+              href="https://chromewebstore.google.com/detail/messages-for-web-emoji-se/ihgbgoclaogjailgdkpejeebemeibjnm"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://chromewebstore.google.com/detail/messages-for-web-emoji-se/ihgbgoclaogjailgdkpejeebemeibjnm</a
+            >
+          </li>
+          <li>
+            <strong>GitHub</strong>:
+            <a
+              href="https://github.com/doctafaustus/messages-for-web-emoji-search"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://github.com/doctafaustus/messages-for-web-emoji-search</a
+            >
+          </li>
+        </ul>
+
+        <p>
+          The extension is still in beta, but feel free to give it a spin 🙃.
+        </p>
+      </div>
+    </article>
+  </body>
+</html>

@@ -114,6 +114,13 @@
         <h3 class="nav-title">Blog Articles</h3>
         <ul class="articles">
           <li class="current">
+            <a
+              data-slug="adding-emoji-search-to-google-messages-for-web-7f5"
+              href="#"
+              >Adding Emoji Search to Google Messages for Web</a
+            >
+          </li>
+          <li>
             <a data-slug="simplify-shadow-dom-with-sethtmlunsafe-1fne" href="#"
               >Simplify Shadow DOM with setHTMLUnsafe</a
             >
@@ -445,22 +452,63 @@
 
       <section id="content"></section>
 
-       <div class="param-modal-overlay" id="modalOverlay" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <div
+        class="param-modal-overlay"
+        id="modalOverlay"
+        role="dialog"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
+      >
         <div class="param-modal">
-          <button class="param-modal-close-btn" id="closeBtn" aria-label="Close welcome modal">×</button>
-            
-          <h1 id="modalTitle">Hi <span class="param-modal-company-name" id="companyName">there</span>!</h1>
-            
-          <p id="modalDescription">Thanks for checking out my application and for visiting my dev blog. I'd really enjoy the chance to be part of your team. Here's the quick version of me:</p>
-            
+          <button
+            class="param-modal-close-btn"
+            id="closeBtn"
+            aria-label="Close welcome modal"
+          >
+            ×
+          </button>
+
+          <h1 id="modalTitle">
+            Hi
+            <span class="param-modal-company-name" id="companyName">there</span
+            >!
+          </h1>
+
+          <p id="modalDescription">
+            Thanks for checking out my application and for visiting my dev blog.
+            I'd really enjoy the chance to be part of your team. Here's the
+            quick version of me:
+          </p>
+
           <div class="param-modal-about-list">
-            <div class="param-modal-about-item">I care a lot about healthy engineering culture and love to share my knowledge and learn from others.</div>
-            <div class="param-modal-about-item">I've worked on lots of different projects: A/B Test Development, 3rd Party JS, SaaS applications, performance optimization, and UI platform work.</div>
-            <div class="param-modal-about-item">My most controversial opinion is that no one <em>really</em> likes IPAs.</div>
-            <div class="param-modal-about-item">Outside of work, I like discovering new recipes, playing <a href="https://en.wikipedia.org/wiki/Floorball" target="_blank" rel="noopener noreferrer">Floorball</a>, group fitness like Orangetheory, and the occasional video game.</div>
+            <div class="param-modal-about-item">
+              I care a lot about healthy engineering culture and love to share
+              my knowledge and learn from others.
+            </div>
+            <div class="param-modal-about-item">
+              I've worked on lots of different projects: A/B Test Development,
+              3rd Party JS, SaaS applications, performance optimization, and UI
+              platform work.
+            </div>
+            <div class="param-modal-about-item">
+              My most controversial opinion is that no one <em>really</em> likes
+              IPAs.
+            </div>
+            <div class="param-modal-about-item">
+              Outside of work, I like discovering new recipes, playing
+              <a
+                href="https://en.wikipedia.org/wiki/Floorball"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Floorball</a
+              >, group fitness like Orangetheory, and the occasional video game.
+            </div>
           </div>
-            
-          <p class="param-modal-closing">Thanks for reading and looking forward to the possibility of working together!</p>
+
+          <p class="param-modal-closing">
+            Thanks for reading and looking forward to the possibility of working
+            together!
+          </p>
         </div>
       </div>
     </main>
@@ -559,50 +607,50 @@
       }
     </script>
 
-  <script>
-    function parseCompanyName(companyParam) {
-      if (!companyParam) return null;
+    <script>
+      function parseCompanyName(companyParam) {
+        if (!companyParam) return null;
 
-      return decodeURIComponent(companyParam.replace(/\+/g, ' '));
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const companyParam = urlParams.get('plzHireMe');
-
-    if (companyParam) {
-      const modalOverlay = document.getElementById('modalOverlay');
-      const closeBtn = document.getElementById('closeBtn');
-      const companyNameElement = document.getElementById('companyName');
-
-      const companyName = parseCompanyName(companyParam);
-      if (companyName) companyNameElement.textContent = companyName;
-      
-      modalOverlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-
-      function closeModal() {
-        modalOverlay.style.animation = 'fadeIn 0.3s ease-out reverse';
-
-        setTimeout(() => {
-          modalOverlay.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }, 300);
+        return decodeURIComponent(companyParam.replace(/\+/g, ' '));
       }
 
-      closeBtn.addEventListener('click', closeModal);
+      const urlParams = new URLSearchParams(window.location.search);
+      const companyParam = urlParams.get('plzHireMe');
 
-      modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
+      if (companyParam) {
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const companyNameElement = document.getElementById('companyName');
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeModal();
+        const companyName = parseCompanyName(companyParam);
+        if (companyName) companyNameElement.textContent = companyName;
+
+        modalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        function closeModal() {
+          modalOverlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+
+          setTimeout(() => {
+            modalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }, 300);
         }
-      });
-    }
-  </script>
+
+        closeBtn.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', (e) => {
+          if (e.target === modalOverlay) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeModal();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
