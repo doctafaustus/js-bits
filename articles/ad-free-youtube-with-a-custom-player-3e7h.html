@@ -1,0 +1,95 @@
+<html><head></head><body><article>
+        <div id="article-head">
+          <h1>Ad-Free YouTube With a Custom Player</h1>
+          <div id="article-info">
+            <div id="avatar-container">
+              <img src="https://res.cloudinary.com/dzynqn10l/image/upload/v1767510443/JS%20Bits/1732214886812_1_gqfioj.jpg">
+            </div>
+            <div id="author-and-date">
+              <div id="author">Bill Coloe</div>
+              <div id="date">Posted on 4/1/2026</div>
+            </div>
+          </div>
+        </div>
+        <div id="article-body">
+          <p>As enshittification marches on, more ads, more dark patterns, more UI designed to serve the platform instead of the user, I've found myself writing more and more userscripts to just take back control of my own browser.</p>
+
+<p>The web is full of it these days. Search results that bury the actual answer under AI summaries and SEO slop, cookie banners engineered to trick you into opting in, UI patterns designed to get you to click something you never intended to. I've just started writing small scripts to deal with it, nothing fancy, just enough JS to sand off the rough edges of whatever site is annoying me that week.</p>
+
+<p>YouTube has been one of the worst offenders. Pre-roll ads, mid-roll interruptions, recommended video overlays hijacking your screen the second a video ends. But it turns out YouTube's own embed URL has a lesser-known cousin that makes most of this go away: <code>youtube-nocookie.com</code>. It's their own domain, built for privacy-respecting embeds and as a side effect, <strong>it serves no ads</strong>. 🎉</p>
+
+<p>The script intercepts any <code>youtube.com/watch?v=VIDEO_ID</code> link and reconstructs it as a <code>yout-ube.com/watch?v=VIDEO_ID</code> URL, opening it in a new tab. <code>yout-ube.com</code> is a third-party pass-through that rewrites the request and loads it via <code>youtube-nocookie.com/embed</code> with the right HTTP Referer context intact. That Referer is what matters — if you navigate directly to a nocookie embed URL or just hit refresh, YouTube throws an Error 153 and kills playback entirely. The <code>yout-ube.com</code> hop is what keeps everything happy.</p>
+
+<p>From there a second script runs on the nocookie domain to enhance the player. You get the full video, zero ads. Just the video. It sounds simple because it should have always been this way.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fzf7v6fhvxztwwk9wt7hw.webp" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fzf7v6fhvxztwwk9wt7hw.webp" alt="YouTube No Cookie Player" loading="lazy" width="800" height="432"></a><br>
+<em>The custom player on youtube-nocookie.com — comments panel open, like/dislike ratio bar, clean controls, zero ads.</em></p>
+
+<hr>
+<h2>
+  <a name="what-i-built" href="#what-i-built">
+  </a>
+  What I Built
+</h2>
+
+<p><strong>Speed hold</strong>: hold the mouse button over the video to speed it up. Upper half = 2x, lower half = 3x. Release to snap back to 1x. No UI, no buttons, just muscle memory.</p>
+
+<p><strong>Double-click fullscreen</strong>: YouTube's overlay swallows the native <code>dblclick</code> event so I track clicks manually. Two clicks within 300ms over the video area toggles fullscreen.</p>
+
+<p><strong>Comments panel</strong>: a collapsible panel at the bottom of the player that pulls comments via the YouTube Data API v3. Top or New sort, like counts, timestamps, and a like/dislike ratio bar.</p>
+
+<hr>
+<h2>
+  <a name="ui-cleanup" href="#ui-cleanup">
+  </a>
+  UI Cleanup
+</h2>
+
+<p>The nocookie player still renders some unwanted elements, a "watch on YouTube" button, a fullscreen recommendations overlay, the loop icon. All of it gets nuked with CSS:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre class="highlight css"><code>player-fullscreen-action-<span class="hljs-selector-tag">menu</span>,
+<span class="hljs-selector-class">.ytp-pause-overlay-container</span>,
+<span class="hljs-selector-class">.watch-on-youtube-button-wrapper</span>,
+<span class="hljs-selector-class">.ytFullscreenVideoRecommendationsHost</span> {
+  <span class="hljs-attribute">display</span>: none <span class="hljs-meta">!important</span>;
+}
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+    <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+    <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+
+</div>
+</div>
+</div>
+
+
+
+<p>Volume, CC, and settings buttons get relocated to a custom bottom bar to keep things tidy.</p>
+
+<p>The web is still a hackable place. The browser is still yours. A little JS goes a long way. 🛠️</p>
+
+
+<hr>
+
+<h2>
+  <a name="set-it-up-yourself" href="#set-it-up-yourself">
+  </a>
+  Set It Up Yourself
+</h2>
+
+<p>I put together a short video walkthrough of the full setup if you'd rather just follow along: <a href="https://streamable.com/ry74kw" target="_blank" rel="noopener noreferrer">https://streamable.com/ry74kw</a></p>
+
+<p>Full written instructions including both scripts and the API key setup are over on my <a href="https://gist.github.com/JSBitsYo/97eded7d320ac3521533763eb8357aaa" target="_blank" rel="noopener noreferrer">GitHub Gist</a>.</p>
+
+
+        </div>
+      </article>
+    </body></html>
